@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import DummyComponent from "./components/DummyComponent.jsx";
 
 class App extends Component {
   constructor() {
@@ -8,7 +9,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1 className="title is-1">Hello World</h1>
+        <DummyComponent />
       </div>
     );
   }

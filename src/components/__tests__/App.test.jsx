@@ -1,12 +1,22 @@
 import React from "react";
-import { shallow } from "enzyme";
-import App from "../../App.jsx";
+import { mount, shallow } from "enzyme";
+import { MemoryRouter as Router } from "react-router-dom";
 import renderer from "react-test-renderer";
+import App from "../../App.jsx";
 
-test("Header tag says 'Hello World'", () => {
+test("App renders without crashing", () => {
   const wrapper = shallow(<App />);
-  const h1 = wrapper.find("h1");
-  expect(h1.text()).toBe("Hello World");
+});
+
+test("App will call componentDidMount when mounted", () => {
+  const didMount = jest.fn();
+  App.prototype.componentDidMount = didMount;
+  const wrapper = mount(
+    <Router>
+      <App />
+    </Router>
+  );
+  expect(didMount).toHaveBeenCalledTimes(1);
 });
 
 test("App component renders a snapshot properly", () => {
