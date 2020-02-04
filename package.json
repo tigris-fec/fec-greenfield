@@ -46,6 +46,6 @@
     "react-test-renderer": "^16.12.0"
   },
   "optionalDependencies": {
-        "fsevents": "^2.1.2"
+    "fsevents": "^2.1.2"
   }
 }
