@@ -8,7 +8,7 @@ class DummyComponent extends Component {
   render() {
     return (
       <div className="container">
-        <h1 className="title is-1">Hello World!</h1>
+        <h1 className="title is-1 has-text-centered">Hello World!</h1>
       </div>
     );
   }
