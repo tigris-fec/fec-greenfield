@@ -1,9 +1,8 @@
-import Redux from 'redux';
-
+import Redux from "redux";
 
 var dummyreducer = (state = null, action) => {
-  switch(action.type){
-    case 'CHANGE_VIDEO':
+  switch (action.type) {
+    case "CHANGE_VIDEO":
       return action.video;
     default:
       return state;

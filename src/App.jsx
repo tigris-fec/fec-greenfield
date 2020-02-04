@@ -1,18 +1,12 @@
 import React, { Component } from "react";
-import DummyComponent from "./components/DummyComponent.jsx";
+import DummyComponentContainer from "./containers/DummyContainer.js";
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
-  render() {
-    return (
-      <div>
-        <DummyComponent />
-      </div>
-    );
-  }
-}
+const App = () => {
+  return (
+    <div>
+      <DummyComponentContainer />
+    </div>
+  );
+};
 
 export default App;
