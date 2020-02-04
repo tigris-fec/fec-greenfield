@@ -19,7 +19,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "e2e": "./node_modules/.bin/cypress open"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -38,10 +39,13 @@
   },
   "devDependencies": {
     "bulma": "^0.8.0",
+    "cypress": "^3.8.3",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
-    "fsevents": "^2.1.2",
     "node-sass": "^4.13.1",
     "react-test-renderer": "^16.12.0"
+  },
+  "optionalDependencies": {
+        "fsevents": "^2.1.2"
   }
 }
