@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./css/NavBar.css";
 
 const NavBar = (props) => {
   const node = useRef();
+  const [search, setSearch] = useState();
   useEffect(() => {
     document.addEventListener("mousedown", handleMoveOutside);
     document.addEventListener("keydown", handleMoveOutside);
@@ -12,6 +13,9 @@ const NavBar = (props) => {
       document.removeEventListener("keydown", handleMoveOutside);
     };
   }, []);
+  const handleChange = (event) => {
+    setSearch(event.target.value);
+  };
   const toggleNavBar = () => {
     let navToggle = document.querySelector(".nav-toggle");
     let navbarMenu = document.querySelector(".navbar-menu");
@@ -29,16 +33,20 @@ const NavBar = (props) => {
     }
   };
   return (
-    <nav id="navbar" className="navbar is-mobile is-spaced is-clearfix" ref={node}>
+    <nav
+      id="navbar"
+      className="navbar is-mobile is-spaced is-clearfix is-light"
+      ref={node}
+    >
       <div className="navbar-brand">
         <div className="navbar-item" id="brand">
           <strong>
             <Link className="link" to="/">
-              Greenfield
+              Logo
             </Link>
           </strong>
         </div>
-        <div className="navbar-burger nav-toggle" onClick={toggleNavBar}>
+        <div className="navbar-burger nav-toggle" id="burger" onClick={toggleNavBar}>
           <span></span>
           <span></span>
           <span></span>
@@ -60,6 +68,21 @@ const NavBar = (props) => {
             <Link className="link" to="/example-form">
               Example Form
             </Link>
+          </div>
+        </div>
+        <div className="navbar-end">
+          <div className="field">
+            <p className="control">
+              <input
+                id="searchbar"
+                className="input is-rounded "
+                type="text"
+                placeholder="Search"
+                name="search"
+                value={search}
+                onChange={handleChange}
+              />
+            </p>
           </div>
         </div>
       </div>
