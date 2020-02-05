@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBar renders a snapshot properly 1`] = `
+<nav
+  className="navbar is-mobile is-spaced is-clearfix"
+  id="navbar"
+>
+  <div
+    className="navbar-brand"
+  >
+    <div
+      className="navbar-item"
+      id="brand"
+    >
+      <strong>
+        <a
+          className="link"
+          href="/"
+          onClick={[Function]}
+        >
+          Greenfield
+        </a>
+      </strong>
+    </div>
+    <div
+      className="navbar-burger nav-toggle"
+      onClick={[Function]}
+    >
+      <span />
+      <span />
+      <span />
+    </div>
+  </div>
+  <div
+    className="navbar-menu"
+  >
+    <div
+      className="navbar-start"
+    >
+      <div
+        className="navbar-item is-hoverable"
+        onClick={[Function]}
+      >
+        <a
+          className="link"
+          href="/"
+          onClick={[Function]}
+        >
+          Home
+        </a>
+      </div>
+      <div
+        className="navbar-item is-hoverable"
+        onClick={[Function]}
+      >
+        <a
+          className="link"
+          href="/example-list"
+          onClick={[Function]}
+        >
+          Example List
+        </a>
+      </div>
+      <div
+        className="navbar-item is-hoverable"
+        onClick={[Function]}
+      >
+        <a
+          className="link"
+          href="/example-form"
+          onClick={[Function]}
+        >
+          Example Form
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+`;
