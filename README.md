@@ -1,6 +1,5 @@
 # FEC Greenfield
 
-...
 A list of Dependencies and their intended use.
 
 React-router-dom: Handles the routing, alternative to express
