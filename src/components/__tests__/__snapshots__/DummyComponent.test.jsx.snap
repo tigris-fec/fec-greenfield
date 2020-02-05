@@ -5,7 +5,7 @@ exports[`DummyComponent renders a snapshot properly 1`] = `
   className="container"
 >
   <h1
-    className="title is-1"
+    className="title is-1 has-text-centered"
   >
     Hello World!
   </h1>
