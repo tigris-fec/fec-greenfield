@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import QA from "../components/questions-&-answers/QA.jsx"
 const DummyComponent = props => {
   return (
     <div className="container">
@@ -7,6 +7,7 @@ const DummyComponent = props => {
       <button className="button" onClick={props.handleFunc}>
         Click
       </button>
+      <QA />
     </div>
   );
 };
