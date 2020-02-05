@@ -15,5 +15,7 @@ describe("ExampleForm", () => {
       </Provider>
     );
 
-  it("should be true", () => {});
+  it("should be true", () => {
+    expect(true).toEqual(true);
+  });
 });
