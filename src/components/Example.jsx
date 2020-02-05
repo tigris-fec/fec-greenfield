@@ -8,11 +8,11 @@ const mapStateToProps = (state) => {
 const ConnectedExample = (props) => {
   return (
     <div>
-      <ol>
+      <ul>
         {props.exampleData.map((data) => {
           return <li key={data.text}>{data.text}</li>;
         })}
-      </ol>
+      </ul>
     </div>
   );
 };

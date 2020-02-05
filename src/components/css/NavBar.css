@@ -4,10 +4,25 @@
   text-align: center;
 }
 
-div.navbar-item:hover {
-  background-color: #f2f2f2;
+div.navbar-brand {
+  color: white;
+  font-size: 20px;
+  text-decoration: underline;
+}
+
+#burger {
+  color: white;
 }
 
 .link {
   color: black;
+}
+
+#searchbar {
+  border-color: #525252;
+  color: white;
+}
+
+input:focus {
+  outline: none;
 }
