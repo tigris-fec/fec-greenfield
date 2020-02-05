@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "enzyme";
 
 
-const QA = () =>{
+const QA = (props) =>{
     
     return (
         <div>

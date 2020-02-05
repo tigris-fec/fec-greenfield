@@ -22,5 +22,15 @@ import React from 'react';
 //   }
 // }
 const QuestionUnit = (props) => {
+    return (
+        <div>
+            Q: {props.question_body}
+            Helpful?
+            <a href="#" onClick={}>Yes ({props.question_helpfulness})</a>
+            |
+            <a href= "#" onClick={}>Add Answer</a>
+           {props.answers.map(answer => <AnswerUnit props = {answer}/>)}
+        </div>
+    );
 
 }
