@@ -1,9 +1,19 @@
 import React from "react";
 import { shallow } from "enzyme";
+import { mount } from "enzyme"
 import { render } from "enzyme"
 import renderer from "react-test-renderer"
-import QA from "../questions-&-answers/QA";
+import QA from "../questions-&-answers/QA.jsx";
+import QuestionUnit from "../questions-&-answers/QuestionUnit.jsx"
 
+
+describe("QA Display everything that would make it look functionally complete", () => {
+    const wrapper = mount(<QA questions={[]} />);
+
+    it ("should render the heading 'QUESTIONS & ANSWERS'")
+    const allQuestions = wrapper.find(".all-questions");
+    expect(allQuestions.exists()).toBe(true);
+})
 
 test("QA renders", () => {
 
@@ -35,7 +45,9 @@ test("QA renders questions, which renders answers", () =>{
         }
     }]
 
-    const wrapper = shallow(<QA questions = {question}/>)
+    const wrapper = mount(<QA questions = {question}/>)
+    const QUnit = wrapper.find(QuestionUnit);
+    expect(QUnit).toBe(true);
 })
 
 
