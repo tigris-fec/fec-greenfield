@@ -1,15 +1,16 @@
 import React from "react";
 import { render } from "enzyme";
+import QuestionUnit from "./QuestionUnit.jsx"
 
 
-const QA = () =>{
+
+const QA = (props) =>{
     
     return (
-        <div>
+        <div className = "all-questions">
             <h5>{"Questions & Answers"}</h5>
             <input type = "text" placeholder = "HAVE A QUESTION? SEARCH FOR ANSWERS..."/>
-            <p><strong>Q: Who what which when ....</strong></p>
-            <p><strong>A: Tootlsie roll something cats are cute and potato chips</strong></p>
+            {props.questions.map(question => <QuestionUnit question = {question} />)}
             <button>More Answered Questions</button>
             <button>Add a Question +</button>
         </div>

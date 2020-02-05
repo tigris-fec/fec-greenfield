@@ -21,6 +21,19 @@ import React from 'react';
 //     // ...
 //   }
 // }
+const handleClick = (e) => {
+    
+}
 const QuestionUnit = (props) => {
+    return (
+        <div>
+            Q: {props.question_body}
+            Helpful?
+            <a href="#" onClick={handleClick}>Yes ({props.question_helpfulness})</a>
+            |
+            <a href= "#" onClick={handleClick}>Add Answer</a>
+           {props.answers.map(answer => <AnswerUnit answer = {answer}/>)}
+        </div>
+    );
 
 }

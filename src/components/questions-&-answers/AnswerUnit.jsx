@@ -22,4 +22,12 @@ import React from 'react';
 // }
 const AnswerUnit = (props) => {
 
+    return (
+        <div>
+           A: {props.body}
+           <br /> 
+           by {props.answerer_name} | Helpful? <u onClick = {}>Yes({props.helpfulness})</u> | <u onClick = {}>Report</u>
+        </div>
+    )
+
 }
