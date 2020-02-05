@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DummyComponent renders a snapshot properly 1`] = `
+<div
+  className="container"
+>
+  <h1
+    className="title is-1"
+  >
+    Hello World!
+  </h1>
+  <button
+    className="button"
+  >
+    Click
+  </button>
+</div>
+`;
