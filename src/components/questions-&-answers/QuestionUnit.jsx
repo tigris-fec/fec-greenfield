@@ -21,6 +21,7 @@ import React from 'react';
 //     // ...
 //   }
 // }
+<<<<<<< HEAD
 const handleClick = (e) => {
     
 }
@@ -35,5 +36,8 @@ const QuestionUnit = (props) => {
            {props.answers.map(answer => <AnswerUnit answer = {answer}/>)}
         </div>
     );
+=======
+const QuestionUnit = (props) => {
+>>>>>>> ead1180962ab7456f0e4a58d1c9fcc63d891337f
 
 }

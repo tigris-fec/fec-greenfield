@@ -21,6 +21,7 @@ import React from 'react';
 //   }
 // }
 const AnswerUnit = (props) => {
+<<<<<<< HEAD
     return (
         <div>
            A: {props.body}
@@ -28,4 +29,7 @@ const AnswerUnit = (props) => {
            by {props.answerer_name} | Helpful? <u onClick = {}>Yes({props.helpfulness})</u> | <u onClick = {}>Report</u>
         </div>
     )
+=======
+
+>>>>>>> ead1180962ab7456f0e4a58d1c9fcc63d891337f
 }

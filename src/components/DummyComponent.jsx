@@ -7,6 +7,7 @@ const DummyComponent = props => {
       <button className="button" onClick={props.handleFunc}>
         Click
       </button>
+      <QA />
     </div>
   );
 };
