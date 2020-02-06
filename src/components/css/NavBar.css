@@ -8,10 +8,11 @@ div.navbar-brand {
   color: white;
   font-size: 20px;
   text-decoration: underline;
+  font-style: italic;
 }
 
 #burger {
-  color: white;
+  color: black;
 }
 
 .link {

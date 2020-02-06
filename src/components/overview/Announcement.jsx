@@ -1,6 +1,6 @@
 import React from "react";
 
-const AnnouncementMessage = (props) => {
+const Announcement = (props) => {
   return (
     <article className="message">
       <div
@@ -11,14 +11,14 @@ const AnnouncementMessage = (props) => {
           justifyContent: "center",
           textTransform: "uppercase",
           fontWeight: "normal",
-          fontSize: "12px"
+          fontSize: "13px",
+          fontStyle: "italic"
         }}
       >
-        SITE-WIDE ANNOUNCEMENT MESSAGE -- SALE / DISCOUNT <strong>OFFER</strong> -- NEW
-        PRODUCT HIGHLIGHT
+        SITE-WIDE ANNOUNCEMENT MESSAGE -- SALE / DISCOUNT OFFER -- NEW PRODUCT HIGHLIGHT
       </div>
     </article>
   );
 };
 
-export default AnnouncementMessage;
+export default Announcement;
