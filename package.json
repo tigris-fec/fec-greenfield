@@ -42,7 +42,6 @@
   },
   "devDependencies": {
     "bulma": "^0.8.0",
-    "bulma-carousel": "^4.0.4",
     "cypress": "^3.8.3",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
