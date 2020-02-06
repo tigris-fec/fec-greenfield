@@ -5,40 +5,47 @@ import { render } from "enzyme"
 import renderer from "react-test-renderer"
 import QA from "../questions-&-answers/QA.jsx";
 import QuestionUnit from "../questions-&-answers/QuestionUnit.jsx"
+import data from "./mockDataQuestions.js";
+
+
+let sampleQuestion = data.results[0];
+let QAWrapper = mount(<QA questions = {[sampleQuestion]} />);
 
 
 
-beforeAll()
 describe("QA Displays everything that would make it look functionally complete", () => {
-    const wrapper = mount(<QA questions={[]} />);
+    
 
-    it ("should have the heading 'QUESTIONS & ANSWERS'", () => {
+    test("should have the heading 'QUESTIONS & ANSWERS'", () => {
         //let allQuestions = wrapper.find(".all-questions")
         //expect(allQuestions.exists()).toBe(true);
+        
+
+        
     })
-    it ("should have a search box with the text 'HAVE A QUESTION? SEARCH FOR ANSWERS...'", () => {});
+    test.todo("should have a search box with the text 'HAVE A QUESTION? SEARCH FOR ANSWERS...'");
 
     
 
-    it ("should have a 'MORE ANSWERED QUESTIONS' button");
-    it ("should have a 'ADD A QUESTION' button");
+    test.todo("should have a 'MORE ANSWERED QUESTIONS' button");
+    test.todo("should have a 'ADD A QUESTION' button");
 
 })
 
 describe("Question Unit", () => {
 
-    it ("should display the question");
-    it ("should display the count of votes on Helpful? Yes()");
-    it ("should increment the helpful votes when i click Yes");
-    it ("it should have an Add Answer Clickable test");
+    test.todo("should display the question");
+    test.todo("should display the count of votes on Helpful? Yes()");
+    test.todo("should increment the helpful votes when i click Yes");
+    test.todo("it should have an Add Answer Clickable test");
 })
 
 describe("Answer Unit", () => {
-    it("should display the answer, user, date");
-    it("should increment the helpful? yes count when i click");
-    it("should have a report link");
+    test.todo("should display the answer, user, date");
+    test.todo("should increment the helpful? yes count when i click");
+    test.todo("should have a report link");
 });
-// test("QA renders", () => {
+// test.todo("QA renders", () => {
 
 
 //     const wrapper = shallow(<QA questions = {[]}/>);
@@ -47,7 +54,7 @@ describe("Answer Unit", () => {
 // });
 
 
-// test("QA renders questions, which renders answers", () =>{
+// test.todo("QA renders questions, which renders answers", () =>{
 //     const question = [{
 //         "question_id": 37,
 //         "question_body": "Why is this product cheaper here than other sites?",
