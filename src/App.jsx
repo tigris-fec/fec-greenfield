@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar.jsx";
 import ExampleList from "./components/ExampleList.jsx";
 import ExampleForm from "./components/ExampleForm.jsx";
+import QA from './components/questions-&-answers/QA.jsx'
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Switch>
           <Route exact path="/example-list" render={() => <ExampleList />} />
           <Route exact path="/example-form" render={() => <ExampleForm />} />
+          <Route exact path='/questions' render = {() => <QA />} />
         </Switch>
       </section>
     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+import AnswerUnit from './AnswerUnit.jsx'
 // In regards to taking props, does redux change this?
 // In regards to taking props, does redux change this?
 
@@ -32,8 +32,10 @@ const QuestionUnit = (props) => {
             <a href="#" onClick={handleClick}>Yes ({props.question_helpfulness})</a>
             |
             <a href= "#" onClick={handleClick}>Add Answer</a>
-           {props.answers.map(answer => <AnswerUnit answer = {answer}/>)}
+           {/*props.answers.map(answer => <AnswerUnit answer = {answer}/>)*/}
         </div>
     );
 
 }
+
+export default QuestionUnit;

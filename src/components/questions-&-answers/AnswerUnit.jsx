@@ -26,8 +26,10 @@ const AnswerUnit = (props) => {
         <div>
            A: {props.body}
            <br /> 
-           by {props.answerer_name} | Helpful? <u onClick = {}>Yes({props.helpfulness})</u> | <u onClick = {}>Report</u>
+           by {props.answerer_name} | Helpful? <u>Yes({props.helpfulness})</u> | <u>Report</u>
         </div>
     )
 
 }
+
+export default AnswerUnit;
