@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./css/NavBar.css";
 
 const NavBar = (props) => {
   const node = useRef();
+  const [search, setSearch] = useState();
   useEffect(() => {
     document.addEventListener("mousedown", handleMoveOutside);
     document.addEventListener("keydown", handleMoveOutside);
@@ -12,6 +13,9 @@ const NavBar = (props) => {
       document.removeEventListener("keydown", handleMoveOutside);
     };
   }, []);
+  const handleChange = (event) => {
+    setSearch(event.target.value);
+  };
   const toggleNavBar = () => {
     let navToggle = document.querySelector(".nav-toggle");
     let navbarMenu = document.querySelector(".navbar-menu");
@@ -29,41 +33,62 @@ const NavBar = (props) => {
     }
   };
   return (
-    <nav id="navbar" className="navbar is-mobile is-spaced is-clearfix" ref={node}>
-      <div className="navbar-brand">
-        <div className="navbar-item" id="brand">
-          <strong>
-            <Link className="link" to="/">
-              Greenfield
-            </Link>
-          </strong>
-        </div>
-        <div className="navbar-burger nav-toggle" onClick={toggleNavBar}>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-      <div className="navbar-menu">
-        <div className="navbar-start">
-          <div className="navbar-item is-hoverable" onClick={toggleNavBar}>
-            <Link className="link" to="/">
-              Home
-            </Link>
+    <header>
+      <nav
+        id="navbar"
+        className="navbar is-mobile is-spaced is-clearfix is-light"
+        ref={node}
+      >
+        <div className="navbar-brand">
+          <div className="navbar-item" id="brand">
+            <strong>
+              <Link className="link" to="/">
+                Logo
+              </Link>
+            </strong>
           </div>
-          <div className="navbar-item is-hoverable" onClick={toggleNavBar}>
-            <Link className="link" to="/example-list">
-              Example List
-            </Link>
-          </div>
-          <div className="navbar-item is-hoverable" onClick={toggleNavBar}>
-            <Link className="link" to="/example-form">
-              Example Form
-            </Link>
+          <div className="navbar-burger nav-toggle" id="burger" onClick={toggleNavBar}>
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
         </div>
-      </div>
-    </nav>
+        <div className="navbar-menu">
+          <div className="navbar-start">
+            <div className="navbar-item is-hoverable" onClick={toggleNavBar}>
+              <Link className="link" to="/">
+                Home
+              </Link>
+            </div>
+            <div className="navbar-item is-hoverable" onClick={toggleNavBar}>
+              <Link className="link" to="/overview-mock">
+                Overview Mock
+              </Link>
+            </div>
+            <div className="navbar-item is-hoverable" onClick={toggleNavBar}>
+              <Link className="link" to="/overview">
+                Overview
+              </Link>
+            </div>
+          </div>
+          <div className="navbar-end">
+            <div className="field" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
+              <p className="control">
+                <input
+                  id="searchbar"
+                  className="input is-rounded"
+                  type="text"
+                  placeholder="Search"
+                  name="search"
+                  value={search}
+                  onChange={handleChange}
+                />
+              </p>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
   );
 };
 
