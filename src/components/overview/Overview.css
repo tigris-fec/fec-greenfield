@@ -19,3 +19,8 @@ button.button {
   display: flex;
   flex-direction: column;
 }
+
+#thumbnails > .level > .level-item {
+  display: flex;
+  flex-wrap: wrap;
+}

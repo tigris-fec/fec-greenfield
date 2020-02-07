@@ -4,14 +4,14 @@ const AddToCart = (props) => {
   return (
     <>
       <div className="control">
-        <div className="select is-large">
+        <div className="select is-medium">
           <select style={{ borderRadius: "0px" }}>
             <option>SELECT SIZE</option>
             <option>XL</option>
           </select>
         </div>
         &nbsp; &nbsp;
-        <div className="select is-large">
+        <div className="select is-medium">
           <select style={{ borderRadius: "0px" }}>
             <option>1</option>
             <option>2</option>

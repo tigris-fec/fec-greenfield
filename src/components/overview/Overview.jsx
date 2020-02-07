@@ -40,78 +40,46 @@ class Overview extends Component {
       productStyles: [],
       productInfo: productInfo,
       selectedId: -1,
-      selectedProduct: {},
-      open: true,
+      selectedStyles: [],
       images: [],
       features: []
     };
-    this.getProductStyles = this.getProductStyles.bind(this);
-    this.getProductInfo = this.getProductInfo.bind(this);
-    this.selectProductStyle = this.selectProductStyle.bind(this);
     this.toggleCarouselWidth = this.toggleCarouselWidth.bind(this);
+    this.setSelectedProduct = this.setSelectedProduct.bind(this);
   }
   componentDidMount() {
     this.setState({
       id: Number(productStyles.product_id),
+      name: productInfo[0].name,
+      category: productInfo[0].category,
+      slogan: productInfo[0].slogan,
+      description: productInfo[0].description,
+      defaultPrice: productStyles.results[0].original_price,
+      selectedStyleName: productStyles.results[0]["default?"],
+      defaultStyle: productStyles.results[0].name,
       photos: productStyles.results[0].photos,
+      skus: productStyles.results[0].skus,
       productStyles: productStyles.results,
-      images: [
-        { id: 1, thumbnail_url: tShirt },
-        { id: 2, thumbnail_url: longSleeve },
-        { id: 3, thumbnail_url: tankTop },
-        { id: 4, thumbnail_url: vNeck }
-      ],
-      features: [
-        { id: 1, feature: "GMO and Pesticide-Free" },
-        { id: 2, feature: "Made with 300% Genetic Modification" },
-        { id: 4, feature: "This is made up" },
-        { id: 5, feature: "It doesn't matter}" }
-      ]
+      selectedStyles: productStyles.results
     });
-  }
-  getProductStyles(id = 1) {
-    axios
-      .get(`${API_URL}/products/${id}/styles`)
-      .then((res) => {
-        let productStyles = res.data.results;
-        this.setState({ productStyles });
-      })
-      .then(() => console.log(this.state.productStyles[0].photos))
-      .catch((err) => {});
-  }
-  getProductInfo(id = 1, callback) {
-    axios
-      .get(`${API_URL}/products/${id}`)
-      .then((res) => {
-        let product = res.data;
-        this.setState({
-          id: Number(product.id),
-          name: product.name,
-          slogan: product.slogan,
-          description: product.description,
-          category: product.category,
-          defaultPrice: Number(product.default_price),
-          features: product.features
-        });
-      })
-      .then(() => {
-        callback();
-      })
-      .catch((err) => {});
   }
   toggleCarouselWidth() {
     this.setState((prevState) => ({ open: !prevState.open }));
   }
-  selectProductStyle() {}
+  setSelectedProduct(selectedId) {
+    this.setState({ selectedId }, () => {
+      console.log(`${this.state.selectedId} is the selected ID`);
+    });
+  }
   render() {
     return (
       <section className="section">
         <div className="columns">
           <div className="column is-7">
             <ProductsGallery
-              open={this.state.open}
-              images={this.state.images}
               photos={this.state.photos}
+              productStyles={this.state.productStyles}
+              selectedStyles={this.state.selectedStyles}
             />
           </div>
           <div className="column is-5">
@@ -123,10 +91,9 @@ class Overview extends Component {
             <ProductStyles
               defaultStyle={this.state.defaultStyle}
               productStyles={this.state.productStyles}
+              setSelectedProduct={this.setSelectedProduct}
             />
-            <br />
-            <br />
-            <AddToCart />
+            <AddToCart skus={this.state.skus} />
           </div>
         </div>
         <div className="columns" style={{ marginLeft: "5%", marginTop: "2%" }}>
@@ -151,5 +118,37 @@ class Overview extends Component {
 export default Overview;
 
 /*
+this.getProductStyles = this.getProductStyles.bind(this);
+this.getProductInfo = this.getProductInfo.bind(this);
 
+getProductStyles(id = 1) {
+  axios
+    .get(`${API_URL}/products/${id}/styles`)
+    .then((res) => {
+      let productStyles = res.data.results;
+      this.setState({ productStyles });
+    })
+    .then(() => console.log(this.state.productStyles[0].photos))
+    .catch((err) => {});
+}
+getProductInfo(id = 1, callback) {
+  axios
+    .get(`${API_URL}/products/${id}`)
+    .then((res) => {
+      let product = res.data;
+      this.setState({
+        id: Number(product.id),
+        name: product.name,
+        slogan: product.slogan,
+        description: product.description,
+        category: product.category,
+        defaultPrice: Number(product.default_price),
+        features: product.features
+      });
+    })
+    .then(() => {
+      callback();
+    })
+    .catch((err) => {});
+}
 */
