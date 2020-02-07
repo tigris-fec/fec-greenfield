@@ -30,7 +30,7 @@ class QA extends React.Component{
             <div className="all-questions">
                 <h5>{"Questions & Answers"}</h5>
                 <input type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
-                {/*holyCrap.results.map(question => <QuestionUnit question={question} />)*/} <br />
+                {sampleQuestions.results.map(question => <QuestionUnit question={question} />)} <br />
                 <button>More Answered Questions</button>
                 {/*  Render Modal right here*/}
                 <button onClick={this.handleAddQuestion}>Add a Question +</button>
