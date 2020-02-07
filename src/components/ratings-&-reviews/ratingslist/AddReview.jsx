@@ -17,7 +17,7 @@ const AddReview = props => {
       <button className="button is-small" onClick={revealModal}>
         Add Review +
       </button>
-      {showModal? <ReviewModal closeModal={closeModal}/>:null}
+      {showModal? <ReviewModal charList={props.charList} closeModal={closeModal}/>:null}
       
     </div>
   );
