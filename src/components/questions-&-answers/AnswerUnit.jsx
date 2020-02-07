@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React from "react";
 
 // In regards to taking props, does redux change this?
 
@@ -36,5 +35,6 @@ const AnswerUnit = (props) => {
     )
 
 }
+
 
 export default AnswerUnit;

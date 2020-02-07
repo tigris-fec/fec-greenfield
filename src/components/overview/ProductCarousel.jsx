@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import tShirt from "./images/cat-mens-t-shirt.jpg";
-import longSleeve from "./images/cat-mens-long-sleeve-tee.jpg";
-import tankTop from "./images/cat-mens-tank-top.jpg";
-import vNeck from "./images/cat-v-neck.jpg";
+import tShirt from "./images/t-shirt.jpg";
+import longSleeve from "./images/long-sleeve-tee.jpg";
+import tankTop from "./images/tank-top.jpg";
+import vNeck from "./images/v-neck.jpg";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
