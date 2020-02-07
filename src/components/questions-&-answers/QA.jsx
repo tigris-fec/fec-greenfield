@@ -11,8 +11,10 @@ class QA extends React.Component{
         super(props);
         this.handleAddQuestion = this.handleAddQuestion.bind(this);
         this.state = {
-            questions: sampleQuestions
+            questions: sampleQuestions,
+            questionsToDisplay: 2
         }
+        this.handleMoreQuestions = this.handleMoreQuestions.bind(this);
     }
     handleAddQuestion(e){
         $(".modal").addClass("is-active");
@@ -24,6 +26,13 @@ class QA extends React.Component{
         // Verify
 
     }
+
+    handleMoreQuestions(){
+        let number = this.state.questionsToDisplay;
+        this.setState({
+            questionsToDisplay: (number += 2)
+        })
+    }
     handleChange(){}
     render(){
         
@@ -31,8 +40,8 @@ class QA extends React.Component{
             <div className="all-questions">
                 <h5>{"Questions & Answers"}</h5>
                 <input type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
-                {sampleQuestions.results.map(question => <QuestionUnit question={question} />)} <br />
-                <input type = "button" class = "button" value = "More Answered Questions" />
+                {this.state.questions.results.slice(0,this.state.questionsToDisplay).map(question => <QuestionUnit question={question} />)} <br />
+                <input type = "button" class = "button" value = "More Answered Questions" onClick = {this.handleMoreQuestions} />
                 <AddQuestion />
 
             </div>
