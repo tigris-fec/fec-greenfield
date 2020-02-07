@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "enzyme";
 import QuestionUnit from "./QuestionUnit.jsx"
-import Modal from 'react-modal';
+
 import {sampleQuestions} from '../../mockData/questions.js'
 import $ from 'jquery';
 
