@@ -19,6 +19,10 @@ class QA extends React.Component{
     handleAddQuestion(e){
         $(".modal").addClass("is-active");
     }
+
+    handleCloseQuestion(e){
+        $(".modal").removeClass("is-active");
+    }
     render(){
         
         return (
@@ -33,11 +37,19 @@ class QA extends React.Component{
                     <div class="modal-background"></div>
                     <div class="modal-content">
                         <form>
-                            <input type="input" placeholder="Sup" />
-                            <input type="button" />
+                            <label><h1>Your Question</h1></label>
+                            <input type="text" placeholder="Sup" />
+                            <label><h2>What is your nickname</h2></label>
+                            <p>For privacy reasons, do not use your full name or email address</p>
+                            <input type="text" placeholder="Example: jackson11!"/>
+                            <label><h2>Your email</h2></label>
+                            <input type="text" placeholder="Why did you like the product or not?" />
+                            <br/>
+                            <input type = "button" value = "Submit"></input>
+                            
                         </form>
                     </div>
-                    <button class="modal-close is-large" aria-label="close"></button>
+                    <button class="modal-close is-large" aria-label="close" onClick={this.handleCloseQuestion}></button>
                 </div>
             </div>
         );
