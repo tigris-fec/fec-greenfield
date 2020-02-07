@@ -4,39 +4,8 @@ import Breakdown from "./Breakdown.jsx";
 import Factors from "./Factors.jsx";
 
 const RatingsBar = props => {
-  const [fakeReview] = useState({
-    product_id: "1",
-    ratings: {
-      "1": 4,
-      "2": 2,
-      "3": 1,
-      "4": 8,
-      "5": 13
-    },
-    recommended: {
-      "0": 15,
-      "1": 13
-    },
-    characteristics: {
-      Fit: {
-        id: 1,
-        value: "3.0667"
-      },
-      Length: {
-        id: 2,
-        value: "2.7097"
-      },
-      Comfort: {
-        id: 3,
-        value: "3.0968"
-      },
-      Quality: {
-        id: 4,
-        value: "2.8387"
-      }
-    }
-  });
-
+  const fakeReview = props.soloRating;
+    
   const getAverageRating = Obj => {
     let totalCount = 0;
     let totalSum = 0;

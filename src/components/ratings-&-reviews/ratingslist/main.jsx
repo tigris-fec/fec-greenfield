@@ -156,7 +156,7 @@ const RatingsList = props => {
         {currentReviews.length !== reviews.length ? (
           <MoreReviews handleMoreReviews={handleMoreReviews} />
         ) : null}
-        <AddReview />
+        <AddReview charList={props.charList}/>
       </div>
     </div>
   );
