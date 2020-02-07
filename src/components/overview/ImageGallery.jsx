@@ -1,24 +1,29 @@
 import React from "react";
-import { connect } from "react-redux";
 
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const ImageGallery = (props) => {
-  console.log("ImageGallery Props", props);
   return (
-    <div className="column is-8">
-      <Carousel
-        showArrows={true}
-        showStatus={false}
-        showThumbs={true}
-        useKeyboardArrows={true}
-      >
-        <figure className="image">
-          <img src={""} alt="" />
-        </figure>
-      </Carousel>
-    </div>
+    <>
+      <div style={{ width: "100%" }}>
+        <Carousel
+          showArrows={true}
+          showStatus={true}
+          showThumbs={true}
+          useKeyboardArrows={true}
+          dynamicHeight={true}
+        >
+          {props.images.map((productImage) => {
+            return (
+              <figure className="image" key={productImage.id}>
+                <img src={productImage["thumbnail_url"]} alt="" />
+              </figure>
+            );
+          })}
+        </Carousel>
+      </div>
+    </>
   );
 };
 

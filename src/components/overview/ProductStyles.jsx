@@ -1,61 +1,58 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React from "react";
 
-class ProductStyles extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      styles: []
-    };
-    this.getProductStyle = this.getProductStyle.bind(this);
-  }
-  componentDidMount() {
-    this.getProductStyle(1);
-  }
-  getProductStyle(id = 1) {
-    axios.get(`http://3.134.102.30/products/${id}/styles`).then((res) => {
-      console.log(res.data);
-    });
-  }
-  render() {
-    return (
-      <>
-        <p className="title is-6">$15</p>
+/**
+ * [ ] User should be presented with styles of the product
+ * [ ] User should have the ability to toggle between them.
+ * [ ] Each style should be displayed as a thumbnail.
+ */
 
-        <p id="style-selected">
-          <strong>STYLE</strong> > SELECTED
-        </p>
+const ProductStyles = (props) => {
+  console.log(props.productStyles[0]);
+  return (
+    <>
+      <p>
+        <strong>STYLE</strong> > {props.defaultStyle === -1 ? "None" : null}
+      </p>
+      <figure className="image">
+        <img src={props.productStyles[0]} />
+      </figure>
+      <button
+        className="button  is-rounded is-medium"
+        style={{ margin: "2%", borderColor: "#525252" }}
+      ></button>
+      <button
+        className="button is-rounded is-medium"
+        style={{ margin: "2%", borderColor: "#525252" }}
+      ></button>
+      <button
+        className="button is-rounded is-medium"
+        style={{ margin: "2%", borderColor: "#525252" }}
+      ></button>
+      <button
+        className="button is-rounded is-medium"
+        style={{ margin: "2%", borderColor: "#525252" }}
+      ></button>
 
-        <p>&nbsp;</p>
+      <br />
 
-        <div className="level">
-          <div className="level-item">
-            <div className="button is-primary is-rounded is-medium"></div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <div className="button is-success is-rounded is-medium"></div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <div className="button is-info is-rounded is-medium"></div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <div className="button is-link is-rounded is-medium"></div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          </div>
-        </div>
-
-        <div className="level">
-          <div className="level-item">
-            <div className="button is-warning is-rounded is-medium"></div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <div className="button is-danger is-rounded is-medium"></div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <div className="button is-light is-rounded is-medium"></div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <div className="button is-dark is-rounded is-medium"></div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          </div>
-        </div>
-      </>
-    );
-  }
-}
+      <button
+        className="button is-rounded is-medium"
+        style={{ margin: "2%", borderColor: "#525252" }}
+      ></button>
+      <button
+        className="button is-rounded is-medium"
+        style={{ margin: "2%", borderColor: "#525252" }}
+      ></button>
+      <button
+        className="button is-rounded is-medium"
+        style={{ margin: "2%", borderColor: "#525252" }}
+      ></button>
+      <button
+        className="button is-rounded is-medium"
+        style={{ margin: "2%", borderColor: "#525252" }}
+      ></button>
+    </>
+  );
+};
 
 export default ProductStyles;
