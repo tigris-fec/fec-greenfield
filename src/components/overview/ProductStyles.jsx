@@ -44,7 +44,7 @@ class ProductStyles extends Component {
                         className="far fa-check-circle fa-lg"
                         style={{
                           float: "right",
-                          position: "relative",
+                          position: "absolute",
                           right: "0%",
                           top: "0%",
                           zIndex: "1",

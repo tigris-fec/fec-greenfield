@@ -42,7 +42,18 @@ class Overview extends Component {
       selectedId: -1,
       selectedStyles: [],
       images: [],
-      features: []
+      features: [
+        { id: 1, feature: "No one will be able to see you" },
+        { id: 2, feature: "Everyone will think you are cool" },
+        { id: 3, feature: "Fair-labor product" }
+      ],
+      skus: {
+        XS: 8,
+        S: 16,
+        M: 17,
+        L: 10,
+        XL: 15
+      }
     };
     this.toggleCarouselWidth = this.toggleCarouselWidth.bind(this);
     this.setSelectedProduct = this.setSelectedProduct.bind(this);
