@@ -19,6 +19,9 @@ import React from "react";
 //     // ...
 //   }
 // }
+
+const handleClick = (e) => {}
+
 const AnswerUnit = (props) => {
   return (
     <div>
@@ -34,14 +37,5 @@ const AnswerUnit = (props) => {
       </u>
     </div>
   );
-
-  return (
-    <div>
-      A: {props.body}
-      <br />
-      by {props.answerer_name} | Helpful? <u>Yes({props.helpfulness})</u> | <u>Report</u>
-    </div>
-  );
-};
 
 export default AnswerUnit;
