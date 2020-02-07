@@ -140,10 +140,3 @@ class Overview extends Component {
 }
 
 export default Overview;
-
-/*
-["GMO and Pesticide-Free",
-"Made with 100% Genetic Modification",
-"This is made up",
-"It doesn't matter"]
-*/
