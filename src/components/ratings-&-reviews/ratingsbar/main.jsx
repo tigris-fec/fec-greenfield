@@ -55,7 +55,7 @@ const RatingsBar = props => {
   let getCharacteristics = characteristics => {
     let returnArr = [];
     for (let key in characteristics) {
-      returnArr.push({[key]:characteristics[key]});
+      returnArr.push({ [key]: characteristics[key] });
     }
     return returnArr;
   };
@@ -72,9 +72,14 @@ const RatingsBar = props => {
   return (
     <div className="column is-one-third ">
       <RatingSummary rating={averageRating} />
-      <Breakdown recommend={averageRecommend} ratings={fakeReview.ratings} />
-      <br/>
-      <Factors characteristics={productCharacteristics}/>
+      <Breakdown
+        recommend={averageRecommend}
+        ratings={fakeReview.ratings}
+        setFilter={props.setFilter}
+        filters={props.filters}
+      />
+      <br />
+      <Factors characteristics={productCharacteristics} />
     </div>
   );
 };
