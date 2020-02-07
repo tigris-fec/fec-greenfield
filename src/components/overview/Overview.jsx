@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import ImageGallery from "./ImageGallery.jsx";
-import ImageCarousel from "./ImageCarousel.jsx";
 import ProductRating from "./ProductRating.jsx";
 import ProductCategory from "./ProductCategory.jsx";
 import ProductName from "./ProductName.jsx";

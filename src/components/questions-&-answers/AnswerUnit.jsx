@@ -20,9 +20,8 @@ import React from "react";
 //   }
 // }
 
-const handleClick = (e) => {}
-
 const AnswerUnit = (props) => {
+  const handleClick = (e) => {};
   return (
     <div>
       A: {props.body}
@@ -37,5 +36,6 @@ const AnswerUnit = (props) => {
       </u>
     </div>
   );
+};
 
 export default AnswerUnit;
