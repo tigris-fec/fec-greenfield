@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import QA from "../components/questions-&-answers/QA.jsx"
-const DummyComponent = props => {
+import QA from "../components/questions-and-answers/QA.jsx";
+const DummyComponent = (props) => {
   return (
     <div className="container">
       <h1 className="title is-1">Hello World!</h1>

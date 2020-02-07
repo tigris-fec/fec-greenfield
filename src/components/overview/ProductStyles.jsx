@@ -1,11 +1,5 @@
 import React, { Component } from "react";
 
-/**
- * [ ] User should be presented with styles of the product
- * [ ] User should have the ability to toggle between them.
- * [ ] Each style should be displayed as a thumbnail.
- */
-
 class ProductStyles extends Component {
   constructor(props) {
     super(props);
@@ -50,7 +44,7 @@ class ProductStyles extends Component {
                         className="far fa-check-circle fa-lg"
                         style={{
                           float: "right",
-                          position: "absolute",
+                          position: "relative",
                           right: "0%",
                           top: "0%",
                           zIndex: "1",
