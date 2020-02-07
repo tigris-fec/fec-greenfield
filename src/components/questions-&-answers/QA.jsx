@@ -3,6 +3,7 @@ import { render } from "enzyme";
 import QuestionUnit from "./QuestionUnit.jsx"
 import Modal from 'react-modal';
 import {sampleQuestions} from '../../mockData/questions.js'
+import $ from 'jquery';
 
 
 class QA extends React.Component{ 
@@ -16,7 +17,7 @@ class QA extends React.Component{
     }
 
     handleAddQuestion(e){
-        console.log(this.state.questions);
+        $(".modal").addClass("is-active");
     }
     render(){
         
