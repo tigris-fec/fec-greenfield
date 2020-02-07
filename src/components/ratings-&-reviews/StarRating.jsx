@@ -1,5 +1,6 @@
 import React from "react";
 import Rating from "react-rating";
+import "./starrating.css";
 
 /**
  * [ x ] A total of 5 stars should always appear
@@ -10,21 +11,14 @@ import Rating from "react-rating";
  * [ ] Clicking this link hould scroll the page to the Ratings & Reviews module
  */
 
-const StarRating = (props) => {
+const StarRating = props => {
   return (
-    <div className="level">
-      <div className="level-right">
-        <div className="level-item">
-          <Rating
-            initialRating={props.averageRating || 3.78}
-            emptySymbol={<i className="far fa-star" style={{}}></i>}
-            fullSymbol={<i className="fa fa-star" style={{ color: "#d4af37" }}></i>}
-          />
-        </div>
-        {props.reviews && props.reviews.length >= 1 ? (
-          <p id="read-all-reviews">Read All Reviews</p>
-        ) : null}
-      </div>
+    <div>
+      <Rating
+        initialRating={props.averageRating}
+        emptySymbol={<i className="far fa-star" style={{}}></i>}
+        fullSymbol={<i className="fa fa-star" style={{ color: "#d4af37" }}></i>}
+      />
     </div>
   );
 };
