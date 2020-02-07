@@ -20,20 +20,18 @@ import React from 'react';
 //     // ...
 //   }
 // }
-const AnswerUnit = (props) => {
-    return (
-        <div>
-           A: {props.body}
-           <br /> 
-           by {props.answerer_name} | Helpful? <u onClick = {}>Yes({props.helpfulness})</u> | <u onClick = {}>Report</u>
-        </div>
-    )
 
+const handleClick = (e) => {
+
+}
+const AnswerUnit = (props) => {
+
+    console.log(props);
     return (
         <div>
-           A: {props.body}
+           A: {props.answer.body}
            <br /> 
-           by {props.answerer_name} | Helpful? <u>Yes({props.helpfulness})</u> | <u>Report</u>
+           by {props.answer.answerer_name} | Helpful? <a href = "#" onClick = {handleClick}>Yes({props.answer.helpfulness})</a> | <a href = "#" onClick = {handleClick}>Report</a>
         </div>
     )
 
