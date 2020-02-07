@@ -1,8 +1,11 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar.jsx";
-import Overview from "./components/Overview/Overview.jsx";
-import QA from "./components/questions-&-answers/QA.jsx";
+
+import OverviewMock from "./components/overview/OverviewMock.jsx";
+import Overview from "./components/overview/Overview.jsx";
+import QA from './components/questions-&-answers/QA.jsx'
+
 import "./App.css";
 
 const App = () => {
