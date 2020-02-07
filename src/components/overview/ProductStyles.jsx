@@ -7,14 +7,13 @@ import React from "react";
  */
 
 const ProductStyles = (props) => {
-  console.log(props.productStyles[0]);
   return (
     <>
       <p>
         <strong>STYLE</strong> > {props.defaultStyle === -1 ? "None" : null}
       </p>
       <figure className="image">
-        <img src={props.productStyles[0]} />
+        <img src={props.productStyles[0]} alt="" />
       </figure>
       <button
         className="button  is-rounded is-medium"
