@@ -2,10 +2,11 @@ import React from "react";
 import StarRating from "./StarRating.jsx";
 
 const ProductInfo = (props) => {
+  console.log(props.productStyles);
   return (
-    <div className="column is-6">
-      <StarRating />
-    </div>
+    <h4 className="title is-4">
+      {props.productName ? props.productName : "Product Name"}
+    </h4>
   );
 };
 

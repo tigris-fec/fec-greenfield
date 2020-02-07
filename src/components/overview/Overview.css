@@ -1,0 +1,21 @@
+button.button {
+  padding: 10px;
+}
+
+.carousel {
+  background-color: "#EBEBEB";
+}
+
+#features li:before {
+  content: "✓ ";
+  font-weight: bold;
+}
+
+#features li {
+  padding: 2.5px;
+}
+
+.thumb li {
+  display: flex;
+  flex-direction: column;
+}

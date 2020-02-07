@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React from "react";
 
 // In regards to taking props, does redux change this?
 
@@ -21,22 +20,28 @@ import React from 'react';
 //   }
 // }
 const AnswerUnit = (props) => {
-    return (
-        <div>
-           A: {props.body}
-           <br /> 
-           by {props.answerer_name} | Helpful? <u onClick = {}>Yes({props.helpfulness})</u> | <u onClick = {}>Report</u>
-        </div>
-    )
+  return (
+    <div>
+      A: {props.body}
+      <br />
+      by {props.answerer_name} | Helpful?{" "}
+      <u onClick={() => console.log("Please don't commit errored code!")}>
+        Yes({props.helpfulness})
+      </u>{" "}
+      |{" "}
+      <u onClick={() => console.log("This threw an error when I tried to rebase")}>
+        Report
+      </u>
+    </div>
+  );
 
-    return (
-        <div>
-           A: {props.body}
-           <br /> 
-           by {props.answerer_name} | Helpful? <u>Yes({props.helpfulness})</u> | <u>Report</u>
-        </div>
-    )
-
-}
+  return (
+    <div>
+      A: {props.body}
+      <br />
+      by {props.answerer_name} | Helpful? <u>Yes({props.helpfulness})</u> | <u>Report</u>
+    </div>
+  );
+};
 
 export default AnswerUnit;
