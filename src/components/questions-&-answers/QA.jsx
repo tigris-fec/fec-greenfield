@@ -23,7 +23,6 @@ class QA extends React.Component{
     handleCloseQuestion(e){
         $(".modal").removeClass("is-active");
     }
-
     render(){
         
         return (
@@ -47,11 +46,10 @@ class QA extends React.Component{
                             <input type="text" placeholder="Why did you like the product or not?" />
                             <br/>
                             <input type = "button" value = "Submit"></input>
-                          
+                            
                         </form>
                     </div>
                     <button class="modal-close is-large" aria-label="close" onClick={this.handleCloseQuestion}></button>
-
                 </div>
             </div>
         );
