@@ -16,8 +16,8 @@ import longSleeve from "./images/long-sleeve-tee.jpg";
 import tankTop from "./images/tank-top.jpg";
 import vNeck from "./images/v-neck.jpg";
 
-import { productStyle } from "./data/product-styles";
-import { productsList } from "./data/products-list";
+import { productStyles } from "./data/product-styles";
+import { productInfo } from "./data/products-info";
 import { reviews } from "./data/reviews";
 
 import "./Overview.css";
@@ -29,7 +29,21 @@ class Overview extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: -1
+      id: -1,
+      name: "",
+      category: "",
+      defaultPrice: -1,
+      defaultStyle: -1,
+      photos: [],
+      rating: 4.26,
+      reviews: [],
+      productStyles: [],
+      productInfo: productInfo,
+      selectedId: -1,
+      selectedProduct: {},
+      open: true,
+      images: [],
+      features: []
     };
     this.getProductStyles = this.getProductStyles.bind(this);
     this.getProductInfo = this.getProductInfo.bind(this);
@@ -38,23 +52,20 @@ class Overview extends Component {
   }
   componentDidMount() {
     this.setState({
-      id: Number(productStyle.product_id),
-      name: "",
-      category: "",
-      defaultPrice: -1,
-      defaultStyle: -1,
-      photos: [],
-      rating: 4.26,
-      reviews: [],
-      productStyles: productStyle.results,
-      productsList: productsList,
-      selectedProduct: {},
-      open: true,
+      id: Number(productStyles.product_id),
+      photos: productStyles.results[0].photos,
+      productStyles: productStyles.results,
       images: [
         { id: 1, thumbnail_url: tShirt },
         { id: 2, thumbnail_url: longSleeve },
         { id: 3, thumbnail_url: tankTop },
         { id: 4, thumbnail_url: vNeck }
+      ],
+      features: [
+        { id: 1, feature: "GMO and Pesticide-Free" },
+        { id: 2, feature: "Made with 300% Genetic Modification" },
+        { id: 4, feature: "This is made up" },
+        { id: 5, feature: "It doesn't matter}" }
       ]
     });
   }
@@ -97,7 +108,11 @@ class Overview extends Component {
       <section className="section">
         <div className="columns">
           <div className="column is-7">
-            <ProductsGallery open={this.state.open} images={this.state.images} />
+            <ProductsGallery
+              open={this.state.open}
+              images={this.state.images}
+              photos={this.state.photos}
+            />
           </div>
           <div className="column is-5">
             <ProductRating rating={this.state.rating} reviews={this.state.reviews} />
@@ -136,32 +151,5 @@ class Overview extends Component {
 export default Overview;
 
 /*
-this.state = {
-  images: [
-    { id: 1, thumbnail_url: tShirt },
-    { id: 2, thumbnail_url: longSleeve },
-    { id: 3, thumbnail_url: tankTop },
-    { id: 4, thumbnail_url: vNeck }
-  ],
-  id: -1,
-  name: "",
-  category: "",
-  defaultPrice: -1,
-  defaultStyle: -1,
-  photos: [],
-  rating: 3.78,
-  reviews: [{ id: 1, text: "Very nice!" }],
-  slogan: "",
-  description: "",
-  features: [
-    { id: 1, feature: "GMO and Pesticide-Free" },
-    { id: 2, feature: "Made with 300% Genetic Modification" },
-    { id: 4, feature: "This is made up" },
-    { id: 5, feature: "It doesn't matter}" }
-  ],
-  productStyles: [],
-  selectedId: -1,
-  showCarousel: true,
-  open: true
-};
+
 */

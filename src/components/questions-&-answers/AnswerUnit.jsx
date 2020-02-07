@@ -20,22 +20,21 @@ import React from "react";
 //   }
 // }
 
+const handleClick = (e) => {
+
+}
 const AnswerUnit = (props) => {
-  const handleClick = (e) => {};
-  return (
-    <div>
-      A: {props.body}
-      <br />
-      by {props.answerer_name} | Helpful?{" "}
-      <u onClick={() => console.log("Please don't commit errored code!")}>
-        Yes({props.helpfulness})
-      </u>{" "}
-      |{" "}
-      <u onClick={() => console.log("This threw an error when I tried to rebase")}>
-        Report
-      </u>
-    </div>
-  );
-};
+
+    console.log(props);
+    return (
+        <div>
+           A: {props.answer.body}
+           <br /> 
+           by {props.answer.answerer_name} | Helpful? <a href = "#" onClick = {handleClick}>Yes({props.answer.helpfulness})</a> | <a href = "#" onClick = {handleClick}>Report</a>
+        </div>
+    )
+
+}
+
 
 export default AnswerUnit;

@@ -1,4 +1,4 @@
-export const productStyle = {
+export const productStyles = {
   product_id: "1",
   results: [
     {

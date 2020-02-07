@@ -12,11 +12,22 @@ const ProductsGallery = (props) => {
           showStatus={true}
           showThumbs={true}
           useKeyboardArrows={true}
+          onChange={() => console.log("Changed!")}
+          onClickThumb={() => console.log("Thumbnail clicked!")}
+          onClickItem={() => console.log("Item clicked!")}
         >
-          {props.images.map((productImage) => {
+          {props.photos.map((photo) => {
             return (
-              <figure className="image" key={productImage.id}>
-                <img src={productImage["thumbnail_url"]} alt="" />
+              <figure className="image" key={photo.thumbnail_url}>
+                <img
+                  src={photo.thumbnail_url}
+                  alt=""
+                  style={{
+                    maxHeight: "75%",
+                    width: "auto",
+                    margin: "auto"
+                  }}
+                />
               </figure>
             );
           })}
@@ -27,3 +38,13 @@ const ProductsGallery = (props) => {
 };
 
 export default ProductsGallery;
+
+/*
+{props.images.map((productImage) => {
+  return (
+    <figure className="image" key={productImage.id}>
+      <img src={productImage["thumbnail_url"]} alt="" />
+    </figure>
+  );
+})}
+*/

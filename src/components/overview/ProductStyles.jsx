@@ -7,14 +7,30 @@ import React from "react";
  */
 
 const ProductStyles = (props) => {
+  console.log("product-styles:", props.productStyles);
   return (
     <>
       <p>
         <strong>STYLE</strong> > {props.defaultStyle === -1 ? "None" : null}
       </p>
-      <figure className="image">
-        <img src={props.productStyles[0]} alt="" />
-      </figure>
+      <div className="level">
+        {props.productStyles.map((style) => {
+          return (
+            <figure className="image is-64x64" key={style.style_id}>
+              <img
+                src={style.photos[style["default?"]].thumbnail_url}
+                alt={style.name}
+                style={{
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                  height: "75%",
+                  width: "75%"
+                }}
+              />
+            </figure>
+          );
+        })}
+      </div>
       <button
         className="button  is-rounded is-medium"
         style={{ margin: "2%", borderColor: "#525252" }}
