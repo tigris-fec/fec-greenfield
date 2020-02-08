@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
-import RatingsListEntry from "./RatingsListEntry.jsx.js";
+import RatingsListEntry from "./RatingsListEntry.jsx";
 import MoreReviews from "./MoreReviews.jsx";
 import AddReview from "./AddReview";
 import axios from "axios";
 
-const RatingsList = props => {
+const RatingsList = (props) => {
   const [filter] = useState(["relevant", "newest", "helpful"]);
   const [reviews, setReviews] = useState([]);
   const [currentReviews, setCurrentReviews] = useState([]);
 
   useEffect(() => {
-
     //axios.get(`http://3.134.102.30/reviews/${PRODUCT_ID}/list?page=1&count=100&sort=${relevant}`)
     // .then((data) =>{
     //   setReviews(data.data);
@@ -60,8 +59,7 @@ const RatingsList = props => {
         rating: 5,
         summary: "I'm not a fan!",
         recommend: 0,
-        response:
-          "Sorry to hear. Is there anything in particular you don't like?",
+        response: "Sorry to hear. Is there anything in particular you don't like?",
         body: "I don't like them",
         date: "2019-06-16T00:00:00.000Z",
         reviewer_name: "negativity",
@@ -134,7 +132,7 @@ const RatingsList = props => {
     setCurrentReviews(finalArr);
   };
 
-  const sendFilter = e => {
+  const sendFilter = (e) => {
     console.log(e.target.value);
     //axios.get(`http://3.134.102.30/reviews/${PRODUCT_ID}/list?page=1&count=100&sort=${e.target.value}`)
     // .then((data) =>{
@@ -147,7 +145,7 @@ const RatingsList = props => {
       <p>
         # reviews, sort by
         <select onChange={sendFilter}>
-          {filter.map(filter => (
+          {filter.map((filter) => (
             <option value={filter}>{filter}</option>
           ))}
         </select>
@@ -157,11 +155,8 @@ const RatingsList = props => {
         className="tile is-12 is-vertical is-parent"
         style={{ height: "480px", overflow: "auto" }}
       >
-        {currentReviews.map(review => {
-          if (
-            props.filters.length === 0 ||
-            props.filters.includes(review.rating)
-          ) {
+        {currentReviews.map((review) => {
+          if (props.filters.length === 0 || props.filters.includes(review.rating)) {
             return <RatingsListEntry key={review.review_id} review={review} />;
           }
         })}

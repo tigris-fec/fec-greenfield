@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import ModalRating from "./ModalRating.jsx.js";
-import CharRadio from "./CharRadio.jsx.js";
+import ModalRating from "./ModalRating.jsx";
+import CharRadio from "./CharRadio.jsx";
 import ImageUploader from "react-images-upload";
 import axios from "axios";
 
-
-const ReviewModal = props => {
+const ReviewModal = (props) => {
   const [overallRating, setOverallRating] = useState(0);
   const [recommendProduct, setRecommendProduct] = useState("true");
   const [sizeChar, setSizeChar] = useState();
@@ -34,13 +33,7 @@ const ReviewModal = props => {
       val: sizeChar
     },
     Width: {
-      setting: [
-        "Too narrow",
-        "Slightly Narrow",
-        "Perfect",
-        "Slightly Wide",
-        "Too wide"
-      ],
+      setting: ["Too narrow", "Slightly Narrow", "Perfect", "Slightly Wide", "Too wide"],
       func: setWidthChar,
       val: widthChar
     },
@@ -56,13 +49,7 @@ const ReviewModal = props => {
       val: comfortChar
     },
     Quality: {
-      setting: [
-        "Poor",
-        "Below average",
-        "What I expected",
-        "Pretty great",
-        "Perfect"
-      ],
+      setting: ["Poor", "Below average", "What I expected", "Pretty great", "Perfect"],
       func: setQualityChar,
       val: qualityChar
     },
@@ -90,27 +77,27 @@ const ReviewModal = props => {
     }
   };
 
-  const changeRecommended = e => {
+  const changeRecommended = (e) => {
     setRecommendProduct(e.target.value);
   };
 
-  const reviewChange = e => {
+  const reviewChange = (e) => {
     setReviewSum(e.target.value);
   };
 
-  const reviewBodyChange = e => {
+  const reviewBodyChange = (e) => {
     setReviewBody(e.target.value);
   };
 
-  const usernameChange = e => {
+  const usernameChange = (e) => {
     setUsername(e.target.value);
   };
 
-  const emailChange = e => {
+  const emailChange = (e) => {
     setEmail(e.target.value);
   };
 
-  const pictureChange = e => {
+  const pictureChange = (e) => {
     let newPhotos = photos.slice();
     newPhotos.push(e[0].name);
     setPhotos(newPhotos);

@@ -3,10 +3,10 @@ import RatingSummary from "./RatingSummary.jsx";
 import Breakdown from "./Breakdown.jsx";
 import Factors from "./Factors.jsx";
 
-const RatingsBar = props => {
+const RatingsBar = (props) => {
   const fakeReview = props.soloRating;
-    
-  const getAverageRating = Obj => {
+
+  const getAverageRating = (Obj) => {
     let totalCount = 0;
     let totalSum = 0;
     for (let key in Obj) {
@@ -16,12 +16,12 @@ const RatingsBar = props => {
     return totalSum / totalCount;
   };
 
-  const getAverageRecommend = Obj => {
+  const getAverageRecommend = (Obj) => {
     let totalCount = Obj[0] + Obj[1];
     return (Obj[1] / totalCount) * 100;
   };
 
-  let getCharacteristics = characteristics => {
+  let getCharacteristics = (characteristics) => {
     let returnArr = [];
     for (let key in characteristics) {
       returnArr.push({ [key]: characteristics[key] });
@@ -29,12 +29,9 @@ const RatingsBar = props => {
     return returnArr;
   };
 
-  let averageRating =
-    Math.round(10 * getAverageRating(fakeReview.ratings)) / 10;
+  let averageRating = Math.round(10 * getAverageRating(fakeReview.ratings)) / 10;
 
-  let averageRecommend = Math.round(
-    getAverageRecommend(fakeReview.recommended)
-  );
+  let averageRecommend = Math.round(getAverageRecommend(fakeReview.recommended));
 
   let productCharacteristics = getCharacteristics(fakeReview.characteristics);
 
