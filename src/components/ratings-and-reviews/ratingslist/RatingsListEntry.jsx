@@ -5,7 +5,7 @@ import Photo from "./Photo.jsx";
 import StarRating from "../StarRating.jsx";
 import axios from "axios";
 
-const RatingsListEntry = (props) => {
+const RatingsListEntry = props => {
   const [reviewID] = useState(props.review.review_id);
   const [reviewHelpful, setReviewHelpful] = useState(props.review.helpfulness);
   const [reported, setReported] = useState(false);
@@ -18,7 +18,7 @@ const RatingsListEntry = (props) => {
   };
 
   const sendReport = () => {
-    axios.put(`http://3.134.102.30/reviews/report/${reviewID}`)
+    axios.put(`http://3.134.102.30/reviews/report/${reviewID}`);
     setReported(true);
   };
 
@@ -40,19 +40,23 @@ const RatingsListEntry = (props) => {
       </div>
       <p>{props.review.summary}</p>
       <br />
+      <p>{props.review.body}</p>
+      <br/>
       <div className="level-left">
-        {props.review.photos.map((photo) => (
+        {props.review.photos.map(photo => (
           <Photo key={photo.id} photo={photo} />
         ))}
       </div>
       {props.review.recommend ? <RecommendProduct /> : null}
       <br />
-      {props.review.response ? <ReviewResponse response={props.review.response} /> : null}
+      {props.review.response ? (
+        <ReviewResponse response={props.review.response} />
+      ) : null}
       <br />
       <div className="level">
         <div className="level-left">
           <p>Helpful? &nbsp;</p>
-          <h1 onClick={helpClicked? null:sendHelpful}>
+          <h1 onClick={helpClicked ? null : sendHelpful}>
             <u>Yes</u>
           </h1>
           ({reviewHelpful}) | &nbsp;

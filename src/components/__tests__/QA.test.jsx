@@ -3,8 +3,8 @@ import { shallow } from "enzyme";
 import { mount } from "enzyme"
 import { render } from "enzyme"
 import renderer from "react-test-renderer"
-import QA from "../questions-&-answers/QA.jsx";
-import QuestionUnit from "../questions-&-answers/QuestionUnit.jsx"
+import QA from "../questions-and-answers/QA.jsx";
+import QuestionUnit from "../questions-and-answers/QuestionUnit.jsx"
 import data from "./mockDataQuestions.js";
 
 
