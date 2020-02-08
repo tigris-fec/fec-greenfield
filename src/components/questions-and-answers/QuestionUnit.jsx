@@ -1,7 +1,5 @@
 import React from 'react';
-
 import AnswerUnit from './AnswerUnit.jsx'
-
 
 const handleClick = (e) => {
     console.log(e);

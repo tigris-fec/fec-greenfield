@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import ModalRating from "./ModalRating.jsx";
-import CharRadio from "./CharRadio.jsx";
+import ModalRating from "./ModalRating.jsx.js";
+import CharRadio from "./CharRadio.jsx.js";
 import ImageUploader from "react-images-upload";
+import axios from "axios";
+
 
 const ReviewModal = props => {
   const [overallRating, setOverallRating] = useState(0);
@@ -116,15 +118,15 @@ const ReviewModal = props => {
   const sendData = () => {
     const charArray = {
       Size: sizeChar,
-        Width: widthChar,
-        Comfort: comfortChar,
-        Quality: qualityChar,
-        Length: lengthChar,
-        Fit: fitChar
+      Width: widthChar,
+      Comfort: comfortChar,
+      Quality: qualityChar,
+      Length: lengthChar,
+      Fit: fitChar
     };
     const characterSendOver = {};
-    for(let key in props.charList){
-      characterSendOver[props.charList[key].id] = parseInt(charArray[key])
+    for (let key in props.charList) {
+      characterSendOver[props.charList[key].id] = parseInt(charArray[key]);
     }
     const data = {
       rating: overallRating,
@@ -136,8 +138,10 @@ const ReviewModal = props => {
       photos: [],
       characteristics: characterSendOver
     };
+    //axios.post(`http://3.134.102.30/reviews/${PRODUCT_ID}`,data)
     props.closeModal();
   };
+
   return (
     <div className="modal is-active">
       <div className="modal-background" onClick={props.closeModal}></div>
@@ -220,14 +224,14 @@ const ReviewModal = props => {
           </div>
 
           <p>Product Characteristics:</p>
-          {itemChar.map((char,i) =>(
+          {itemChar.map((char, i) => (
             <CharRadio
-            key={i}
-            name={char}
-            settings={characteristicNames[char].setting}
-            setFunc={characteristicNames[char].func}
-            val={characteristicNames[char].val}
-          />
+              key={i}
+              name={char}
+              settings={characteristicNames[char].setting}
+              setFunc={characteristicNames[char].func}
+              val={characteristicNames[char].val}
+            />
           ))}
 
           <p>Review Summary:</p>
