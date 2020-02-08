@@ -1,16 +1,12 @@
-# Base image
 FROM node:13-alpine
 
-# Sets the working directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Adds the `/usr/src/app/node_modules/.bin` to $PATH
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
-COPY package.json /usr/src/app/package.json
-COPY package-lock.json /usr/src/app/package-lock.json
+COPY . /app
 
 RUN npm ci
-RUN npm install react-scripts@latest --global --silent
+RUN npm install react-scripts@2.1.8 -g --silent
 
 CMD ["npm", "start"]

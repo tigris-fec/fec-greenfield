@@ -24,13 +24,7 @@ before_script:
 
 # Runs the tests
 script:
-  -
+  - bash
 
 after_script:
   - docker-compose down
-
-deploy:
-  provider: script
-  script: bash deploy.sh
-  on:
-    branch: master
