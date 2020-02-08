@@ -10,6 +10,12 @@ const RatingsList = props => {
   const [currentReviews, setCurrentReviews] = useState([]);
 
   useEffect(() => {
+
+    //axios.get(`http://3.134.102.30/reviews/${PRODUCT_ID}/list?page=1&count=100&sort=${relevant}`)
+    // .then((data) =>{
+    //   setReviews(data.data);
+    // })
+
     const fakeStuff = [
       {
         review_id: 4,
