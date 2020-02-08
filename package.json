@@ -7,6 +7,10 @@
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-react": "^7.18.3",
     "jquery": "^3.4.1",
     "pure-react-carousel": "^1.24.1",
     "react": "^16.12.0",
@@ -31,10 +35,21 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "e2e": "./node_modules/.bin/cypress open"
+    "e2e": "./node_modules/.bin/cypress open",
+    "lint": "eslint src",
+    "lint:fix": "eslint --fix src"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "plugin:react/recommended",
+      "standard"
+    ],
+    "env": {
+      "browser": true,
+      "jest": true
+    },
+    "plugins": "react"
   },
   "browserslist": {
     "production": [
@@ -53,7 +68,10 @@
     "cypress": "^3.8.3",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
+    "lint-staged": "^10.0.7",
     "node-sass": "^4.13.1",
+    "prettier": "^1.19.1",
+    "prettier-eslint": "^9.0.1",
     "react-test-renderer": "^16.12.0"
   },
   "optionalDependencies": {

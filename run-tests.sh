@@ -24,6 +24,11 @@ e2e() {
     docker-compose down
 }
 
+all() {
+    client
+    e2e
+}
+
 if [[ "${type}" == "client" ]]; then
     echo ""
     echo "Running React client tests"

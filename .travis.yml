@@ -24,7 +24,7 @@ before_script:
 
 # Runs the tests
 script:
-  - bash
+  - bash run-tests all
 
 after_script:
   - docker-compose down
