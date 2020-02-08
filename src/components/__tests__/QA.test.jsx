@@ -1,58 +1,43 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { mount } from "enzyme"
-import { render } from "enzyme"
-import renderer from "react-test-renderer"
-import QA from "../questions-&-answers/QA.jsx";
-import QuestionUnit from "../questions-&-answers/QuestionUnit.jsx"
+import { mount } from "enzyme";
+import { render } from "enzyme";
+import renderer from "react-test-renderer";
+import QA from "../questions-and-answers/QA.jsx";
+import QuestionUnit from "../questions-and-answers/QuestionUnit.jsx";
 import data from "./mockDataQuestions.js";
 
-
 let sampleQuestion = data.results[0];
-let QAWrapper = mount(<QA questions = {[sampleQuestion]} />);
-
-
+let QAWrapper = mount(<QA questions={[sampleQuestion]} />);
 
 describe("QA Displays everything that would make it look functionally complete", () => {
-    
+  test.todo("should have the heading 'QUESTIONS & ANSWERS'");
+  test.todo(
+    "should have a search box with the text 'HAVE A QUESTION? SEARCH FOR ANSWERS...'"
+  );
 
-    test("should have the heading 'QUESTIONS & ANSWERS'", () => {
-        //let allQuestions = wrapper.find(".all-questions")
-        //expect(allQuestions.exists()).toBe(true);
-        
-
-        
-    })
-    test.todo("should have a search box with the text 'HAVE A QUESTION? SEARCH FOR ANSWERS...'");
-
-    
-
-    test.todo("should have a 'MORE ANSWERED QUESTIONS' button");
-    test.todo("should have a 'ADD A QUESTION' button");
-
-})
+  test.todo("should have a 'MORE ANSWERED QUESTIONS' button");
+  test.todo("should have a 'ADD A QUESTION' button");
+});
 
 describe("Question Unit", () => {
-
-    test.todo("should display the question");
-    test.todo("should display the count of votes on Helpful? Yes()");
-    test.todo("should increment the helpful votes when i click Yes");
-    test.todo("it should have an Add Answer Clickable test");
-})
+  test.todo("should display the question");
+  test.todo("should display the count of votes on Helpful? Yes()");
+  test.todo("should increment the helpful votes when i click Yes");
+  test.todo("it should have an Add Answer Clickable test");
+});
 
 describe("Answer Unit", () => {
-    test.todo("should display the answer, user, date");
-    test.todo("should increment the helpful? yes count when i click");
-    test.todo("should have a report link");
+  test.todo("should display the answer, user, date");
+  test.todo("should increment the helpful? yes count when i click");
+  test.todo("should have a report link");
 });
 // test.todo("QA renders", () => {
-
 
 //     const wrapper = shallow(<QA questions = {[]}/>);
 //     const allQuestions = wrapper.find(".all-questions");
 //     expect(allQuestions.exists()).toBe(true);
 // });
-
 
 // test.todo("QA renders questions, which renders answers", () =>{
 //     const question = [{
@@ -79,5 +64,3 @@ describe("Answer Unit", () => {
 //     const QUnit = wrapper.find(QuestionUnit);
 //     expect(QUnit).toBe(true);
 // })
-
-
