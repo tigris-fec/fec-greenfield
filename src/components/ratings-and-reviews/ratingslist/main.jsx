@@ -55,7 +55,7 @@ const RatingsList = (props) => {
       <br />
       <div
         className="tile is-12 is-vertical is-parent"
-        style={{ height: "480px", overflow: "auto" }}
+        style={{ height: "540px", overflow: "auto" }}
       >
         {currentReviews.map((review) => {
           if (props.filters.length === 0 || props.filters.includes(review.rating)) {
