@@ -17,50 +17,75 @@ const ReviewModal = props => {
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
   const [photos, setPhotos] = useState([]);
+  const itemChar = Object.keys(props.charList);
 
   const characteristicNames = {
-    size: [
-      "A size too small",
-      "Half a size too small",
-      "Perfect",
-      "Half a size too big",
-      "A size too big"
-    ],
-    width: [
-      "Too narrow",
-      "Slightly Narrow",
-      "Perfect",
-      "Slightly Wide",
-      "Too wide"
-    ],
-    comfort: [
-      "Uncomfortable",
-      "Slightly uncomfortable",
-      "Ok",
-      "Comfortable",
-      "Perfect"
-    ],
-    quality: [
-      "Poor",
-      "Below average",
-      "What I expected",
-      "Pretty great",
-      "Perfect"
-    ],
-    length: [
-      "Runs short",
-      "Runs slightly short",
-      "Perfect",
-      "Runs slightly long",
-      "Runs long"
-    ],
-    fit: [
-      "Runs tight",
-      "Runs slightly tight",
-      "Perfect",
-      "Runs slightly long",
-      "Runs long"
-    ]
+    Size: {
+      setting: [
+        "A size too small",
+        "Half a size too small",
+        "Perfect",
+        "Half a size too big",
+        "A size too big"
+      ],
+      func: setSizeChar,
+      val: sizeChar
+    },
+    Width: {
+      setting: [
+        "Too narrow",
+        "Slightly Narrow",
+        "Perfect",
+        "Slightly Wide",
+        "Too wide"
+      ],
+      func: setWidthChar,
+      val: widthChar
+    },
+    Comfort: {
+      setting: [
+        "Uncomfortable",
+        "Slightly uncomfortable",
+        "Ok",
+        "Comfortable",
+        "Perfect"
+      ],
+      func: setComfortChar,
+      val: comfortChar
+    },
+    Quality: {
+      setting: [
+        "Poor",
+        "Below average",
+        "What I expected",
+        "Pretty great",
+        "Perfect"
+      ],
+      func: setQualityChar,
+      val: qualityChar
+    },
+    Length: {
+      setting: [
+        "Runs short",
+        "Runs slightly short",
+        "Perfect",
+        "Runs slightly long",
+        "Runs long"
+      ],
+      func: setLengthChar,
+      val: lengthChar
+    },
+    Fit: {
+      setting: [
+        "Runs tight",
+        "Runs slightly tight",
+        "Perfect",
+        "Runs slightly long",
+        "Runs long"
+      ],
+      func: setFitChar,
+      val: fitChar
+    }
   };
 
   const changeRecommended = e => {
@@ -87,9 +112,30 @@ const ReviewModal = props => {
     let newPhotos = photos.slice();
     newPhotos.push(e[0].name);
     setPhotos(newPhotos);
-    console.log(e[0].name);
   };
   const sendData = () => {
+    const charArray = {
+      Size: sizeChar,
+        Width: widthChar,
+        Comfort: comfortChar,
+        Quality: qualityChar,
+        Length: lengthChar,
+        Fit: fitChar
+    };
+    const characterSendOver = {};
+    for(let key in props.charList){
+      characterSendOver[props.charList[key].id] = parseInt(charArray[key])
+    }
+    const data = {
+      rating: overallRating,
+      summary: reviewSum,
+      body: reviewBody,
+      recommend: Boolean(recommendProduct),
+      name: username,
+      email: email,
+      photos: [],
+      characteristics: characterSendOver
+    };
     props.closeModal();
   };
   return (
@@ -174,42 +220,15 @@ const ReviewModal = props => {
           </div>
 
           <p>Product Characteristics:</p>
-          <CharRadio
-            name="Size"
-            settings={characteristicNames.size}
-            setFunc={setSizeChar}
-            val={sizeChar}
+          {itemChar.map((char,i) =>(
+            <CharRadio
+            key={i}
+            name={char}
+            settings={characteristicNames[char].setting}
+            setFunc={characteristicNames[char].func}
+            val={characteristicNames[char].val}
           />
-          <CharRadio
-            name="Width"
-            settings={characteristicNames.width}
-            setFunc={setWidthChar}
-            val={widthChar}
-          />
-          <CharRadio
-            name="Comfort"
-            settings={characteristicNames.comfort}
-            setFunc={setComfortChar}
-            val={comfortChar}
-          />
-          <CharRadio
-            name="Quality"
-            settings={characteristicNames.quality}
-            setFunc={setQualityChar}
-            val={qualityChar}
-          />
-          <CharRadio
-            name="Length"
-            settings={characteristicNames.length}
-            setFunc={setLengthChar}
-            val={lengthChar}
-          />
-          <CharRadio
-            name="Fit"
-            settings={characteristicNames.fit}
-            setFunc={setFitChar}
-            val={fitChar}
-          />
+          ))}
 
           <p>Review Summary:</p>
           <input
@@ -238,7 +257,7 @@ const ReviewModal = props => {
             singleImage={false}
             buttonText="Upload Images"
             onChange={pictureChange}
-            imgExtension={[".jpg", ".gif", ".png", ".gif","jpeg"]}
+            imgExtension={[".jpg", ".gif", ".png", ".gif", "jpeg"]}
             maxFileSize={5242880}
           />
           <p>Nickname:</p>
