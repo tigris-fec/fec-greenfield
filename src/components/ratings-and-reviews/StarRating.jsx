@@ -16,6 +16,7 @@ const StarRating = props => {
     <div>
       <Rating
         initialRating={props.averageRating}
+        readonly={true}
         emptySymbol={<i className="far fa-star" style={{}}></i>}
         fullSymbol={<i className="fa fa-star" style={{ color: "#d4af37" }}></i>}
       />
