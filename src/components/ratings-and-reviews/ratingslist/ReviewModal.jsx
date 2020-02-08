@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import ModalRating from "./ModalRating.jsx";
-import CharRadio from "./CharRadio.jsx";
+import ModalRating from "./ModalRating.jsx.js";
+import CharRadio from "./CharRadio.jsx.js";
 import ImageUploader from "react-images-upload";
 import axios from "axios";
 

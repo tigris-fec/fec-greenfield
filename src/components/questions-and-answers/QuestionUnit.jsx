@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AnswerUnit from './AnswerUnit.jsx'
+import AnswerUnit from './AnswerUnit.jsx.js'
 // In regards to taking props, does redux change this?
 // In regards to taking props, does redux change this?
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "enzyme";
-import QuestionUnit from "./QuestionUnit.jsx"
+import QuestionUnit from "./QuestionUnit.jsx.js"
 
 import {sampleQuestions} from '../../mockData/questions.js'
 import $ from 'jquery';

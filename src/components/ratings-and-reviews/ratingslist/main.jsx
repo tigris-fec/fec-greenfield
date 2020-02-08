@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import RatingsListEntry from "./RatingsListEntry.jsx";
-import MoreReviews from "./MoreReviews.jsx";
+import RatingsListEntry from "./RatingsListEntry.jsx.js";
+import MoreReviews from "./MoreReviews.jsx.js";
 import AddReview from "./AddReview";
 import axios from "axios";
 

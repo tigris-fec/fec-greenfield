@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import RecommendProduct from "./RecommendProduct.jsx";
-import ReviewResponse from "./ReviewResponse.jsx";
-import Photo from "./Photo.jsx";
-import StarRating from "../StarRating.jsx";
+import RecommendProduct from "./RecommendProduct.jsx.js";
+import ReviewResponse from "./ReviewResponse.jsx.js";
+import Photo from "./Photo.jsx.js";
+import StarRating from "../StarRating.jsx.js";
 import axios from "axios";
 
 const RatingsListEntry = props => {
