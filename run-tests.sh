@@ -19,7 +19,7 @@ client() {
 
 e2e() {
     docker-compose up -d --build
-    ./node_modules/.bin/cypress run --config baseUrl=http://localhost
+    ./node_modules/.bin/cypress run --config baseUrl=http://localhost:3001
     inspect $? e2e
     docker-compose down
 }
