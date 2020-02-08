@@ -9,15 +9,16 @@ const RatingsListEntry = (props) => {
   const [reviewID] = useState(props.review.review_id);
   const [reviewHelpful, setReviewHelpful] = useState(props.review.helpfulness);
   const [reported, setReported] = useState(false);
+  const [helpClicked, setHelpClicked] = useState(false);
 
   const sendHelpful = () => {
     setReviewHelpful(reviewHelpful + 1);
+    setHelpClicked(true);
     axios.put(`http://3.134.102.30/reviews/helpful/${reviewID}`);
   };
 
   const sendReport = () => {
-    // axios.put(`http://3.134.102.30/reviews/report/${reviewID}`)
-    console.log(reviewID);
+    axios.put(`http://3.134.102.30/reviews/report/${reviewID}`)
     setReported(true);
   };
 
@@ -51,7 +52,7 @@ const RatingsListEntry = (props) => {
       <div className="level">
         <div className="level-left">
           <p>Helpful? &nbsp;</p>
-          <h1 onClick={sendHelpful}>
+          <h1 onClick={helpClicked? null:sendHelpful}>
             <u>Yes</u>
           </h1>
           ({reviewHelpful}) | &nbsp;

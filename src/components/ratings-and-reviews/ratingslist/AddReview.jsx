@@ -18,7 +18,7 @@ const AddReview = props => {
         Add Review +
       </button>
       {showModal ? (
-        <ReviewModal charList={props.charList} closeModal={closeModal} />
+        <ReviewModal charList={props.charList} closeModal={closeModal} PRODUCT_ID={props.PRODUCT_ID}/>
       ) : null}
     </div>
   );
