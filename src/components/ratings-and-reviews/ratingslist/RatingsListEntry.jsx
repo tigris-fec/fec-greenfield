@@ -29,7 +29,6 @@ const RatingsListEntry = props => {
   }
   const correctDateTimeFormat = new Intl.DateTimeFormat("en-US", optionsDate);
   const correctDate = correctDateTimeFormat.format(fauxDate);
-
   return (
     <div className="tile is-child box">
       <div className="level">
@@ -54,7 +53,21 @@ const RatingsListEntry = props => {
       <div className="level">
         <div className="level-left">
           <p>Helpful? &nbsp;</p>
-          <h1 onClick={sendHelpful}><u>Yes</u></h1>({reviewHelpful}) | &nbsp;{reported? <h1><u><strong className="has-text-danger">Reported</strong></u></h1> : <h1 onClick={sendReport}><u>Report</u></h1>}
+          <h1 onClick={sendHelpful}>
+            <u>Yes</u>
+          </h1>
+          ({reviewHelpful}) | &nbsp;
+            {reported ? (
+          <h1>
+            <u>
+              <strong className="has-text-danger">Reported</strong>
+            </u>
+          </h1>
+          ) : (
+          <h1 onClick={sendReport}>
+            <u>Report</u>
+          </h1>
+          )}
         </div>
       </div>
     </div>

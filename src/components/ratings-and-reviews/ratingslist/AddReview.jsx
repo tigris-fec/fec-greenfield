@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ReviewModal from "./ReviewModal.jsx.js";
+import ReviewModal from "./ReviewModal.jsx";
 
 const AddReview = props => {
   const [showModal, setShowModal] = useState(false);

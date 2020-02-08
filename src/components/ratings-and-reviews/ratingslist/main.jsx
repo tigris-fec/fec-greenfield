@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import RatingsListEntry from "./RatingsListEntry.jsx.js";
-import MoreReviews from "./MoreReviews.jsx.js";
+import MoreReviews from "./MoreReviews.jsx";
 import AddReview from "./AddReview";
 import axios from "axios";
 
@@ -171,6 +171,7 @@ const RatingsList = props => {
         {currentReviews.length !== reviews.length ? (
           <MoreReviews handleMoreReviews={handleMoreReviews} />
         ) : null}
+
         <AddReview charList={props.charList} />
       </div>
     </div>
