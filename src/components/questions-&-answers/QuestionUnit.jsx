@@ -1,22 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import AnswerUnit from './AnswerUnit.jsx'
 
 
-const handleClick = (e) => {
-    console.log(e);
-}
+
 const QuestionUnit = (props) => {
 
+    const [votes, setVotes] = useState(props.question.question_helpfulness);
+    const [didVote, setDidVote] = useState(false);
+
+    const handleClick = function(){
+        if (didVote) return;
+        setDidVote(true);
+        setVotes(votes + 1);
+    }
+
+    const handleAddAnswer = function(){
+        
+    }
     let answers = props.question.answers;
-    //console.log(answers);
+    
     return (
         <div>
             Q: {props.question.question_body}
             Helpful?
-            <a href="#" onClick={handleClick}>Yes ({props.question.question_helpfulness})</a>
+            <a onClick={handleClick}>Yes ({votes})</a>
             |
-            <a href= "#" onClick={handleClick}>Add Answer</a>
+            <a onClick={handleAddAnswer}>Add Answer</a>
            {Object.keys(answers).map((answerId,index) => <AnswerUnit answer = {answers[answerId]}/>) }
         </div>
     );
