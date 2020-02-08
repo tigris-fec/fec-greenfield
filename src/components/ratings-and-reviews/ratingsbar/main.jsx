@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import RatingSummary from "./RatingSummary.jsx";
 import Breakdown from "./Breakdown.jsx";
 import Factors from "./Factors.jsx";
