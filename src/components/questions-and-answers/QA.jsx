@@ -36,16 +36,19 @@ class QA extends React.Component {
     return (
       <div className="all-questions">
         <h5>{"Questions & Answers"}</h5>
-        <input type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
+        <input
+          type="text"
+          placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
+        />
         {this.state.questions.results
           .slice(0, this.state.questionsToDisplay)
-          .map((question) => (
+          .map(question => (
             <QuestionUnit question={question} />
           ))}{" "}
         <br />
         <input
           type="button"
-          class="button"
+          className="button"
           value="More Answered Questions"
           onClick={this.handleMoreQuestions}
         />
@@ -55,4 +58,3 @@ class QA extends React.Component {
   }
 }
 export default QA;
-

@@ -41,7 +41,7 @@ class AddQuestion extends React.Component {
   render() {
     return (
       <div className="add-question">
-        <button class="button" onClick={this.handleOpenQuestion}>
+        <button className="button" onClick={this.handleOpenQuestion}>
           Add a Question +
         </button>
         <div className="modal">
@@ -61,24 +61,24 @@ class AddQuestion extends React.Component {
                   <h1>Your Question</h1>
                 </label>
                 <textarea
-                  class="textarea"
+                  className="textarea"
                   name="question_body"
                   placeholder="Email"
                   value={this.state.question_body}
                   onChange={this.handleChange}
-                  autocomplete="off"
+                  autoComplete="off"
                 />
                 <label>
                   <h2>What is your nickname</h2>
                 </label>
                 <input
                   type="text"
-                  class="input"
+                  className="input"
                   name="asker_name"
                   placeholder="Example: jackson11!"
                   value={this.state.asker_name}
                   onChange={this.handleChange}
-                  autocomplete="off"
+                  autoComplete="off"
                 />
                 <p>For privacy reasons, do not use your full name or email address</p>
                 <label>
@@ -86,12 +86,12 @@ class AddQuestion extends React.Component {
                 </label>
                 <input
                   type="text"
-                  class="input"
+                  className="input"
                   name="asker_email"
                   placeholder="email@example.com"
                   value={this.state.asker_email}
                   onChange={this.handleChange}
-                  autocomplete="off"
+                  autoComplete="off"
                 />
                 <br />
                 <input
