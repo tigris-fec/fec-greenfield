@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react";
-import RatingsListEntry from "./RatingsListEntry.jsx";
+import RatingsListEntry from "./RatingsListEntry.jsx.js";
 import MoreReviews from "./MoreReviews.jsx";
 import AddReview from "./AddReview";
+import axios from "axios";
 
 const RatingsList = props => {
-  const [filter, setFilter] = useState(["Relevant", "Newest", "Helpful"]);
+  const [filter] = useState(["relevant", "newest", "helpful"]);
   const [reviews, setReviews] = useState([]);
   const [currentReviews, setCurrentReviews] = useState([]);
 
   useEffect(() => {
+
+    //axios.get(`http://3.134.102.30/reviews/${PRODUCT_ID}/list?page=1&count=100&sort=${relevant}`)
+    // .then((data) =>{
+    //   setReviews(data.data);
+    // })
+
     const fakeStuff = [
       {
         review_id: 4,
@@ -127,11 +134,19 @@ const RatingsList = props => {
     setCurrentReviews(finalArr);
   };
 
+  const sendFilter = e => {
+    console.log(e.target.value);
+    //axios.get(`http://3.134.102.30/reviews/${PRODUCT_ID}/list?page=1&count=100&sort=${e.target.value}`)
+    // .then((data) =>{
+    //   setReviews(data.data);
+    // })
+  };
+
   return (
     <div className="column is-two-thirds">
       <p>
         # reviews, sort by
-        <select>
+        <select onChange={sendFilter}>
           {filter.map(filter => (
             <option value={filter}>{filter}</option>
           ))}
@@ -156,7 +171,8 @@ const RatingsList = props => {
         {currentReviews.length !== reviews.length ? (
           <MoreReviews handleMoreReviews={handleMoreReviews} />
         ) : null}
-        <AddReview charList={props.charList}/>
+
+        <AddReview charList={props.charList} />
       </div>
     </div>
   );

@@ -1,4 +1,3 @@
- 
 export let sampleQuestions = {
     "product_id": "5",
     "results": [
@@ -137,5 +136,3 @@ export let sampleQuestions = {
         }
     ]
 }
-
- 
