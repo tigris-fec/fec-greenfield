@@ -61,13 +61,18 @@ const NavBar = (props) => {
               </Link>
             </div>
             <div className="navbar-item is-hoverable" onClick={toggleNavBar}>
-              <Link className="link" to="/overview-mock">
-                Overview Mock
+              <Link className="link" to="/overview">
+                Overview
               </Link>
             </div>
             <div className="navbar-item is-hoverable" onClick={toggleNavBar}>
-              <Link className="link" to="/overview">
-                Overview
+              <Link className="link" to="/questions">
+                Questions
+              </Link>
+            </div>
+            <div className="navbar-item is-hoverable" onClick={toggleNavBar}>
+              <Link className="link" to="/ratings">
+                Ratings
               </Link>
             </div>
           </div>

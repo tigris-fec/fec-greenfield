@@ -92,7 +92,10 @@ class Overview extends Component {
               productStyles={this.state.productStyles}
               selectedStyles={this.state.selectedStyles}
             />
+
+            <br />
           </div>
+
           <div className="column is-5">
             <ProductRating rating={this.state.rating} reviews={this.state.reviews} />
             <ProductCategory category={this.state.category} />
