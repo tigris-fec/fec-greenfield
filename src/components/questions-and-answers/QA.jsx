@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "enzyme";
 import QuestionUnit from "./QuestionUnit.jsx";
 import AddQuestion from "./AddQuestion.jsx";
-import { sampleQuestions } from "../../mockData/questions.js";
+import { sampleQuestions } from "../../mock-data/questions.js";
 import $ from "jquery";
 
 class QA extends React.Component {

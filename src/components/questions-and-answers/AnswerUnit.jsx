@@ -20,21 +20,23 @@ import React from "react";
 //   }
 // }
 
-const handleClick = (e) => {
-
-}
+const handleClick = (e) => {};
 const AnswerUnit = (props) => {
-
-    console.log(props);
-    return (
-        <div>
-           A: {props.answer.body}
-           <br /> 
-           by {props.answer.answerer_name} | Helpful? <a href = "#" onClick = {handleClick}>Yes({props.answer.helpfulness})</a> | <a href = "#" onClick = {handleClick}>Report</a>
-        </div>
-    )
-
-}
-
+  console.log(props);
+  return (
+    <div>
+      A: {props.answer.body}
+      <br />
+      by {props.answer.answerer_name} | Helpful?
+      <a href="#" onClick={handleClick}>
+        Yes({props.answer.helpfulness})
+      </a>
+      |
+      <a href="#" onClick={handleClick}>
+        Report
+      </a>
+    </div>
+  );
+};
 
 export default AnswerUnit;

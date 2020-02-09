@@ -75,7 +75,7 @@ class Overview extends Component {
     });
   }
   toggleCarouselWidth() {
-    this.setState((prevState) => ({ open: !prevState.open }));
+    this.setState(prevState => ({ open: !prevState.open }));
   }
   setSelectedProduct(selectedId) {
     this.setState({ selectedId }, () => {
@@ -94,7 +94,10 @@ class Overview extends Component {
             />
           </div>
           <div className="column is-5">
-            <ProductRating rating={this.state.rating} reviews={this.state.reviews} />
+            <ProductRating
+              rating={this.state.rating}
+              reviews={this.state.reviews}
+            />
             <ProductCategory category={this.state.category} />
             <ProductName name={this.state.name} />
             <ProductPrice price={this.state.defaultPrice} />

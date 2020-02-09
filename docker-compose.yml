@@ -2,14 +2,16 @@ version: "3.7"
 
 services:
   client:
+    container_name: client
     build:
-      context: ./
+      context: .
       dockerfile: Dockerfile
     volumes:
-      - "./:/usr/src/app"
-      - "/usr/src/app/node_modules"
+      - ".:/app"
+      - "/app/node_modules"
     ports:
-      - 3001:3000
+      - "3001:3000"
     environment:
       - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
       - REACT_APP_API_URL=$REACT_APP_API_URL

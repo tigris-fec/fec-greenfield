@@ -4,10 +4,7 @@ services:
   client:
     container_name: client
     build:
-      context: ./
+      context: .
       dockerfile: Dockerfile-prod
-      args:
-        - NODE_ENV=production
-        - REACT_APP_API_URL=$REACT_APP_API_URL
-    ports:
-      - "3001:80"
+    port:
+      - "80:80"

@@ -4,9 +4,8 @@ WORKDIR /app
 
 ENV PATH /app/node_modules/.bin:$PATH
 
-COPY . /app
-
-RUN npm ci
-RUN npm install react-scripts@2.1.8 -g --silent
+COPY package.json /app/package.json
+RUN npm install
+RUN npm install react-scripts@latest -g --silent
 
 CMD ["npm", "start"]
