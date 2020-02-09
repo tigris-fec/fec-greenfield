@@ -32,7 +32,7 @@ const RatingsReviews = (props) => {
         <div className="columns">
           <div className="column is-4">
             {widget.toUpperCase()}
-            <div className="level">
+            <div className="level" style={{ justifyContent: "left" }}>
               <div className="level-left">
                 <div className="level-item">
                   <p style={{ fontSize: "400%" }}>
@@ -51,22 +51,23 @@ const RatingsReviews = (props) => {
                 </div>
               </div>
             </div>
-            <div className="level" style={{ fontSize: "75%" }}>
+            <div className="level" style={{ justifyContent: "left", fontSize: "75%" }}>
               <div className="level-left">
                 <div className="level-item">
                   <p>100% of reviews recommended this product</p>
                 </div>
               </div>
             </div>
-            <div className="level">
+
+            <div className="level" style={{ justifyContent: "left" }}>
               <div className="level-left">
                 <div className="level-item">
                   <table className="table" style={{ fontSize: "75%" }}>
                     <tbody>
-                      {userm.map((rating, index) => {
+                      {ratings.map((rating, index) => {
                         return (
                           <tr key={index}>
-                            <td className="has-text-left">
+                            <td className="has-text-right">
                               <u>{rating} Stars</u>
                             </td>
                             <td className="has-text-left">
@@ -81,7 +82,7 @@ const RatingsReviews = (props) => {
               </div>
             </div>
 
-            <div className="level">
+            <div className="level" style={{ justifyContent: "left" }}>
               <div className="level-left">
                 <div className="level-item">
                   <table id="breakdowns" className="table" style={{ fontSize: "65%" }}>
@@ -89,7 +90,7 @@ const RatingsReviews = (props) => {
                       {attributes.map((attribute, index) => {
                         return (
                           <tr key={index}>
-                            <td className="has-text-left">
+                            <td className="has-text-right">
                               <u>{attribute}</u>
                             </td>
                             <td className="has-text-left">
@@ -106,7 +107,7 @@ const RatingsReviews = (props) => {
           </div>
 
           <div className="column is-8">
-            <div className="content">
+            <div className="content" style={{ justifyContent: "center" }}>
               <div className="level is-marginless">
                 <div className="level-left">
                   <div className="level-item">
@@ -353,19 +354,3 @@ const RatingsReviews = (props) => {
 };
 
 export default RatingsReviews;
-
-/*
-
-
-Length
-
-
-
-Fit
-Runs tight
-Runs slightly tight
-Perfect
-Runs slightly long
-Runs long
-
-*/
