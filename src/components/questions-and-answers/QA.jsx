@@ -4,6 +4,7 @@ import QuestionUnit from "./QuestionUnit.jsx";
 import AddQuestion from "./AddQuestion.jsx";
 import { sampleQuestions } from "../../mockData/questions.js";
 import $ from "jquery";
+import Axios from 'axios';
 
 class QA extends React.Component {
   constructor(props) {
@@ -15,6 +16,19 @@ class QA extends React.Component {
     };
     this.handleMoreQuestions = this.handleMoreQuestions.bind(this);
   }
+
+  componentDidMount(){
+    Axios.get("http://3.134.102.30/qa/15")
+      .then((data) => {
+        this.setState({
+          questions: data.data
+        })
+      })
+      .catch((err) => {
+        // Do nothing
+        console.log(err);
+      });
+  }
   handleAddQuestion(e) {
     $(".modal").addClass("is-active");
   }
@@ -24,6 +38,8 @@ class QA extends React.Component {
   handleSubmitQuestion(e) {
     // Verify
   }
+
+
 
   handleMoreQuestions() {
     let number = this.state.questionsToDisplay;

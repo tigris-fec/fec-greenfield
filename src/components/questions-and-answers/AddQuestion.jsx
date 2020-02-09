@@ -1,6 +1,7 @@
 import React from "react";
 import $ from "jquery";
 import Modal from "react-modal";
+import Axios from 'axios';
 
 class AddQuestion extends React.Component {
   constructor(props) {
@@ -33,10 +34,13 @@ class AddQuestion extends React.Component {
       this.state.asker_name.length === 0
     ) {
       alert("Please fill out the empty fields");
+      return;
     }
     if (!this.emailRegex.test(this.state.asker_email)) {
       alert("Invalid email");
+      return;
     }
+
   }
   render() {
     return (
