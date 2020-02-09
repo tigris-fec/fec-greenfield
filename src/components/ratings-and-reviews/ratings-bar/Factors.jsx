@@ -1,7 +1,7 @@
 import React from "react";
 import IndicatorBar from "./IndicatorBar.jsx";
 
-const Factors = props => {
+const Factors = (props) => {
   const characteristicNames = {
     Size: {
       setting: [
@@ -13,31 +13,13 @@ const Factors = props => {
       ]
     },
     Width: {
-      setting: [
-        "Too narrow",
-        "Slightly Narrow",
-        "Perfect",
-        "Slightly Wide",
-        "Too wide"
-      ]
+      setting: ["Too narrow", "Slightly Narrow", "Perfect", "Slightly Wide", "Too wide"]
     },
     Comfort: {
-      setting: [
-        "Uncomfortable",
-        "Slightly uncomfortable",
-        "Ok",
-        "Comfortable",
-        "Perfect"
-      ]
+      setting: ["Uncomfortable", "Slightly uncomfortable", "Ok", "Comfortable", "Perfect"]
     },
     Quality: {
-      setting: [
-        "Poor",
-        "Below average",
-        "What I expected",
-        "Pretty great",
-        "Perfect"
-      ]
+      setting: ["Poor", "Below average", "What I expected", "Pretty great", "Perfect"]
     },
     Length: {
       setting: [
@@ -62,7 +44,7 @@ const Factors = props => {
   console.log(props.characteristics);
   return (
     <div>
-      {props.characteristics.map(char => {
+      {props.characteristics.map((char) => {
         let name = Object.keys(char);
         return (
           <>
@@ -74,8 +56,8 @@ const Factors = props => {
                 <p className="is-size-7" style={{ marginRight: "10px" }}>
                   {characteristicNames[name[0]].setting[0]}
                 </p>
-                </div>
-                <div className="level-right">
+              </div>
+              <div className="level-right">
                 <p className="is-size-7" style={{ paddingRight: "230px" }}>
                   {characteristicNames[name[0]].setting[4]}
                 </p>

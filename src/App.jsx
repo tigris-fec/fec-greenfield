@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar.jsx";
 import Home from "./components/Home.jsx";
 import RatingsAndReviews from "./components/ratings-and-reviews/RatingsAndReviews.jsx";
+import RatingsReviews from "./components/mock-ratings-reviews/RatingsReviews.jsx";
 
 import Overview from "./components/overview/Overview.jsx";
 import QA from "./components/questions-and-answers/QA.jsx";
@@ -23,6 +24,7 @@ const App = (props) => {
               path="/ratings-and-reviews"
               render={() => <RatingsAndReviews />}
             />
+            <Route exact path="/mock-ratings-reviews" render={() => <RatingsReviews />} />
           </Switch>
         </section>
       </div>

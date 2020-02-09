@@ -18,3 +18,4 @@ CONTAINER_ID=$(docker ps | grep takenote | cut -d" " -f1)
 docker stop ${CONTAINER_ID}
 docker run --restart unless-stopped -d -p 80:5000 ${IMAGE}:${GIT_VERSION}
 docker system prune -a -f
+  
