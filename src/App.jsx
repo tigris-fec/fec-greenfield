@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar.jsx";
 import Home from "./components/Home.jsx";
 import Overview from "./components/overview/Overview.jsx";
 import RatingsAndReviews from "./components/ratings-and-reviews/RatingsAndReviews.jsx";
+import RatingsReviews from "./components/ratings-reviews/RatingsReviews.jsx";
 import QuestionsAndAnswers from "./components/questions-and-answers/QuestionsAndAnswers.jsx";
 import "./App.css";
 
@@ -28,6 +29,7 @@ const App = (props) => {
               path="/ratings-and-reviews"
               render={() => <RatingsAndReviews />}
             />
+            <Route exact path="/ratings-reviews" render={() => <RatingsReviews />} />
           </Switch>
         </section>
       </div>
