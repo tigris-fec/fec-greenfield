@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import AnswerUnit from "./AnswerUnit.jsx";
 
-const QuestionUnit = props => {
+const QuestionUnit = (props) => {
   const [votes, setVotes] = useState(props.question.question_helpfulness);
   const [didVote, setDidVote] = useState(false);
   const [answersToDisplay, setAnswersToDisplay] = useState(2);
@@ -23,13 +23,11 @@ const QuestionUnit = props => {
       <a onClick={handleAddAnswer}>Add Answer</a>
       {Object.keys(answers)
         .slice(0, answersToDisplay)
-        .map(answerId => (
+        .map((answerId) => (
           <AnswerUnit answer={answers[answerId]} />
         ))}
       {answersToDisplay < Object.keys(answers).length ? (
-        <b onClick={() => setAnswersToDisplay(answersToDisplay + 2)}>
-          Load More
-        </b>
+        <b onClick={() => setAnswersToDisplay(answersToDisplay + 2)}>Load More</b>
       ) : (
         <b></b>
       )}
