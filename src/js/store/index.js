@@ -3,8 +3,8 @@ import thunk from "redux-thunk";
 import rootReducer from "../reducers/index";
 
 const initialState = {
-  products: [],
-  productStyles: []
+  productStyles: null,
+  products: null
 };
 
 const middlewares = [thunk];
