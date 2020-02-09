@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReviewModal from "./ReviewModal.jsx";
 
-const AddReview = props => {
+const AddReview = (props) => {
   const [showModal, setShowModal] = useState(false);
 
   const revealModal = () => {
@@ -14,11 +14,15 @@ const AddReview = props => {
 
   return (
     <div>
-      <button className="button is-small" onClick={revealModal}>
+      <button className="button is-medium" onClick={revealModal}>
         Add Review +
       </button>
       {showModal ? (
-        <ReviewModal charList={props.charList} closeModal={closeModal} PRODUCT_ID={props.PRODUCT_ID}/>
+        <ReviewModal
+          charList={props.charList}
+          closeModal={closeModal}
+          PRODUCT_ID={props.PRODUCT_ID}
+        />
       ) : null}
     </div>
   );

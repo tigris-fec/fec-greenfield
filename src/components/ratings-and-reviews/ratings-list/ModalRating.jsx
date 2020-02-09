@@ -1,7 +1,6 @@
 import React from "react";
-import "../starrating.css";
 
-const OverallRating = props => {
+const OverallRating = (props) => {
   const checkStar = props.rating >= props.check ? true : false;
 
   const handleStarClick = () => {

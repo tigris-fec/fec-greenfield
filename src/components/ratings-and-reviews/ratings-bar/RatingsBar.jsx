@@ -36,7 +36,7 @@ const RatingsBar = (props) => {
   let productCharacteristics = getCharacteristics(fakeReview.characteristics);
 
   return (
-    <div className="column is-one-third ">
+    <>
       <RatingSummary rating={averageRating} />
       <Breakdown
         recommend={averageRecommend}
@@ -46,7 +46,7 @@ const RatingsBar = (props) => {
       />
       <br />
       <Factors characteristics={productCharacteristics} />
-    </div>
+    </>
   );
 };
 

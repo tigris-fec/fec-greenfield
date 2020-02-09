@@ -8,3 +8,4 @@ services:
       dockerfile: Dockerfile-prod
     port:
       - "80:80"
+  

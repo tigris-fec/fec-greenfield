@@ -10,13 +10,14 @@ const RatingsList = (props) => {
   const [currentReviews, setCurrentReviews] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://3.134.102.30/reviews/${props.PRODUCT_ID}/list?page=1&count=100`)
-    .then((data) =>{
-      setReviews(data.data.results);
-    })
-    .catch((err)=>{
-      console.log("Error with gathering data from API")
-    })
+    axios
+      .get(`http://3.134.102.30/reviews/${props.PRODUCT_ID}/list?page=1&count=100`)
+      .then((data) => {
+        setReviews(data.data.results);
+      })
+      .catch((err) => {
+        console.log("Error with gathering data from API");
+      });
   }, []);
 
   useEffect(() => {
@@ -33,17 +34,20 @@ const RatingsList = (props) => {
   };
 
   const sendFilter = (e) => {
-    axios.get(`http://3.134.102.30/reviews/${props.PRODUCT_ID}/list?page=1&count=100&sort=${e.target.value}`)
-    .then((data) =>{
-      setReviews(data.data.results);
-    })
-    .catch((err)=>{
-      console.log('Error with getting filtered reviews of:', e.target.value)
-    })
+    axios
+      .get(
+        `http://3.134.102.30/reviews/${props.PRODUCT_ID}/list?page=1&count=100&sort=${e.target.value}`
+      )
+      .then((data) => {
+        setReviews(data.data.results);
+      })
+      .catch((err) => {
+        console.log("Error with getting filtered reviews of:", e.target.value);
+      });
   };
 
   return (
-    <div className="column is-two-thirds">
+    <>
       <p>
         {reviews.length} reviews, sort by
         <select onChange={sendFilter}>
@@ -69,9 +73,9 @@ const RatingsList = (props) => {
           <MoreReviews handleMoreReviews={handleMoreReviews} />
         ) : null}
 
-        <AddReview charList={props.charList} PRODUCT_ID={props.PRODUCT_ID}/>
+        <AddReview charList={props.charList} PRODUCT_ID={props.PRODUCT_ID} />
       </div>
-    </div>
+    </>
   );
 };
 

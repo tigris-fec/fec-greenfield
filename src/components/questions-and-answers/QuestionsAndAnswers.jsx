@@ -5,7 +5,7 @@ import AddQuestion from "./AddQuestion.jsx";
 import { sampleQuestions } from "../../mock-data/questions.js";
 import $ from "jquery";
 
-class QA extends React.Component {
+class QuestionsAndAnswers extends React.Component {
   constructor(props) {
     super(props);
     this.handleAddQuestion = this.handleAddQuestion.bind(this);
@@ -54,5 +54,5 @@ class QA extends React.Component {
     );
   }
 }
-export default QA;
+export default QuestionsAndAnswers;
 
