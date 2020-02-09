@@ -1,14 +1,14 @@
 import React from "react";
 import BlackBar from "./BlackBar.jsx";
-import "./breakdown.css";
+import "./BreakDown.css";
 
-const Breakdown = props => {
+const Breakdown = (props) => {
   let max = Math.max(...Object.values(props.ratings));
 
-  const starClick = number => {
-    if(!props.filters.includes(number)){
+  const starClick = (number) => {
+    if (!props.filters.includes(number)) {
       let newFilters = props.filters.slice();
-      newFilters.push(number)
+      newFilters.push(number);
       props.setFilter(newFilters);
     }
   };
