@@ -14,7 +14,7 @@ import "./RatingsReviews.css";
 
 const RatingsReviews = (props) => {
   const [widget] = useState("Ratings & Reviews");
-  const [userRatings] = useState([5, 4, 3, 2, 1]);
+  const [ratings] = useState([5, 4, 3, 2, 1]);
   const [filters] = useState(["relevance", "newest", "helpful"]);
   const [buttons] = useState(["More Reviews", "Add A Review +"]);
   const [sizes] = useState(size);
@@ -24,8 +24,6 @@ const RatingsReviews = (props) => {
   const [lengths] = useState(length);
   const [fits] = useState(fit);
   const [attributes] = useState(["Size", "Width", "Comfort", "Quality", "Length", "Fit"]);
-  const [ratings] = useState({});
-
   const [characteristics] = useState(characteristicNames);
 
   return (
@@ -65,7 +63,7 @@ const RatingsReviews = (props) => {
                 <div className="level-item">
                   <table className="table" style={{ fontSize: "75%" }}>
                     <tbody>
-                      {userRatings.map((rating, index) => {
+                      {userm.map((rating, index) => {
                         return (
                           <tr key={index}>
                             <td className="has-text-left">
