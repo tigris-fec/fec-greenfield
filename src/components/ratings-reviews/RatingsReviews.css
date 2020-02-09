@@ -11,7 +11,7 @@ progress {
 
 ::-webkit-progress-bar {
   background-color: #ebebeb;
-  width: 150%;
+  width: 145%;
 }
 
 #star-counts {
