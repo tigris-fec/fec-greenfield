@@ -7,11 +7,8 @@ import QA from "../questions-and-answers/QA.jsx";
 import QuestionUnit from "../questions-and-answers/QuestionUnit.jsx"
 import data from "./mockDataQuestions.js";
 
-
 let sampleQuestion = data.results[0];
-let QAWrapper = mount(<QA questions = {[sampleQuestion]} />);
-
-
+let QAWrapper = mount(<QA questions={[sampleQuestion]} />);
 
 describe("QA Displays everything that would make it look functionally complete", () => {
     
@@ -49,12 +46,10 @@ describe("Answer Unit", () => {
 });
 // test.todo("QA renders", () => {
 
-
 //     const wrapper = shallow(<QA questions = {[]}/>);
 //     const allQuestions = wrapper.find(".all-questions");
 //     expect(allQuestions.exists()).toBe(true);
 // });
-
 
 // test.todo("QA renders questions, which renders answers", () =>{
 //     const question = [{
@@ -81,5 +76,3 @@ describe("Answer Unit", () => {
 //     const QUnit = wrapper.find(QuestionUnit);
 //     expect(QUnit).toBe(true);
 // })
-
-
