@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-
+import Axios from 'axios';
 import AnswerUnit from "./AnswerUnit.jsx";
 
 const QuestionUnit = (props) => {
   const [votes, setVotes] = useState(props.question.question_helpfulness);
   const [didVote, setDidVote] = useState(false);
+  console.log("Here are the votes", props.question.question_helpfulness);
   const [answersToDisplay, setAnswersToDisplay] = useState(2);
   const answers = props.question.answers;
-  const handleClick = function() {
+  const handleClick = function(id) {
     if (didVote) return;
+    Axios.put(`http://3.134.102.30/qa/question/${id}/helpful`)
+    .then((data) => {console.log(data)})
+    .catch((err) => {console.log(err)});
     setDidVote(true);
     setVotes(votes + 1);
   };
@@ -19,12 +23,12 @@ const QuestionUnit = (props) => {
     <div>
       Q: {props.question.question_body}
       Helpful?
-      <a onClick={handleClick}>Yes ({votes})</a>|
+      <a onClick={() => {handleClick(props.question.question_id)}}>Yes ({votes})</a>|
       <a onClick={handleAddAnswer}>Add Answer</a>
       {Object.keys(answers)
         .slice(0, answersToDisplay)
-        .map((answerId) => (
-          <AnswerUnit answer={answers[answerId]} />
+        .map((answerId, index) => (
+          <AnswerUnit answer={answers[answerId]} key = {index}/>
         ))}
       {answersToDisplay < Object.keys(answers).length ? (
         <b onClick={() => setAnswersToDisplay(answersToDisplay + 2)}>Load More</b>

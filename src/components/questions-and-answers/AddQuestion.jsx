@@ -41,6 +41,19 @@ class AddQuestion extends React.Component {
       return;
     }
 
+    let myQuestion = {
+      body: this.state.question_body,
+      name: this.state.asker_name,
+      email: this.state.asker_email
+    };
+    Axios.post("http://3.134.102.30/qa/15", myQuestion)
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+
   }
   render() {
     return (
@@ -67,7 +80,7 @@ class AddQuestion extends React.Component {
                 <textarea
                   className="textarea"
                   name="question_body"
-                  placeholder="Email"
+                  placeholder=""
                   value={this.state.question_body}
                   onChange={this.handleChange}
                   autoComplete="off"
