@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import IndicatorBar from "./IndicatorBar.jsx";
+import "./IndicatorBar.css";
 
 const Factors = (props) => {
   const characteristicNames = {
@@ -45,22 +45,34 @@ const Factors = (props) => {
       {props.characteristics.map((char) => {
         let name = Object.keys(char);
         return (
-          <div className="container" style={{ fontSize: "80%" }}>
-            <p key={char[name[0]].id}>{name[0]}</p>
-            <IndicatorBar width={((char[name[0]].value - 0.5) / 5) * 100} />
-            <div className="level">
-              <div className="level-left">
-                <div className="level-item">
-                  <p className="has-text-left">
-                    {characteristicNames[name[0]].setting[0]}
-                  </p>
+          <div className="container" style={{ maxWidth: "100%", fontSize: "90%" }}>
+            <span style={{ fontWeight: "bold" }}>
+              <p key={char[name[0]].id}>{name[0]}</p>
+            </span>
+            <div className="indicator-container">
+              <div className="indicator-bar-1">
+                <div className="indicator-bar-2">
+                  <div className="indicator-bar-3">
+                    <i className="fas fa-caret-down indicator"></i>
+                  </div>
                 </div>
               </div>
-              <div className="level-right">
-                <div className="level-item">
-                  <p className="has-text-right">
-                    {characteristicNames[name[0]].setting[4]}
-                  </p>
+            </div>
+            <div style={{ paddingTop: "1%", paddingBottom: "1%" }}>
+              <div className="level">
+                <div className="level-left">
+                  <div className="level-item">
+                    <p className="has-text-left">
+                      {characteristicNames[name[0]].setting[0]}
+                    </p>
+                  </div>
+                </div>
+                <div className="level-right">
+                  <div className="level-item">
+                    <p className="has-text-right">
+                      {characteristicNames[name[0]].setting[4]}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -74,5 +86,5 @@ const Factors = (props) => {
 export default Factors;
 
 /*
-style={{ marginRight: "10px" }}
+<IndicatorBar width={((char[name[0]].value - 0.5) / 5) * 100} />
 */

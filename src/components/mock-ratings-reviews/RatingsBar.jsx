@@ -37,8 +37,8 @@ const RatingsBar = (props) => {
   let productCharacteristics = getCharacteristics(fakeReview.characteristics);
 
   return (
-    <div className="column is-4">
-      {widgetName.toUpperCase()}
+    <>
+      <p>{widgetName.toUpperCase()}</p>
       <RatingSummary rating={3.7} />
       <Breakdown
         recommend={averageRecommend}
@@ -46,9 +46,8 @@ const RatingsBar = (props) => {
         setFilter={props.setFilter}
         filters={props.filters}
       />
-      <br />
       <Factors characteristics={productCharacteristics} />
-    </div>
+    </>
   );
 };
 

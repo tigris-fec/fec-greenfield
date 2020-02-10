@@ -38,7 +38,10 @@ const RatingsReviews = (props) => {
     <>
       <div className="container is-fluid">
         <div className="columns">
-          <RatingsBar filters={filters} setFilter={setFilter} soloRating={soloReview} />
+          <div className="column is-4">
+            <RatingsBar filters={filters} setFilter={setFilter} soloRating={soloReview} />
+          </div>
+
           <div className="column is-8">
             <div className="content">
               <div className="level is-marginless">

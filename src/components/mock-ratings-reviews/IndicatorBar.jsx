@@ -4,7 +4,7 @@ import "./IndicatorBar.css";
 const BlackBar = (props) => {
   return (
     <>
-      <div className="container">
+      <div className="indicator-container">
         <div className="indicator-bar-1">
           <div className="indicator-bar-2">
             <div className="indicator-bar-3">

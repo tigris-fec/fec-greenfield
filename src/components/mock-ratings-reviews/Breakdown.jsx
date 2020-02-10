@@ -22,28 +22,24 @@ const Breakdown = (props) => {
 
   return (
     <>
-      <div className="level" style={{ justifyContent: "left" }}>
-        <div className="level-left">
-          <div className="level-item">
-            <table className="table" style={{ width: "100%" }}>
-              <tbody>
-                {values.map((rating, index) => {
-                  return (
-                    <tr key={index}>
-                      <td className="has-text-left">
-                        <u>{stars[index]} Stars</u>
-                      </td>
-                      <td className="has-text-left">
-                        <progress value={(rating / max) * 100} max={100} />
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+      <table className="table is-fullwidth">
+        <tbody>
+          {values.map((rating, index) => {
+            return (
+              <tr key={index}>
+                <td>
+                  <u>{stars[index]} Stars</u>
+                </td>
+                <td>
+                  <div className="progress">
+                    <progress value={(rating / max) * 100} max={100} />
+                  </div>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </>
   );
 };
