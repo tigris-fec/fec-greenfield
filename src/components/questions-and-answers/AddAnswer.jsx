@@ -1,33 +1,30 @@
 import React from "react";
 import $ from "jquery";
-import Modal from "react-modal";
-import Axios from 'axios';
+import Axios from "axios";
 
-class AddQuestion extends React.Component {
+class AddAnswer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       body: "",
       name: "",
-      email: ""
+      email: "",
+      question_id: this.props.question_id
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmitQuestion = this.handleSubmitQuestion.bind(this);
+    this.handleSubmitAnswer = this.handleSubmitAnswer.bind(this);
     this.emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   }
 
-  handleOpenQuestion() {
-    $(".modal").addClass("is-active");
-  }
-  handleCloseQuestion() {
-    $(".modal").removeClass("is-active");
+  handleCloseAnswer() {
+    $("#answer-form").removeClass("is-active");
   }
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
   }
-  handleSubmitQuestion() {
+  handleSubmitAnswer() {
     if (
       this.state.body.length === 0 ||
       this.state.email.length === 0 ||
@@ -41,32 +38,32 @@ class AddQuestion extends React.Component {
       return;
     }
 
-    let myQuestion = {
+    let myAnswer = {
       body: this.state.body,
       name: this.state.name,
       email: this.state.email
     };
-    Axios.post("http://3.134.102.30/qa/15", myQuestion)
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
 
+    
+    Axios.post(`http://3.134.102.30/qa/${this.props.question_id}/answers`, myAnswer)
+      .then(() => {})
+      .catch((err) => {
+        console.log(err);
+      });
   }
+
   render() {
     return (
-      <div className="add-question">
-        <div className="modal">
+      <div className="add-Answer">
+        <div className="modal" id="answer-form">
           <div className="modal-background"></div>
           <div className="modal-card">
             <header className="modal-card-head">
-              <p className="modal-card-title">Your Question</p>
+              <p className="modal-card-title">Your Answer</p>
               <button
                 className="delete"
                 aria-label="close"
-                onClick={this.handleCloseQuestion}
+                onClick={this.handleCloseAnswer}
               ></button>
             </header>
             <section className="modal-card-body">
@@ -108,7 +105,7 @@ class AddQuestion extends React.Component {
                 <input
                   type="button"
                   value="Submit"
-                  onClick={this.handleSubmitQuestion}
+                  onClick={this.handleSubmitAnswer}
                 ></input>
               </form>
             </section>
@@ -119,4 +116,4 @@ class AddQuestion extends React.Component {
   }
 }
 
-export default AddQuestion;
+export default AddAnswer;

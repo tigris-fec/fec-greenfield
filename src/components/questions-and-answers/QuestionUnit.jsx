@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Axios from 'axios';
 import AnswerUnit from "./AnswerUnit.jsx";
-
+import $ from 'jquery';
+import AddAnswer from "./AddAnswer.jsx"
 const QuestionUnit = (props) => {
   const [votes, setVotes] = useState(props.question.question_helpfulness);
   const [didVote, setDidVote] = useState(false);
-  console.log("Here are the votes", props.question.question_helpfulness);
   const [answersToDisplay, setAnswersToDisplay] = useState(2);
   const answers = props.question.answers;
   const handleClick = function(id) {
@@ -17,7 +17,11 @@ const QuestionUnit = (props) => {
     setVotes(votes + 1);
   };
 
-  const handleAddAnswer = function() {};
+  const handleAddAnswer = function() {
+
+    props.setCurrentlyAnswering(props.question.question_id);
+    $("#answer-form").addClass("is-active");
+  };
 
   return (
     <div>
@@ -30,6 +34,7 @@ const QuestionUnit = (props) => {
         .map((answerId, index) => (
           <AnswerUnit answer={answers[answerId]} key = {index}/>
         ))}
+      
       {answersToDisplay < Object.keys(answers).length ? (
         <b onClick={() => setAnswersToDisplay(answersToDisplay + 2)}>Load More</b>
       ) : (

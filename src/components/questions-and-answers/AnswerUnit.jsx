@@ -15,7 +15,10 @@ const AnswerUnit = (props) => {
 
   const handleReport = function(e, id) {
     if (didReport) return;
-    Axios.put(`http://3.134.102.30/qa/answer/${id}/report`);
+    console.log("report");
+    Axios.put(`http://3.134.102.30/qa/answer/${id}/report`)
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err));
     setDidReport(true);
     e.target.innerText = "Reported"
 
