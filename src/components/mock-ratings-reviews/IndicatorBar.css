@@ -1,0 +1,41 @@
+.indicator-container {
+    height: 5px;
+    width: 50%;
+    position: relative;
+    display: block;
+
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+
+.indicator-bar-1 {
+    position: fixed;
+    height: 100%;
+    width: 30%;
+    background-color: lightgray;
+    left: 0;
+}
+
+.indicator-bar-2 {
+    position: fixed;
+    height: 100%;
+    width: 30%;
+    background-color: lightgray;
+    left: 31%;
+}
+
+.indicator-bar-3 {
+    position: fixed;
+    height: 100%;
+    width: 30%;
+    background-color: lightgray;
+    left: 62%;
+}
+
+.indicator {
+    position: fixed;
+    top: -6px;
+}
