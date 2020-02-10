@@ -35,7 +35,7 @@ const QuestionUnit = (props) => {
           <AnswerUnit answer={answer} key = {index}/>
         ))}
       
-      {answersToDisplay <= answers.length ? (
+      {answersToDisplay < answers.length ? (
         <b onClick={() => setAnswersToDisplay(100)}>See More Answers</b>
       ) : (
         ""
