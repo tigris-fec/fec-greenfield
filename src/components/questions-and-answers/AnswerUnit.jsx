@@ -6,10 +6,18 @@ const AnswerUnit = (props) => {
   const [votes, setVotes] = useState(props.answer.helpfulness);
   const [didVote, setDidVote] = useState(false);
   const [didReport, setDidReport] = useState(false);
-  let username = props.answer.answerer_name;
-  let isSeller = username.toLowerCase().includes("seller");
+  const username = props.answer.answerer_name;
+  const isSeller = username.toLowerCase().includes("seller");
+  const answerDate = new Date(props.answer.date);
+  const optionsDate = {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  };
+  const correctDate = new Intl.DateTimeFormat("en-US", optionsDate);
+  const displayDate = correctDate.format(answerDate);
   let indexOfSeller;
-  if(isSeller){
+  if (isSeller) {
     indexOfSeller = username.toLowerCase().indexOf("seller");
   }
   const handleUpvote = function(id) {
@@ -35,10 +43,11 @@ const AnswerUnit = (props) => {
       {isSeller ? (
         <span>
           {username.substring(0, indexOfSeller)}
-          <b>{username.substring(indexOfSeller, indexOfSeller+6)}</b>
+          <b>{username.substring(indexOfSeller, indexOfSeller + 6)}</b>,
+          {" " + displayDate}
         </span>
       ) : (
-        `${username}`
+        `${username}, ${displayDate}`
       )}{" "}
       | Helpful?{" "}
       <a

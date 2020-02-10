@@ -7,6 +7,7 @@ const QuestionUnit = (props) => {
   const [votes, setVotes] = useState(props.question.question_helpfulness);
   const [didVote, setDidVote] = useState(false);
   const [answersToDisplay, setAnswersToDisplay] = useState(2);
+  const [displayAll, setDisplayAll] = useState(false);
   const answers = props.question.answers;
   const handleClick = function(id) {
     if (didVote) return;
@@ -35,10 +36,11 @@ const QuestionUnit = (props) => {
         ))}
       
       {answersToDisplay <= answers.length ? (
-        <b onClick={() => setAnswersToDisplay(answersToDisplay + 2)}>Load More</b>
+        <b onClick={() => setAnswersToDisplay(100)}>See More Answers</b>
       ) : (
-        <b></b>
+        ""
       )}
+      {answersToDisplay === 100 ? <b onClick = {() => setAnswersToDisplay(2)} >Collapse Answers</b>: ""}
     </div>
   );
 };

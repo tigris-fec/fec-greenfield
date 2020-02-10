@@ -15,10 +15,13 @@ class QA extends React.Component {
       questions: {},
       questionsToDisplay: 2,
       productID: 5,
-      currentlyAnswering: null // This is changed when a user clicks "Add Answer" on a particular question
+      currentlyAnswering: null, // This is changed when a user clicks "Add Answer" on a particular question
+      searchedQuestions: {}, // key value pairs of idx : true or false depeneding on if it matches the search term
+      searchMode: false
     };
     this.handleMoreQuestions = this.handleMoreQuestions.bind(this);
     this.setCurrentlyAnswering = this.setCurrentlyAnswering.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -34,13 +37,12 @@ class QA extends React.Component {
             arrayOfAnswers.push(question.answers[answerID])
           );
           arrayOfAnswers.sort((a, b) => {
-            if (a.answerer_name.toLowerCase().includes("seller")){
+            if (a.answerer_name.toLowerCase().includes("seller")) {
               return -1;
             } else {
               return b.helpfulness - a.helpfulness;
             }
-            
-          })
+          });
           question.answers = arrayOfAnswers;
         });
 
@@ -74,23 +76,70 @@ class QA extends React.Component {
       questionsToDisplay: (number += 2)
     });
   }
-  handleChange() {}
+  handleChange(e) {
+    let searchTerms = e.target.value;
+    if (e.target.value.length < 3) {
+      // Clear results
+      this.setState({
+        searchMode: false,
+        searchedQuestions: {},
+        numOfSearch: null
+      });
+    } else {
+      // start matching
+      let markedQuestions = {};
+
+      this.state.questions.results.map((question, index) => {
+        if (question.question_body.toLowerCase().includes(searchTerms)) {
+          markedQuestions[question.question_id] = true;
+        }
+      });
+      this.setState({
+        searchMode: true,
+        searchedQuestions: markedQuestions,
+        prevQuestionsToDisplay: this.state.questionsToDisplay,
+        numOfSearch: 100
+      });
+    }
+  }
   render() {
     return this.state.questions.product_id !== undefined ? (
-      <div className="all-questions">
-        <h5>{"Questions & Answers"}</h5>
-        <input type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
-        {this.state.questions.results
-          .slice(0, this.state.questionsToDisplay)
-          .map((question, index) => (
-            <QuestionUnit
-              question={question}
-              key={index}
-              setCurrentlyAnswering={this.setCurrentlyAnswering}
-            />
-          ))}{" "}
-        <br />
-        <AddAnswer question_id={this.state.currentlyAnswering} />
+      <div>
+        <div className="all-questions">
+          <h5>{"Questions & Answers"}</h5>
+          <input
+            type="text"
+            placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
+            onChange={this.handleChange}
+          />
+          {this.state.questions.results
+            .slice(0, this.state.numOfSearch || this.state.questionsToDisplay)
+            .map((question, index) => {
+              if (
+                this.state.searchMode &&
+                this.state.searchedQuestions[question.question_id]
+              ) {
+                return (
+                  <QuestionUnit
+                    question={question}
+                    key={index}
+                    setCurrentlyAnswering={this.setCurrentlyAnswering}
+                  />
+                );
+              } else if (this.state.searchMode === false) {
+                return (
+                  <QuestionUnit
+                    question={question}
+                    key={index}
+                    setCurrentlyAnswering={this.setCurrentlyAnswering}
+                  />
+                );
+              }
+            })}{" "}
+          <br />
+          <AddAnswer question_id={this.state.currentlyAnswering} />
+          <AddQuestion productID={this.state.productID} />
+        </div>
         {this.state.questions.results.length > 0 &&
         this.state.questionsToDisplay < this.state.questions.results.length ? (
           <input
@@ -105,7 +154,6 @@ class QA extends React.Component {
         <button className="button" onClick={this.handleOpenQuestion}>
           Add a Question +
         </button>
-        <AddQuestion productID={this.state.productID} />
       </div>
     ) : (
       <div></div>

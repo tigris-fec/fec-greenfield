@@ -1,7 +1,7 @@
 import React from "react";
 import $ from "jquery";
 import Modal from "react-modal";
-import Axios from 'axios';
+import Axios from "axios";
 
 class AddQuestion extends React.Component {
   constructor(props) {
@@ -47,12 +47,12 @@ class AddQuestion extends React.Component {
       email: this.state.email
     };
     Axios.post(`http://3.134.102.30/qa/${this.props.productID}`, myQuestion)
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     this.setState({});
     this.handleCloseQuestion();

@@ -44,13 +44,11 @@ class AddAnswer extends React.Component {
       email: this.state.email
     };
 
-    
     Axios.post(`http://3.134.102.30/qa/${this.props.question_id}/answers`, myAnswer)
       .then(() => {})
       .catch((err) => {
         console.log(err);
       });
-
 
     this.handleCloseAnswer();
     this.setState({});
