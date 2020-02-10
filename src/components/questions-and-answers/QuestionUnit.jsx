@@ -29,13 +29,12 @@ const QuestionUnit = (props) => {
       Helpful?
       <a onClick={() => {handleClick(props.question.question_id)}}>Yes ({votes})</a>|
       <a onClick={handleAddAnswer}>Add Answer</a>
-      {Object.keys(answers)
-        .slice(0, answersToDisplay)
-        .map((answerId, index) => (
-          <AnswerUnit answer={answers[answerId]} key = {index}/>
+      {answers.slice(0,answersToDisplay)
+        .map((answer, index) => (
+          <AnswerUnit answer={answer} key = {index}/>
         ))}
       
-      {answersToDisplay < Object.keys(answers).length ? (
+      {answersToDisplay <= answers.length ? (
         <b onClick={() => setAnswersToDisplay(answersToDisplay + 2)}>Load More</b>
       ) : (
         <b></b>

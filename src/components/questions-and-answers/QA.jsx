@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "enzyme";
 import QuestionUnit from "./QuestionUnit.jsx";
 import AddQuestion from "./AddQuestion.jsx";
-import AddAnswer from "./AddAnswer.jsx"
+import AddAnswer from "./AddAnswer.jsx";
 //import { sampleQuestions } from "../../mockData/questions.js";
 import $ from "jquery";
 import Axios from "axios";
@@ -16,16 +16,34 @@ class QA extends React.Component {
       questionsToDisplay: 2,
       productID: 5,
       currentlyAnswering: null // This is changed when a user clicks "Add Answer" on a particular question
-      
     };
     this.handleMoreQuestions = this.handleMoreQuestions.bind(this);
     this.setCurrentlyAnswering = this.setCurrentlyAnswering.bind(this);
-
   }
 
   componentDidMount() {
-    Axios.get("http://3.134.102.30/qa/" + this.state.productID)
+    Axios.get("http://3.134.102.30/qa/" + this.state.productID + "/?page=1&count=200")
       .then((data) => {
+        data.data.results.sort((a, b) => {
+          return b.question_helpfulness - a.question_helpfulness;
+        });
+        let arrayOfAnswers;
+        data.data.results.map((question) => {
+          arrayOfAnswers = [];
+          Object.keys(question.answers).map((answerID) =>
+            arrayOfAnswers.push(question.answers[answerID])
+          );
+          arrayOfAnswers.sort((a, b) => {
+            if (a.answerer_name.toLowerCase().includes("seller")){
+              return -1;
+            } else {
+              return b.helpfulness - a.helpfulness;
+            }
+            
+          })
+          question.answers = arrayOfAnswers;
+        });
+
         this.setState({
           questions: data.data
         });
@@ -35,16 +53,15 @@ class QA extends React.Component {
         console.log(err);
       });
   }
-  setCurrentlyAnswering(id){
+  setCurrentlyAnswering(id) {
     this.setState({
       currentlyAnswering: id
-    })
+    });
   }
   handleAddQuestion(e) {
     $(".modal").addClass("is-active");
   }
   handleOpenQuestion() {
-
     $(".modal").addClass("is-active");
   }
   handleCloseQuestion(e) {
@@ -88,7 +105,7 @@ class QA extends React.Component {
         <button className="button" onClick={this.handleOpenQuestion}>
           Add a Question +
         </button>
-        <AddQuestion />
+        <AddQuestion productID={this.state.productID} />
       </div>
     ) : (
       <div></div>

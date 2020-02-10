@@ -46,7 +46,7 @@ class AddQuestion extends React.Component {
       name: this.state.name,
       email: this.state.email
     };
-    Axios.post("http://3.134.102.30/qa/15", myQuestion)
+    Axios.post(`http://3.134.102.30/qa/${this.props.productID}`, myQuestion)
     .then((data) => {
       console.log(data);
     })
@@ -54,6 +54,8 @@ class AddQuestion extends React.Component {
       console.log(err);
     })
 
+    this.setState({});
+    this.handleCloseQuestion();
   }
   render() {
     return (

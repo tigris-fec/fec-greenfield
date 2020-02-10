@@ -50,6 +50,10 @@ class AddAnswer extends React.Component {
       .catch((err) => {
         console.log(err);
       });
+
+
+    this.handleCloseAnswer();
+    this.setState({});
   }
 
   render() {
