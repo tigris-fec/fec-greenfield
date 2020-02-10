@@ -45,23 +45,26 @@ const Factors = (props) => {
       {props.characteristics.map((char) => {
         let name = Object.keys(char);
         return (
-          <>
-            <br />
+          <div className="container" style={{ fontSize: "80%" }}>
             <p key={char[name[0]].id}>{name[0]}</p>
             <IndicatorBar width={((char[name[0]].value - 0.5) / 5) * 100} />
             <div className="level">
               <div className="level-left">
-                <p className="is-size-7" style={{ marginRight: "10px" }}>
-                  {characteristicNames[name[0]].setting[0]}
-                </p>
+                <div className="level-item">
+                  <p className="has-text-left">
+                    {characteristicNames[name[0]].setting[0]}
+                  </p>
+                </div>
               </div>
               <div className="level-right">
-                <p className="is-size-7" style={{ paddingRight: "230px" }}>
-                  {characteristicNames[name[0]].setting[4]}
-                </p>
+                <div className="level-item">
+                  <p className="has-text-right">
+                    {characteristicNames[name[0]].setting[4]}
+                  </p>
+                </div>
               </div>
             </div>
-          </>
+          </div>
         );
       })}
     </>
@@ -70,3 +73,6 @@ const Factors = (props) => {
 
 export default Factors;
 
+/*
+style={{ marginRight: "10px" }}
+*/

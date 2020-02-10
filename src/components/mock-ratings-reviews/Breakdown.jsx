@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import BlackBar from "./BlackBar.jsx";
 import Factors from "./Factors.jsx";
 import "./Breakdown.css";
 
@@ -26,12 +25,12 @@ const Breakdown = (props) => {
       <div className="level" style={{ justifyContent: "left" }}>
         <div className="level-left">
           <div className="level-item">
-            <table className="table" style={{ fontSize: "75%" }}>
+            <table className="table" style={{ width: "100%" }}>
               <tbody>
                 {values.map((rating, index) => {
                   return (
                     <tr key={index}>
-                      <td className="has-text-right">
+                      <td className="has-text-left">
                         <u>{stars[index]} Stars</u>
                       </td>
                       <td className="has-text-left">

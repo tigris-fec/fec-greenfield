@@ -37,9 +37,9 @@ const RatingsBar = (props) => {
   let productCharacteristics = getCharacteristics(fakeReview.characteristics);
 
   return (
-    <div className="column is-4 ">
+    <div className="column is-4">
       {widgetName.toUpperCase()}
-      <RatingSummary rating={averageRating} />
+      <RatingSummary rating={3.7} />
       <Breakdown
         recommend={averageRecommend}
         ratings={fakeReview.ratings}
@@ -56,25 +56,7 @@ export default RatingsBar;
 
 /*
 <div className="column is-4">
-  {widget.toUpperCase()}
-  <div className="level" style={{ justifyContent: "left" }}>
-    <div className="level-left">
-      <div className="level-item">
-        <p style={{ fontSize: "400%" }}>
-          <strong>3.5</strong>
-        </p>
-      </div>
-      <div className="level-item">
-        <Rating
-          key={1}
-          initialRating={4.67}
-          emptySymbol={<i className="far fa-star"></i>}
-          fullSymbol={
-            <i className="fa fa-star" style={{ color: "#d4af37" }}></i>
-          }
-        />
-      </div>
-    </div>
+
   </div>
   <div className="level" style={{ justifyContent: "left", fontSize: "75%" }}>
     <div className="level-left">

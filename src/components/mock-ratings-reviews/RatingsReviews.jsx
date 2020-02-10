@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Rating from "react-rating";
+import RatingSummary from "./RatingSummary.jsx";
 import RatingsBar from "./RatingsBar.jsx";
+
 import {
   fakeSoloReview,
   size,
@@ -12,6 +14,7 @@ import {
   length,
   characteristicNames
 } from "./state.js";
+
 import "./RatingsReviews.css";
 
 const RatingsReviews = (props) => {
@@ -36,9 +39,8 @@ const RatingsReviews = (props) => {
       <div className="container is-fluid">
         <div className="columns">
           <RatingsBar filters={filters} setFilter={setFilter} soloRating={soloReview} />
-
           <div className="column is-8">
-            <div className="content" style={{ justifyContent: "center" }}>
+            <div className="content">
               <div className="level is-marginless">
                 <div className="level-left">
                   <div className="level-item">
