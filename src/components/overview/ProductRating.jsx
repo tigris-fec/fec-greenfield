@@ -4,10 +4,12 @@ import Rating from "react-rating";
 const ProductRating = (props) => {
   return (
     <>
-      {props.reviews.length > 0 ? (
         <div className="level">
           <div className="level-left">
             <div className="level-item">
+              <p className="is-size-1">
+                {props.rating}
+              </p>
               <Rating
                 initialRating={props.rating}
                 emptySymbol={<i className="far fa-star"></i>}
@@ -15,11 +17,10 @@ const ProductRating = (props) => {
               />
             </div>
             <div id="reviews" className="level-item">
-              <p id="read-all-reviews">Read All Reviews</p>
+              <p id="read-all-reviews"><u>Read All Reviews</u></p>
             </div>
           </div>
         </div>
-      ) : null}
     </>
   );
 };

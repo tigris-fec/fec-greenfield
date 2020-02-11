@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
 
 import ProductsGallery from "./ProductsGallery.jsx";
 import ProductRating from "./ProductRating.jsx";
@@ -25,144 +26,72 @@ import "./Overview.scss";
 
 const API_URL = "http://3.134.102.30";
 
-class Overview extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: -1,
-      name: "",
-      category: "",
-      defaultPrice: -1,
-      defaultStyle: -1,
-      photos: [],
-      rating: 4.26,
-      reviews: [],
-      productStyles: [],
-      productInfo: productInfo,
-      selectedId: -1,
-      selectedStyles: [],
-      images: [],
-      features: [
-        { id: 1, feature: "No one will be able to see you" },
-        { id: 2, feature: "Everyone will think you are cool" },
-        { id: 3, feature: "Fair-labor product" }
-      ],
-      skus: {
-        XS: 8,
-        S: 16,
-        M: 17,
-        L: 10,
-        XL: 15
-      }
-    };
-    this.toggleCarouselWidth = this.toggleCarouselWidth.bind(this);
-    this.setSelectedProduct = this.setSelectedProduct.bind(this);
-  }
-  componentDidMount() {
-    this.setState({
-      id: Number(productStyles.product_id),
-      name: productInfo[0].name,
-      category: productInfo[0].category,
-      slogan: productInfo[0].slogan,
-      description: productInfo[0].description,
-      defaultPrice: productStyles.results[0].original_price,
-      selectedStyleName: productStyles.results[0]["default?"],
-      defaultStyle: productStyles.results[0].name,
-      photos: productStyles.results[0].photos,
-      skus: productStyles.results[0].skus,
-      productStyles: productStyles.results,
-      selectedStyles: productStyles.results
-    });
-  }
-  toggleCarouselWidth() {
-    this.setState(prevState => ({ open: !prevState.open }));
-  }
-  setSelectedProduct(selectedId) {
-    this.setState({ selectedId }, () => {
-      console.log(`${this.state.selectedId} is the selected ID`);
-    });
-  }
-  render() {
-    return (
-      <section className="section">
-        <div className="columns">
-          <div className="column is-7">
-            <ProductsGallery
-              photos={this.state.photos}
-              productStyles={this.state.productStyles}
-              selectedStyles={this.state.selectedStyles}
-            />
-          </div>
-          <div className="column is-5">
-            <ProductRating
-              rating={this.state.rating}
-              reviews={this.state.reviews}
-            />
-            <ProductCategory category={this.state.category} />
-            <ProductName name={this.state.name} />
-            <ProductPrice price={this.state.defaultPrice} />
-            <br />
-            <ProductStyles
-              defaultStyle={this.state.defaultStyle}
-              productStyles={this.state.productStyles}
-              setSelectedProduct={this.setSelectedProduct}
-            />
-            <AddToCart skus={this.state.skus} />
-          </div>
-        </div>
-        <div className="columns" style={{ marginLeft: "5%", marginTop: "2%" }}>
-          <div
-            className="column is-two-thirds"
-            style={{ borderRight: "solid", borderWidth: "1.5px" }}
-          >
-            <ProductDetails
-              slogan={this.state.slogan}
-              description={this.state.description}
-            />
-          </div>
-          <div className="column is-one-third">
-            <ProductFeatures features={this.state.features} />
-          </div>
-        </div>
-      </section>
-    );
-  }
-}
+const mapStateToProps = (store) => ({ PRODUCT_ID: 3, averageRating: 3.7 });
 
-export default Overview;
+const OverviewContainer = (props) => {
+  const [currentProduct, setCurrentProduct] = useState(productInfo);
+  const [availableStyles, setAvailableStyles] = useState(productStyles.results);
+  const [currentStyle, setCurrentStyle] = useState(productStyles.results[0]);
 
-/*
-this.getProductStyles = this.getProductStyles.bind(this);
-this.getProductInfo = this.getProductInfo.bind(this);
-
-getProductStyles(id = 1) {
-  axios
-    .get(`${API_URL}/products/${id}/styles`)
-    .then((res) => {
-      let productStyles = res.data.results;
-      this.setState({ productStyles });
-    })
-    .then(() => console.log(this.state.productStyles[0].photos))
-    .catch((err) => {});
-}
-getProductInfo(id = 1, callback) {
-  axios
-    .get(`${API_URL}/products/${id}`)
-    .then((res) => {
-      let product = res.data;
-      this.setState({
-        id: Number(product.id),
-        name: product.name,
-        slogan: product.slogan,
-        description: product.description,
-        category: product.category,
-        defaultPrice: Number(product.default_price),
-        features: product.features
+  useEffect(() => {
+    axios
+      .get(`http://3.134.102.30/products/` + props.PRODUCT_ID)
+      .then((productInfo) => {
+        setCurrentProduct(productInfo.data);
+        return axios.get(`http://3.134.102.30/products/${props.PRODUCT_ID}/styles`);
+      })
+      .then((productStyles) => {
+        setAvailableStyles(productStyles.data.results);
+      })
+      .catch((err) => {
+        console.log("Error in loading up the data", err);
       });
-    })
-    .then(() => {
-      callback();
-    })
-    .catch((err) => {});
-}
-*/
+  }, []);
+
+  useEffect(() => {
+    setCurrentStyle(availableStyles[2]);
+  }, [availableStyles]);
+
+  return (
+    <section className="section">
+      <div className="columns">
+        <div className="column is-7">
+          <ProductsGallery photos={currentStyle.photos} />
+        </div>
+        <div className="column is-5">
+          <ProductRating rating={props.averageRating} />
+          <ProductCategory category={currentProduct.category} />
+          <ProductName name={currentProduct.name} />
+          <ProductPrice
+            originalPrice={currentStyle.original_price}
+            salePrice={currentStyle.sale_price}
+          />
+          <br />
+          <ProductStyles
+            defaultStyle={currentStyle}
+            productStyles={availableStyles}
+            setSelectedProduct={setCurrentStyle}
+          />
+          <AddToCart skus={currentStyle.skus} />
+        </div>
+      </div>
+      <div className="columns" style={{ marginLeft: "5%", marginTop: "2%" }}>
+        <div
+          className="column is-two-thirds"
+          style={{ borderRight: "solid", borderWidth: "1.5px" }}
+        >
+          <ProductDetails
+            slogan={currentProduct.slogan}
+            description={currentProduct.description}
+          />
+        </div>
+        <div className="column is-one-third">
+          <ProductFeatures features={currentProduct.features} />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Overview = connect(mapStateToProps)(OverviewContainer);
+export default Overview;
