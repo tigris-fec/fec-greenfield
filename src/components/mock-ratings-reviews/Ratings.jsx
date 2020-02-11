@@ -1,24 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import RatingSummary from "./RatingSummary.jsx";
 import Breakdown from "./Breakdown.jsx";
 import Factors from "./Factors.jsx";
 
-const RatingsBar = (props) => {
-  const fakeReview = props.soloRating;
+const Ratings = (props) => {
+  const fakeReview = props.soloReview;
+  const [widgetName] = useState("Ratings & Reviews");
 
-  const getAverageRating = (Obj) => {
-    let totalCount = 0;
-    let totalSum = 0;
-    for (let key in Obj) {
-      totalCount += Obj[key];
-      totalSum += Number(key) * Obj[key];
+  const getAverageRating = (obj) => {
+    let count = 0;
+    let sum = 0;
+    for (let key in obj) {
+      count += obj[key];
+      sum += Number(key) * obj[key];
     }
-    return totalSum / totalCount;
+    return sum / count;
   };
 
-  const getAverageRecommend = (Obj) => {
-    let totalCount = Obj[0] + Obj[1];
-    return (Obj[1] / totalCount) * 100;
+  const getAverageRecommend = (obj) => {
+    let count = obj[0] + obj[1];
+    return (obj[1] / count) * 100;
   };
 
   let getCharacteristics = (characteristics) => {
@@ -36,18 +37,19 @@ const RatingsBar = (props) => {
   let productCharacteristics = getCharacteristics(fakeReview.characteristics);
 
   return (
-    <div className="column is-one-third ">
+    <>
+      <p>{widgetName.toUpperCase()}</p>
       <RatingSummary rating={averageRating} />
       <Breakdown
-        recommend={averageRecommend}
+        recommended={averageRecommend}
         ratings={fakeReview.ratings}
         setFilter={props.setFilter}
         filters={props.filters}
       />
       <br />
       <Factors characteristics={productCharacteristics} />
-    </div>
+    </>
   );
 };
 
-export default RatingsBar;
+export default Ratings;

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Factors from "./Factors.jsx";
 import "./Breakdown.css";
 
 const Breakdown = (props) => {
   let max = Math.max(...Object.values(props.ratings));
   const [stars] = useState([5, 4, 3, 2, 1]);
 
-  const values = Object.values(props.ratings);
+  const clearFilter = () => props.setFilter([]);
+
+  const ratings = Object.values(props.ratings);
 
   const starClick = (number) => {
     if (!props.filters.includes(number)) {
@@ -16,31 +17,35 @@ const Breakdown = (props) => {
     }
   };
 
-  const filterClear = () => {
-    props.setFilter([]);
-  };
-
   return (
-    <>
-      <table className="table is-fullwidth">
-        <tbody>
-          {values.map((rating, index) => {
+    <div className="container">
+      <div className="columns">
+        <div className="column is-12">
+          <p>{props.recommended}% of reviews recommend this product</p>
+          <br />
+          {ratings.map((rating, index) => {
             return (
-              <tr key={index}>
-                <td>
-                  <u>{stars[index]} Stars</u>
-                </td>
-                <td>
-                  <div className="progress">
-                    <progress value={(rating / max) * 100} max={100} />
+              <div className="is-inline">
+                <div className="field is-grouped is-grouped-left">
+                  <p className="control is-left" style={{ fontSize: "90%" }}>
+                    <u>
+                      {stars[index]} {stars[index] === 1 ? "Star" : "Stars"}
+                    </u>
+                  </p>
+                  <div className="progress is-right">
+                    <progress
+                      value={(rating / max) * 100}
+                      max={100}
+                      style={{ width: "70%", height: "75%", padding: "0", margin: "0" }}
+                    />
                   </div>
-                </td>
-              </tr>
+                </div>
+              </div>
             );
           })}
-        </tbody>
-      </table>
-    </>
+        </div>
+      </div>
+    </div>
   );
 };
 

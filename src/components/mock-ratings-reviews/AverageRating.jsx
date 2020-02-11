@@ -1,6 +1,5 @@
 import React from "react";
-
-import StarRating from "../StarRating.jsx";
+import StarRating from "./StarRating.jsx";
 
 const RatingSummary = (props) => {
   return (
@@ -12,7 +11,7 @@ const RatingSummary = (props) => {
           </p>
         </div>
         <div className="level-item">
-          <StarRating averageRating={props.rating} />
+          <StarRating rating={props.rating} />
         </div>
       </div>
     </div>

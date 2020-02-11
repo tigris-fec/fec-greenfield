@@ -126,10 +126,9 @@ const ReviewModal = (props) => {
       characteristics: characterSendOver
     };
 
-    axios.post(`http://3.134.102.30/reviews/` + props.PRODUCT_ID , data)
-    .catch((err)=>{
-      console.log("Error posting the review", err)
-    })
+    axios.post(`http://3.134.102.30/reviews/` + props.PRODUCT_ID, data).catch((err) => {
+      console.log("Error posting the review", err);
+    });
     props.closeModal();
   };
 

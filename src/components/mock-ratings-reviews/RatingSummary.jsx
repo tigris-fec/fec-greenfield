@@ -3,11 +3,11 @@ import StarRating from "./StarRating.jsx";
 
 const RatingSummary = (props) => {
   return (
-    <div className="level">
+    <div className="container">
       <div className="level-left">
         <h1 className="title is-1">{props.rating}</h1>
         &nbsp;&nbsp;
-        <StarRating averageRating={props.rating} />
+        <StarRating rating={props.rating} />
       </div>
     </div>
   );

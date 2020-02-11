@@ -8,22 +8,12 @@ import { EventTracker, EventTrackerProvider } from "./event-tracker";
 import store from "./js/store/index";
 import "bulma";
 
-/**
- * Can dynamically listen for events by calling `eventTracker.onEvent()`
- */
-const eventTracker = new EventTracker();
-
 ReactDOM.render(
-  <EventTrackerProvider eventTracker={eventTracker}>
-    <Provider store={store}>
-      <Router>
-        <Route path="/" component={App} />
-      </Router>
-    </Provider>
-  </EventTrackerProvider>,
+  <Provider store={store}>
+    <Router>
+      <Route path="/" component={App} />
+    </Router>
+  </Provider>,
   document.getElementById("root")
 );
 
-/**
- * Using cookies can be an alternative to EventTracker
- */

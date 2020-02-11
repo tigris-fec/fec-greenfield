@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./IndicatorBar.css";
+import "./Factors.css";
 
 const Factors = (props) => {
   const characteristicNames = {
@@ -45,7 +45,7 @@ const Factors = (props) => {
       {props.characteristics.map((char) => {
         let name = Object.keys(char);
         return (
-          <div className="container" style={{ maxWidth: "100%", fontSize: "90%" }}>
+          <div className="container" style={{ maxWidth: "100%", fontSize: "75%" }}>
             <span style={{ fontWeight: "bold" }}>
               <p key={char[name[0]].id}>{name[0]}</p>
             </span>
@@ -53,12 +53,15 @@ const Factors = (props) => {
               <div className="indicator-bar-1">
                 <div className="indicator-bar-2">
                   <div className="indicator-bar-3">
-                    <i className="fas fa-caret-down indicator"></i>
+                    <i
+                      className="fas fa-caret-down indicator"
+                      width={((char[name[0]].value - 0.5) / 5) * 100}
+                    ></i>
                   </div>
                 </div>
               </div>
             </div>
-            <div style={{ paddingTop: "1%", paddingBottom: "1%" }}>
+            <div>
               <div className="level">
                 <div className="level-left">
                   <div className="level-item">
