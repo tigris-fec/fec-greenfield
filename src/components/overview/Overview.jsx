@@ -28,7 +28,7 @@ const API_URL = "http://3.134.102.30";
 
 const mapStateToProps = (store) => ({ PRODUCT_ID: 3, averageRating: 3.7 });
 
-const Overview_ = (props) => {
+const OverviewContainer = (props) => {
   const [currentProduct, setCurrentProduct] = useState(productInfo);
   const [availableStyles, setAvailableStyles] = useState(productStyles.results);
   const [currentStyle, setCurrentStyle] = useState(productStyles.results[0]);
@@ -54,46 +54,44 @@ const Overview_ = (props) => {
 
   return (
     <section className="section">
-      <div className="container is-fluid">
-        <div className="columns">
-          <div className="column is-7">
-            <ProductsGallery photos={currentStyle.photos} />
-          </div>
-          <div className="column is-5">
-            <ProductRating rating={props.averageRating} />
-            <ProductCategory category={currentProduct.category} />
-            <ProductName name={currentProduct.name} />
-            <ProductPrice
-              originalPrice={currentStyle.original_price}
-              salePrice={currentStyle.sale_price}
-            />
-            <br />
-            <ProductStyles
-              defaultStyle={currentStyle}
-              productStyles={availableStyles}
-              setSelectedProduct={setCurrentStyle}
-            />
-            <AddToCart skus={currentStyle.skus} />
-          </div>
+      <div className="columns">
+        <div className="column is-7">
+          <ProductsGallery photos={currentStyle.photos} />
         </div>
-        <div className="columns" style={{ marginLeft: "5%", marginTop: "2%" }}>
-          <div
-            className="column is-two-thirds"
-            style={{ borderRight: "solid", borderWidth: "1.5px" }}
-          >
-            <ProductDetails
-              slogan={currentProduct.slogan}
-              description={currentProduct.description}
-            />
-          </div>
-          <div className="column is-one-third">
-            <ProductFeatures features={currentProduct.features} />
-          </div>
+        <div className="column is-5">
+          <ProductRating rating={props.averageRating} />
+          <ProductCategory category={currentProduct.category} />
+          <ProductName name={currentProduct.name} />
+          <ProductPrice
+            originalPrice={currentStyle.original_price}
+            salePrice={currentStyle.sale_price}
+          />
+          <br />
+          <ProductStyles
+            defaultStyle={currentStyle}
+            productStyles={availableStyles}
+            setSelectedProduct={setCurrentStyle}
+          />
+          <AddToCart skus={currentStyle.skus} />
+        </div>
+      </div>
+      <div className="columns" style={{ marginLeft: "5%", marginTop: "2%" }}>
+        <div
+          className="column is-two-thirds"
+          style={{ borderRight: "solid", borderWidth: "1.5px" }}
+        >
+          <ProductDetails
+            slogan={currentProduct.slogan}
+            description={currentProduct.description}
+          />
+        </div>
+        <div className="column is-one-third">
+          <ProductFeatures features={currentProduct.features} />
         </div>
       </div>
     </section>
   );
 };
 
-const Overview = connect(mapStateToProps)(Overview_);
+const Overview = connect(mapStateToProps)(OverviewContainer);
 export default Overview;

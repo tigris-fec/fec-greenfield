@@ -11,9 +11,7 @@ const ProductsGallery = (props) => {
           showStatus={true}
           showThumbs={false}
           useKeyboardArrows={true}
-          onChange={() => {
-            console.log("onChange called!");
-          }}
+          onChange={() => {}}
           onClickThumb={() => console.log("Thumbnail clicked!")}
           onClickItem={() => console.log("Item clicked!")}
         >
@@ -41,7 +39,7 @@ const ProductsGallery = (props) => {
               <figure className="image" key={i}>
                 <img
                   src={photo.thumbnail_url}
-                  alt="No Picture Available"
+                  alt="thumbnail"
                   style={{
                     height: "auto",
                     width: "50%",
@@ -56,5 +54,4 @@ const ProductsGallery = (props) => {
     </>
   );
 };
-
 export default ProductsGallery;
