@@ -5,6 +5,7 @@ import Home from "./components/Home.jsx";
 import RR from "./components/ratings-and-reviews/RR.jsx";
 import Overview from "./components/overview/Overview.jsx";
 import QA from "./components/questions-and-answers/QA.jsx";
+import RIC from "./components/related-items-and-comparison/RIC.jsx";
 import "./App.css";
 
 const App = (props) => {
@@ -19,6 +20,7 @@ const App = (props) => {
             <Route exact path="/overview" render={() => <Overview />} />
             <Route exact path="/questions-and-answers" render={() => <QA />} />
             <Route exact path="/ratings-and-reviews" render={() => <RR />} />
+            <Route exact path="/related-items-and-comparison" render={() => <RIC />} />
           </Switch>
         </section>
       </div>

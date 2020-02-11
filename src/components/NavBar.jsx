@@ -75,6 +75,11 @@ const NavBar = (props) => {
                 Ratings and Reviews
               </Link>
             </div>
+            <div className="navbar-item is-hoverable" onClick={toggleNavBar}>
+              <Link className="link" to="/related-items-and-comparison">
+                Related Items and Comparison
+              </Link>
+            </div>
           </div>
           <div className="navbar-end">
             <div className="field" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
