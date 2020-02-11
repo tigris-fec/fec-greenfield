@@ -12,9 +12,6 @@ const QuestionUnit = (props) => {
   const handleClick = function(id) {
     if (didVote) return;
     Axios.put(`http://3.134.102.30/qa/question/${id}/helpful`)
-      .then((data) => {
-        console.log(data);
-      })
       .catch((err) => {
         console.log(err);
       });
@@ -47,12 +44,12 @@ const QuestionUnit = (props) => {
         <AnswerUnit answer={answer} key={index} />
       ))}
       {answersToDisplay < answers.length ? (
-        <b onClick={() => setAnswersToDisplay(Infinity)}>See More Answers</b>
+        <b onClick={() => setAnswersToDisplay(Infinity)}>&emsp;&ensp;See More Answers</b>
       ) : (
         ""
       )}
       {answersToDisplay === Infinity ? (
-        <b onClick={() => setAnswersToDisplay(2)}>Collapse Answers</b>
+        <b onClick={() => setAnswersToDisplay(2)}>&emsp;&ensp;Collapse Answers</b>
       ) : (
         ""
       )}

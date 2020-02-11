@@ -22,9 +22,10 @@ class QA extends React.Component {
     this.handleMoreQuestions = this.handleMoreQuestions.bind(this);
     this.setCurrentlyAnswering = this.setCurrentlyAnswering.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.loadQuestions = this.loadQuestions.bind(this);
   }
-  
-  componentDidMount() {
+
+  loadQuestions(){
     Axios.get("http://3.134.102.30/qa/" + this.state.productID + "/?page=1&count=200")
       .then((data) => {
         data.data.results.sort((a, b) => {
@@ -54,6 +55,13 @@ class QA extends React.Component {
         // Do nothing
         console.log(err);
       });
+  }
+  componentDidMount() {
+    this.loadQuestions();
+  }
+
+  componentDidUpdate(){
+    
   }
   setCurrentlyAnswering(id) {
     this.setState({
@@ -95,7 +103,7 @@ class QA extends React.Component {
             .split(" ")
             .join("")
             .toLowerCase()
-            .includes(searchTerms.toLowerCase())
+            .includes(searchTerms.split(" ").join("").toLowerCase())
         ) {
           markedQuestions[question.question_id] = true;
         }
@@ -105,7 +113,12 @@ class QA extends React.Component {
               .split(" ")
               .join("")
               .toLowerCase()
-              .includes(searchTerms.toLowerCase())
+              .includes(
+                searchTerms
+                  .split(" ")
+                  .join("")
+                  .toLowerCase()
+              )
           ) {
             markedQuestions[question.question_id] = true;
           }
@@ -155,8 +168,8 @@ class QA extends React.Component {
               }
             })}{" "}
           <br />
-          <AddAnswer question_id={this.state.currentlyAnswering} />
-          <AddQuestion productID={this.state.productID} />
+          <AddAnswer question_id={this.state.currentlyAnswering} loadQuestions = {this.loadQuestions}/>
+          <AddQuestion productID={this.state.productID} loadQuestions = {this.loadQuestions}/>
         </div>
         {this.state.questions.results.length > 0 &&
         this.state.questionsToDisplay < this.state.questions.results.length ? (
