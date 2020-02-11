@@ -104,10 +104,11 @@ class QA extends React.Component {
   }
   render() {
     return this.state.questions.product_id !== undefined ? (
-      <div>
-        <div className="all-questions">
+      <div className = "all-questions">
+        <div>
           <h5>{"Questions & Answers"}</h5>
           <input
+            className = "input is-medium"
             type="text"
             placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
             onChange={this.handleChange}
