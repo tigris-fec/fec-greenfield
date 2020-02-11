@@ -28,7 +28,7 @@ const API_URL = "http://3.134.102.30";
 
 const mapStateToProps = (store) => ({ PRODUCT_ID: 3, averageRating: 3.7 });
 
-const Overview_ = (props) => {
+const OverviewContainer = (props) => {
   const [currentProduct, setCurrentProduct] = useState(productInfo);
   const [availableStyles, setAvailableStyles] = useState(productStyles.results);
   const [currentStyle, setCurrentStyle] = useState(productStyles.results[0]);
@@ -93,5 +93,5 @@ const Overview_ = (props) => {
   );
 };
 
-const Overview = connect(mapStateToProps)(Overview_);
+const Overview = connect(mapStateToProps)(OverviewContainer);
 export default Overview;

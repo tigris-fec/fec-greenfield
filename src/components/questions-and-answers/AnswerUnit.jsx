@@ -1,40 +1,72 @@
-import React from "react";
-
+import React, { useState } from "react";
+import Axios from "axios";
 // In regards to taking props, does redux change this?
 
-// "question_id": 37,
-// "question_body": "Why is this product cheaper here than other sites?",
-// "question_date": "2018-10-18T00:00:00.000Z",
-// "asker_name": "williamsmith",
-// "question_helpfulness": 4,
-// "reported": 0,
-// "answers": {
-//   68: {
-//     "id": 68,
-//     "body": "We are selling it here without any markup from the middleman!",
-//     "date": "2018-08-18T00:00:00.000Z",
-//     "answerer_name": "Seller",
-//     "helpfulness": 4,
-//     "photos": []
-//     // ...
-//   }
-// }
-
-const handleClick = (e) => {
-
-}
 const AnswerUnit = (props) => {
+  const [votes, setVotes] = useState(props.answer.helpfulness);
+  const [didVote, setDidVote] = useState(false);
+  const [didReport, setDidReport] = useState(false);
+  const username = props.answer.answerer_name;
+  const isSeller = username.toLowerCase().includes("seller");
+  const answerDate = new Date(props.answer.date);
+  const optionsDate = {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  };
+  const correctDate = new Intl.DateTimeFormat("en-US", optionsDate);
+  const displayDate = correctDate.format(answerDate);
+  let indexOfSeller;
+  if (isSeller) {
+    indexOfSeller = username.toLowerCase().indexOf("seller");
+  }
+  const handleUpvote = function(id) {
+    if (didVote) return;
+    Axios.put(`http://3.134.102.30/qa/answer/${id}/helpful`);
+    setDidVote(true);
+    setVotes(votes + 1);
+  };
 
-    console.log(props);
-    return (
-        <div>
-           A: {props.answer.body}
-           <br /> 
-           by {props.answer.answerer_name} | Helpful? <a href = "#" onClick = {handleClick}>Yes({props.answer.helpfulness})</a> | <a href = "#" onClick = {handleClick}>Report</a>
-        </div>
-    )
-
-}
-
+  const handleReport = function(e, id) {
+    if (didReport) return;
+    Axios.put(`http://3.134.102.30/qa/answer/${id}/report`)
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
+    setDidReport(true);
+    e.target.innerText = "Reported";
+  };
+  return (
+    <div id={props.answer.id}>
+      A: {props.answer.body}
+      <br />
+      by{" "}
+      {isSeller ? (
+        <span>
+          {username.substring(0, indexOfSeller)}
+          <b>{username.substring(indexOfSeller, indexOfSeller + 6)}</b>,
+          {" " + displayDate}
+        </span>
+      ) : (
+        `${username}, ${displayDate}`
+      )}{" "}
+      | Helpful?{" "}
+      <a
+        onClick={() => {
+          handleUpvote(props.answer.id);
+        }}
+      >
+        Yes({votes})
+      </a>{" "}
+      |{" "}
+      <a
+        onClick={(e) => {
+          handleReport(e, props.answer.id);
+        }}
+      >
+        Report
+      </a>
+    </div>
+  );
+};
 
 export default AnswerUnit;
