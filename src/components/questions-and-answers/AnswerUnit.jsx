@@ -36,10 +36,10 @@ const AnswerUnit = (props) => {
     e.target.innerText = "Reported";
   };
   return (
-    <div id={props.answer.id}>
-      A: {props.answer.body}
+    <div id={props.answer.id} className = "answer-unit">
+      <b>A:</b>&ensp;<span className = "answer-body">{props.answer.body}
       <br />
-      by{" "}
+      &emsp;&ensp;&nbsp;by{" "}
       {isSeller ? (
         <span>
           {username.substring(0, indexOfSeller)}
@@ -48,23 +48,24 @@ const AnswerUnit = (props) => {
         </span>
       ) : (
         `${username}, ${displayDate}`
-      )}{" "}
-      | Helpful?{" "}
-      <a
+      )}
+      &ensp;|&ensp; Helpful?&nbsp;
+      <u
         onClick={() => {
           handleUpvote(props.answer.id);
         }}
       >
-        Yes({votes})
-      </a>{" "}
-      |{" "}
-      <a
+        Yes
+      </u>
+      ({votes}) &ensp;|&ensp;{" "}
+      <u
         onClick={(e) => {
           handleReport(e, props.answer.id);
         }}
       >
         Report
-      </a>
+      </u>
+      </span>
     </div>
   );
 };

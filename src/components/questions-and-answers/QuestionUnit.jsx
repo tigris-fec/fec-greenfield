@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Axios from 'axios';
+import Axios from "axios";
 import AnswerUnit from "./AnswerUnit.jsx";
-import $ from 'jquery';
-import AddAnswer from "./AddAnswer.jsx"
+import $ from "jquery";
+import AddAnswer from "./AddAnswer.jsx";
 const QuestionUnit = (props) => {
   const [votes, setVotes] = useState(props.question.question_helpfulness);
   const [didVote, setDidVote] = useState(false);
@@ -12,35 +12,50 @@ const QuestionUnit = (props) => {
   const handleClick = function(id) {
     if (didVote) return;
     Axios.put(`http://3.134.102.30/qa/question/${id}/helpful`)
-    .then((data) => {console.log(data)})
-    .catch((err) => {console.log(err)});
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     setDidVote(true);
     setVotes(votes + 1);
   };
 
   const handleAddAnswer = function() {
-
     props.setCurrentlyAnswering(props.question.question_id);
     $("#answer-form").addClass("is-active");
   };
 
   return (
     <div>
-      Q: {props.question.question_body}
-      Helpful?
-      <a onClick={() => {handleClick(props.question.question_id)}}>Yes ({votes})</a>|
-      <a onClick={handleAddAnswer}>Add Answer</a>
-      {answers.slice(0,answersToDisplay)
-        .map((answer, index) => (
-          <AnswerUnit answer={answer} key = {index}/>
-        ))}
-      
+      <div className="my-flex">
+        <span className="question-body">Q:&ensp;{props.question.question_body}</span>
+        <span className="question-right">
+          Helpful?&nbsp;&nbsp;
+          <u
+            onClick={() => {
+              handleClick(props.question.question_id);
+            }}
+          >
+            Yes
+          </u>
+          ({votes})&ensp; |&ensp;<u onClick={handleAddAnswer}>Add Answer</u>
+        </span>
+      </div>
+      {answers.slice(0, answersToDisplay).map((answer, index) => (
+        <AnswerUnit answer={answer} key={index} />
+      ))}
       {answersToDisplay < answers.length ? (
-        <b onClick={() => setAnswersToDisplay(100)}>See More Answers</b>
+        <b onClick={() => setAnswersToDisplay(Infinity)}>See More Answers</b>
       ) : (
         ""
       )}
-      {answersToDisplay === 100 ? <b onClick = {() => setAnswersToDisplay(2)} >Collapse Answers</b>: ""}
+      {answersToDisplay === Infinity ? (
+        <b onClick={() => setAnswersToDisplay(2)}>Collapse Answers</b>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

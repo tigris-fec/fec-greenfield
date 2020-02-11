@@ -90,9 +90,26 @@ class QA extends React.Component {
       let markedQuestions = {};
 
       this.state.questions.results.map((question, index) => {
-        if (question.question_body.toLowerCase().includes(searchTerms)) {
+        if (
+          question.question_body
+            .split(" ")
+            .join("")
+            .toLowerCase()
+            .includes(searchTerms.toLowerCase())
+        ) {
           markedQuestions[question.question_id] = true;
         }
+        question.answers.map((answer) => {
+          if (
+            answer.body
+              .split(" ")
+              .join("")
+              .toLowerCase()
+              .includes(searchTerms.toLowerCase())
+          ) {
+            markedQuestions[question.question_id] = true;
+          }
+        });
       });
       this.setState({
         searchMode: true,
@@ -104,15 +121,15 @@ class QA extends React.Component {
   }
   render() {
     return this.state.questions.product_id !== undefined ? (
-      <div>
-        <div className = "all-questions">
-          <h5>{"Questions & Answers"}</h5>
-          <input
-            className="input is-medium"
-            type="text"
-            placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
-            onChange={this.handleChange}
-          />
+      <div className="my-width content is-medium">
+        <p>Questions and Answers</p>
+        <input
+          className="search-box"
+          type="text"
+          placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
+          onChange={this.handleChange}
+        />
+        <div className="all-questions">
           {this.state.questions.results
             .slice(0, this.state.numOfSearch || this.state.questionsToDisplay)
             .map((question, index) => {
@@ -145,16 +162,19 @@ class QA extends React.Component {
         this.state.questionsToDisplay < this.state.questions.results.length ? (
           <input
             type="button"
-            className="button"
-            value="More Answered Questions"
+            className="my-button"
+            value="MORE ANSWERED QUESTIONS"
             onClick={this.handleMoreQuestions}
           />
         ) : (
           ""
         )}
-        <button className="button" onClick={this.handleOpenQuestion}>
-          Add a Question +
-        </button>
+        <input
+          type="button"
+          className="my-button"
+          onClick={this.handleOpenQuestion}
+          value="ADD A QUESTION +"
+        ></input>
       </div>
     ) : (
       <div></div>
