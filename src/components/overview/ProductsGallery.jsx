@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -9,9 +9,9 @@ const ProductsGallery = (props) => {
         <Carousel
           showArrows={true}
           showStatus={true}
-          showThumbs={true}
+          showThumbs={false}
           useKeyboardArrows={true}
-          onChange={() => console.log("Changed!")}
+          onChange={() =>{}}
           onClickThumb={() => console.log("Thumbnail clicked!")}
           onClickItem={() => console.log("Item clicked!")}
         >
@@ -20,10 +20,10 @@ const ProductsGallery = (props) => {
               <figure className="image" key={i}>
                 <img
                   src={photo.thumbnail_url}
-                  alt="some picture"
+                  alt="No Pictures Available"
                   style={{
                     maxHeight: "75%",
-                    minHeight: "65%",
+                    height: "39vw",
                     width: "auto",
                     margin: "auto"
                   }}
@@ -32,6 +32,24 @@ const ProductsGallery = (props) => {
             );
           })}
         </Carousel>
+
+        <div className="columns" style={{marginTop:"1vw"}}>
+        {props.photos.map((photo,i) => {
+            return (
+              <figure className="image" key={i}>
+                <img
+                  src={photo.thumbnail_url}
+                  alt="No Picture Available"
+                  style={{
+                    height: "auto",
+                    width: "50%",
+                    margin: "auto"
+                  }}
+                />
+              </figure>
+            );
+          })}
+        </div>
       </div>
     </>
   );

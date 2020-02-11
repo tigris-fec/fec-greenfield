@@ -3,12 +3,15 @@ import React, { useState } from "react";
 const ProductStyles = (props) => {
   const [selectedId, setSelectedId] = useState(props.defaultStyle.style_id);
 
+  console.log(props.productStyles);
   const handleStyleChange = (Id, style) => {
     setSelectedId(Id);
     props.setSelectedProduct(style);
   };
 
-  console.log(props.defaultStyle, props.productStyles, props.setSelectedProduct)
+  const defaultPic =
+    "https://cdn.britannica.com/55/174255-050-526314B6/brown-Guernsey-cow.jpg";
+
   return (
     <>
       <p>
@@ -50,7 +53,13 @@ const ProductStyles = (props) => {
                   </div>
                 ) : null}
                 <img
-                  src={style.photos[style["default?"]].thumbnail_url}
+                  src={
+                    style.photos[style["default?"]]
+                      ? style.photos[style["default?"]].thumbnail_url
+                        ? style.photos[style["default?"]].thumbnail_url
+                        : defaultPic
+                      : defaultPic
+                  }
                   alt={style.name}
                   style={{
                     borderRadius: "50%",
