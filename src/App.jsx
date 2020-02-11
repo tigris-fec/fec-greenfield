@@ -17,7 +17,7 @@ const App = (props) => {
         <NavBar />
         <section className="section">
           <Switch>
-            <Route exact path="/" render={() => <App />} />
+            <Route exact path="/" render={() => <Home />} />
             <Route exact path="/overview" render={() => <Overview />} />
             <Route exact path="/questions-and-answers" render={() => <QA />} />
             <Route exact path="/ratings-and-reviews" render={() => <RatingsReviews />} />
