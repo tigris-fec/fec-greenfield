@@ -1,18 +1,22 @@
-FROM node:13-alpine AS builder
+# Build Environment
+FROM node:13-alpine as builder
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
-COPY package.json /usr/src/app/package.json
-COPY package-lock.json /usr/src/app/package-lock.json
-RUN npm ci
-RUN npm install react-scripts@latest --global --silent
+ENV PATH /app/node_modules/.bin:$PATH
 
-ARG REACT_APP_API_URL
-ENV REACT_APP_API_URL $REACT_APP_API_URL
-ARG NODE_ENV
-ENV NODE_ENV $NODE_ENV
+COPY package.json /app/package.json
 
-COPY . /usr/src/app
-RUN npm run build
+RUN npm install --silent
+RUN npm install react-scripts@latest -g --silent
 
+COPY . /app
+
+# Production Environment
+FROM nginx:alpine
+
+COPY --from=builder /app/build /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["ngix", "-g", "daemon off;"]
