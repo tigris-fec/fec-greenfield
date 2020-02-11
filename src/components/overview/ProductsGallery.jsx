@@ -11,11 +11,11 @@ const ProductsGallery = (props) => {
           showStatus={true}
           showThumbs={false}
           useKeyboardArrows={true}
-          onChange={() =>{}}
+          onChange={() => {}}
           onClickThumb={() => console.log("Thumbnail clicked!")}
           onClickItem={() => console.log("Item clicked!")}
         >
-          {props.photos.map((photo,i) => {
+          {props.photos.map((photo, i) => {
             return (
               <figure className="image" key={i}>
                 <img
@@ -33,13 +33,13 @@ const ProductsGallery = (props) => {
           })}
         </Carousel>
 
-        <div className="columns" style={{marginTop:"1vw"}}>
-        {props.photos.map((photo,i) => {
+        <div className="columns" style={{ marginTop: "1vw" }}>
+          {props.photos.map((photo, i) => {
             return (
               <figure className="image" key={i}>
                 <img
                   src={photo.thumbnail_url}
-                  alt="No Picture Available"
+                  alt="thumbnail"
                   style={{
                     height: "auto",
                     width: "50%",
