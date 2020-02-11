@@ -23,7 +23,7 @@ class QA extends React.Component {
     this.setCurrentlyAnswering = this.setCurrentlyAnswering.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-
+  
   componentDidMount() {
     Axios.get("http://3.134.102.30/qa/" + this.state.productID + "/?page=1&count=200")
       .then((data) => {

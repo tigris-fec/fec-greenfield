@@ -45,7 +45,7 @@ class AddAnswer extends React.Component {
     };
 
     Axios.post(`http://3.134.102.30/qa/${this.props.question_id}/answers`, myAnswer)
-      .then(() => {})
+      .then(() => {this.setState({})})
       .catch((err) => {
         console.log(err);
       });
