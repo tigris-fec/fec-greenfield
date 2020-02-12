@@ -16,7 +16,6 @@ describe("QA Displays everything that would make it look functionally complete",
   test.todo(
     "should have a search box with the text 'HAVE A QUESTION? SEARCH FOR ANSWERS...'"
   );
-
   test.todo("should have a 'MORE ANSWERED QUESTIONS' button");
   test.todo("should have a 'ADD A QUESTION' button");
   expect(true).toBe(true);

@@ -58,3 +58,7 @@ span > u {
   padding-right: 20px;
   
 }
+
+.answer-photo {
+  border: 1px solid gray;
+}
