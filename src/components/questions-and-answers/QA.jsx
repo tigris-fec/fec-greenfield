@@ -154,7 +154,7 @@ class QA_ extends React.Component {
                 return (
                   <QuestionUnit
                     question={question}
-                    key={index}
+                    key={question.question_id}
                     setCurrentlyAnswering={this.setCurrentlyAnswering}
                   />
                 );
@@ -162,7 +162,7 @@ class QA_ extends React.Component {
                 return (
                   <QuestionUnit
                     question={question}
-                    key={index}
+                    key={question.question_id}
                     setCurrentlyAnswering={this.setCurrentlyAnswering}
                   />
                 );

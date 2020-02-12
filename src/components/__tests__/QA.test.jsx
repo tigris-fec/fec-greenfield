@@ -5,10 +5,8 @@ import { render } from "enzyme";
 import renderer from "react-test-renderer";
 import QA from "../questions-and-answers/QA.jsx";
 import QuestionUnit from "../questions-and-answers/QuestionUnit.jsx";
-import data from "../../mock-data/questions.js";
 
-let sampleQuestion = data.results[0];
-let QAWrapper = mount(<QA questions={[sampleQuestion]} />);
+let QAWrapper = shallow(<QA />);
 
 describe("QA Displays everything that would make it look functionally complete", () => {
   test("should have the heading 'QUESTIONS & ANSWERS'", () => {
@@ -24,6 +22,9 @@ describe("QA Displays everything that would make it look functionally complete",
   expect(true).toBe(true);
 });
 
+describe("Search Feature", () => {
+  test.todo("should only load questions that match keywords");
+})
 describe("Question Unit", () => {
   test.todo("should display the question");
   test.todo("should display the count of votes on Helpful? Yes()");
