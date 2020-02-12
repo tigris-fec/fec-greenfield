@@ -1,0 +1,12 @@
+.all-questions {
+  max-height: 500px;
+  overflow: auto;
+  border: 2px;
+  border-color: red;
+  border-style: dashed;
+}
+
+.search-box {
+  width: 500px;
+  height: 30px;
+}

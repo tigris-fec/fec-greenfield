@@ -1,14 +1,15 @@
 import React from "react";
 import $ from "jquery";
 import Modal from "react-modal";
+import Axios from "axios";
 
 class AddQuestion extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      question_body: "",
-      asker_name: "",
-      asker_email: ""
+      body: "",
+      name: "",
+      email: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmitQuestion = this.handleSubmitQuestion.bind(this);
@@ -28,22 +29,37 @@ class AddQuestion extends React.Component {
   }
   handleSubmitQuestion() {
     if (
-      this.state.question_body.length === 0 ||
-      this.state.asker_email.length === 0 ||
-      this.state.asker_name.length === 0
+      this.state.body.length === 0 ||
+      this.state.email.length === 0 ||
+      this.state.name.length === 0
     ) {
       alert("Please fill out the empty fields");
+      return;
     }
-    if (!this.emailRegex.test(this.state.asker_email)) {
+    if (!this.emailRegex.test(this.state.email)) {
       alert("Invalid email");
+      return;
     }
+
+    let myQuestion = {
+      body: this.state.body,
+      name: this.state.name,
+      email: this.state.email
+    };
+    Axios.post(`http://3.134.102.30/qa/${this.props.productID}`, myQuestion)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    this.setState({});
+    this.handleCloseQuestion();
   }
   render() {
     return (
       <div className="add-question">
-        <button class="button" onClick={this.handleOpenQuestion}>
-          Add a Question +
-        </button>
         <div className="modal">
           <div className="modal-background"></div>
           <div className="modal-card">
@@ -57,28 +73,25 @@ class AddQuestion extends React.Component {
             </header>
             <section className="modal-card-body">
               <form>
-                <label>
-                  <h1>Your Question</h1>
-                </label>
                 <textarea
-                  class="textarea"
-                  name="question_body"
-                  placeholder="Email"
-                  value={this.state.question_body}
+                  className="textarea"
+                  name="body"
+                  placeholder=""
+                  value={this.state.body}
                   onChange={this.handleChange}
-                  autocomplete="off"
+                  autoComplete="off"
                 />
                 <label>
                   <h2>What is your nickname</h2>
                 </label>
                 <input
                   type="text"
-                  class="input"
-                  name="asker_name"
+                  className="input"
+                  name="name"
                   placeholder="Example: jackson11!"
-                  value={this.state.asker_name}
+                  value={this.state.name}
                   onChange={this.handleChange}
-                  autocomplete="off"
+                  autoComplete="off"
                 />
                 <p>For privacy reasons, do not use your full name or email address</p>
                 <label>
@@ -86,12 +99,12 @@ class AddQuestion extends React.Component {
                 </label>
                 <input
                   type="text"
-                  class="input"
-                  name="asker_email"
+                  className="input"
+                  name="email"
                   placeholder="email@example.com"
-                  value={this.state.asker_email}
+                  value={this.state.email}
                   onChange={this.handleChange}
-                  autocomplete="off"
+                  autoComplete="off"
                 />
                 <br />
                 <input
