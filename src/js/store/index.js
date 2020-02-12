@@ -4,7 +4,8 @@ import rootReducer from "../reducers/index";
 
 const initialState = {
   productStyles: null,
-  products: null
+  products: null,
+  product_id: 1
 };
 
 const middlewares = [thunk];
