@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import axios from "axios";
 import IndividualCard from "./IndividualCard.jsx";
 import { data } from "./data.js";
+import changeProductId from "../../js/actions/product-id.js";
 
-const mapStateToProps = (store) => ({ PRODUCT_ID: 1, Cart: [] });
+const mapStateToProps = (store) => ({ PRODUCT_ID: store.product_id, Cart: [] });
 
 const RIC_ = (props) => {
   const [relatedItemsArr, setRelatedItemsArr] = useState([]);
@@ -12,7 +13,8 @@ const RIC_ = (props) => {
   const [ratings, setRatings] = useState([1, 2, 3, 4, 5, 1, 2, 3, 4, 5]);
   const [styles, setStyles] = useState(data);
   const [features, setFeatures] = useState([]);
-
+  
+  
   useEffect(() => {
     axios
       .get(`http://3.134.102.30/products/${props.PRODUCT_ID}/related`)
@@ -20,9 +22,9 @@ const RIC_ = (props) => {
         setRelatedItemsArr(data.data);
       })
       .catch((err) => {
-        console.log("Error with getting related items array");
+        console.log("Error with getting related items array", err);
       });
-  }, []);
+  }, [props.PRODUCT_ID]);
 
   useEffect(() => {
     let maxIndex = Math.max(...relatedItemsArr);
@@ -88,7 +90,8 @@ const RIC_ = (props) => {
   }, [relatedItemsArr]);
 
   const changeTheId = (product) => {
-    console.log(product);
+    console.log("CHANGING");
+    props.changeProductId(1)
   };
 
   const deleteTheId = (product) => {
@@ -97,6 +100,7 @@ const RIC_ = (props) => {
 
   return (
     <div className="container is-fluid">
+      <button onClick={changeTheId}>CLick to change productID</button>
       <p>RELATED PRODUCTS</p>
       <div
         name="related-items"
@@ -147,6 +151,6 @@ const RIC_ = (props) => {
   );
 };
 
-const RIC = connect(mapStateToProps)(RIC_);
+const RIC = connect(mapStateToProps, {changeProductId})(RIC_);
 
 export default RIC;

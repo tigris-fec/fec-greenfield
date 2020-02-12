@@ -5,7 +5,7 @@ import rootReducer from "../reducers/index";
 const initialState = {
   productStyles: null,
   products: null,
-  product_id: 1
+  product_id: 5
 };
 
 const middlewares = [thunk];
