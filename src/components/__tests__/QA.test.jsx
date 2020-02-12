@@ -5,7 +5,7 @@ import { render } from "enzyme";
 import renderer from "react-test-renderer";
 import QA from "../questions-and-answers/QA.jsx";
 import QuestionUnit from "../questions-and-answers/QuestionUnit.jsx";
-import data from "./mockDataQuestions.js";
+import data from "../../mock-data/questions.js";
 
 let sampleQuestion = data.results[0];
 let QAWrapper = mount(<QA questions={[sampleQuestion]} />);
