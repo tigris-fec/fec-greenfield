@@ -44,12 +44,16 @@ const QuestionUnit = (props) => {
         <AnswerUnit answer={answer} key={index} />
       ))}
       {answersToDisplay < answers.length ? (
-        <b onClick={() => setAnswersToDisplay(Infinity)}>&emsp;&ensp;See More Answers</b>
+        <b className="more-answers" onClick={() => setAnswersToDisplay(Infinity)}>
+          &emsp;&emsp;SEE MORE ANSWERS
+        </b>
       ) : (
         ""
       )}
       {answersToDisplay === Infinity ? (
-        <b onClick={() => setAnswersToDisplay(2)}>&emsp;&ensp;Collapse Answers</b>
+        <b className="more-answers" onClick={() => setAnswersToDisplay(2)}>
+          &emsp;&emsp;COLLAPSE ANSWERS
+        </b>
       ) : (
         ""
       )}

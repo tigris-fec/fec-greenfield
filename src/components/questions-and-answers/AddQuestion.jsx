@@ -14,6 +14,7 @@ class AddQuestion extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmitQuestion = this.handleSubmitQuestion.bind(this);
     this.emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    this.handleCloseQuestion = this.handleCloseQuestion.bind(this);
   }
 
   handleOpenQuestion() {
@@ -49,12 +50,13 @@ class AddQuestion extends React.Component {
     Axios.post(`http://3.134.102.30/qa/${this.props.productID}`, myQuestion)
       .then((data) => {
         this.props.loadQuestions();
+        
       })
       .catch((err) => {
         console.log(err);
+        
       });
 
-    this.setState({});
     this.handleCloseQuestion();
   }
   render() {
@@ -82,7 +84,7 @@ class AddQuestion extends React.Component {
                   autoComplete="off"
                 />
                 <label>
-                  <h2>What is your nickname</h2>
+                  <p>What is your nickname</p>
                 </label>
                 <input
                   type="text"
@@ -95,7 +97,7 @@ class AddQuestion extends React.Component {
                 />
                 <p>For privacy reasons, do not use your full name or email address</p>
                 <label>
-                  <h2>Your email</h2>
+                  <p>Your email</p>
                 </label>
                 <input
                   type="text"
