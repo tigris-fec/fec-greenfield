@@ -27,7 +27,6 @@ const App = (props) => {
               path="/ratings-and-reviews"
               render={() => <RatingsAndReviews />}
             />
-
           </Switch>
         </section>
       </div>
