@@ -29,6 +29,7 @@ class QA_ extends React.Component {
   loadQuestions(){
     Axios.get("http://3.134.102.30/qa/" + this.state.productID + "/?page=1&count=200")
       .then((data) => {
+        console.log("Got new questions:", this.state.productID)
         data.data.results.sort((a, b) => {
           return b.question_helpfulness - a.question_helpfulness;
         });
@@ -61,8 +62,17 @@ class QA_ extends React.Component {
     this.loadQuestions();
   }
 
-  componentDidUpdate(){
-    
+  componentDidUpdate(prevProps, prevState, snapshot){
+
+    if (prevProps.PRODUCT_ID !== this.props.PRODUCT_ID) {
+      console.log(prevProps.PRODUCT_ID);
+      console.log(this.props.PRODUCT_ID);
+      this.setState({
+        productID: this.props.PRODUCT_ID
+      });
+      this.loadQuestions();
+      console.log("I changed state");
+    }
   }
   setCurrentlyAnswering(id) {
     this.setState({
