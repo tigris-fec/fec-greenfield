@@ -21,7 +21,7 @@ const Breakdown = (props) => {
     <div className="container">
       <div className="columns">
         <div className="column is-12">
-          <p className="subtitle" style={{ fontSize: "90%" }}>
+          <p className="subtitle">
             {props.recommended}% of reviews recommend this product
           </p>
           <br />
@@ -29,7 +29,7 @@ const Breakdown = (props) => {
             return (
               <div className="is-inline">
                 <div className="field is-grouped is-grouped-left">
-                  <p className="control is-left" style={{ fontSize: "90%" }}>
+                  <p className="control is-left">
                     <u>{stars[index]} Star(s)</u>
                   </p>
                   <div className="progress is-right">
