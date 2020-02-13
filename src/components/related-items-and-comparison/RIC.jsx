@@ -114,7 +114,7 @@ const RIC_ = (props) => {
                 key={i}
                 product={product}
                 func={changeTheId}
-                photo={styles[i][0].photos[0]}
+                photo={styles[i]? styles[i][0].photos[0]: null}
                 cardType={"related"}
                 rating={ratings[i]}
                 features={features[i]}
