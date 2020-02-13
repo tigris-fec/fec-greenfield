@@ -1,4 +1,5 @@
-export let data = {
+
+let data = {
   product_id: "5",
   results: [
     {
@@ -136,3 +137,5 @@ export let data = {
     }
   ]
 };
+
+export default data;

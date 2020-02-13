@@ -8,8 +8,9 @@ import QuestionUnit from "../questions-and-answers/QuestionUnit.jsx";
 
 let QAWrapper = shallow(<QA />);
 
+
 describe("QA Displays everything that would make it look functionally complete", () => {
-  test("should have the heading 'QUESTIONS & ANSWERS'", () => {
+  test.todo("should have the heading 'QUESTIONS & ANSWERS'", () => {
     //let allQuestions = wrapper.find(".all-questions")
     //expect(allQuestions.exists()).toBe(true);
   });
