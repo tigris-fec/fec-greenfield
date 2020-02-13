@@ -1,23 +1,24 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import StarRating from "./StarRating.jsx";
-import CompareModal from "./CompareModal.jsx"
+import CompareModal from "./CompareModal.jsx";
 
 const IndividualCard = (props) => {
   const [modelOpen, setModalOpen] = useState(false);
   const defaultPic =
     "https://cdn.britannica.com/55/174255-050-526314B6/brown-Guernsey-cow.jpg";
 
-  const handleClickChange = (e) => {
-    props.func(props.product)
+  const handleClickChange = () => {
+    console.log(props.product.id)
+    props.func(props.product.id)
   };
 
-  const showModal = () =>{
-    setModalOpen(true)
-  }
+  const showModal = () => {
+    setModalOpen(true);
+  };
 
-  const closeModal = () =>{
-    setModalOpen(false)
-  }
+  const closeModal = () => {
+    setModalOpen(false);
+  };
   return (
     <div
       className="card is-shadowless"
@@ -31,16 +32,14 @@ const IndividualCard = (props) => {
     >
       <div className="card-header">
         <p className="card-header-title"></p>
-        <a
-          onClick={handleClickChange}
-          className="card-header-icon"
-          aria-label="more options"
-        >
+        <a className="card-header-icon" aria-label="more options">
           <span className="icon">
             {props.cardType === "related" ? (
-              <i className="far fa-star" aria-hidden="true"></i>
+              <p onClick={handleClickChange}>
+                <i className="far fa-star" aria-hidden="true" onClick={handleClickChange}></i>
+              </p >
             ) : (
-              <i className="far fa-times-circle"></i>
+              <i className="far fa-times-circle" onClick={handleClickChange}></i>
             )}
           </span>
         </a>
@@ -68,7 +67,11 @@ const IndividualCard = (props) => {
         </div>
       </div>
       {modelOpen ? (
-        <CompareModal closeModal={closeModal} currentFeatures={props.features} newFeatures={props.features}/>
+        <CompareModal
+          closeModal={closeModal}
+          currentFeatures={props.features}
+          newFeatures={props.features}
+        />
       ) : null}
     </div>
   );

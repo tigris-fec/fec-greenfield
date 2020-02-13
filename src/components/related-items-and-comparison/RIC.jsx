@@ -89,9 +89,8 @@ const RIC_ = (props) => {
       });
   }, [relatedItemsArr]);
 
-  const changeTheId = (product) => {
-    console.log("CHANGING");
-    props.changeProductId(1)
+  const changeTheId = (id) => {
+    props.changeProductId(id)
   };
 
   const deleteTheId = (product) => {
@@ -100,7 +99,6 @@ const RIC_ = (props) => {
 
   return (
     <div className="container is-fluid">
-      <button onClick={changeTheId}>CLick to change productID</button>
       <p>RELATED PRODUCTS</p>
       <div
         name="related-items"
