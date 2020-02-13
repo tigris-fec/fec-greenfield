@@ -6,15 +6,16 @@ import AddAnswer from "./AddAnswer.jsx";
 //import { sampleQuestions } from "../../mockData/questions.js";
 import $ from "jquery";
 import Axios from "axios";
-
-class QA extends React.Component {
+import {connect} from 'react-redux';
+let mapStateToProps = (store) => ({PRODUCT_ID: 5})
+class QA_ extends React.Component {
   constructor(props) {
     super(props);
     this.handleAddQuestion = this.handleAddQuestion.bind(this);
     this.state = {
       questions: {},
       questionsToDisplay: 2,
-      productID: 5,
+      productID: this.props.PRODUCT_ID,
       currentlyAnswering: null, // This is changed when a user clicks "Add Answer" on a particular question
       searchedQuestions: {}, // key value pairs of idx : true or false depeneding on if it matches the search term
       searchMode: false
@@ -135,7 +136,7 @@ class QA extends React.Component {
   render() {
     return this.state.questions.product_id !== undefined ? (
       <div className="my-width content is-medium">
-        <p>Questions and Answers</p>
+        <p>QUESTIONS AND ANSWERS</p>
         <input
           className="search-box"
           type="text"
@@ -153,7 +154,7 @@ class QA extends React.Component {
                 return (
                   <QuestionUnit
                     question={question}
-                    key={index}
+                    key={question.question_id}
                     setCurrentlyAnswering={this.setCurrentlyAnswering}
                   />
                 );
@@ -161,7 +162,7 @@ class QA extends React.Component {
                 return (
                   <QuestionUnit
                     question={question}
-                    key={index}
+                    key={question.question_id}
                     setCurrentlyAnswering={this.setCurrentlyAnswering}
                   />
                 );
@@ -194,4 +195,7 @@ class QA extends React.Component {
     );
   }
 }
+
+let QA = connect(mapStateToProps,null)(QA_)
+
 export default QA;

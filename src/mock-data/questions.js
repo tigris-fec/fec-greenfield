@@ -1,4 +1,4 @@
-export let sampleQuestions = {
+export let data = {
   product_id: "5",
   results: [
     {

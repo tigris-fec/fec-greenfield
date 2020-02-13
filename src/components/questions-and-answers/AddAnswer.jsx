@@ -13,6 +13,7 @@ class AddAnswer extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmitAnswer = this.handleSubmitAnswer.bind(this);
+    this.handleCloseAnswer = this.handleCloseAnswer.bind(this);
     this.emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   }
 
@@ -78,7 +79,7 @@ class AddAnswer extends React.Component {
                   autoComplete="off"
                 />
                 <label>
-                  <h2>What is your nickname</h2>
+                  <p>What is your nickname</p>
                 </label>
                 <input
                   type="text"
@@ -91,7 +92,7 @@ class AddAnswer extends React.Component {
                 />
                 <p>For privacy reasons, do not use your full name or email address</p>
                 <label>
-                  <h2>Your email</h2>
+                  <p>Your email</p>
                 </label>
                 <input
                   type="text"

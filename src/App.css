@@ -1,5 +1,5 @@
 .all-questions {
-  max-height: 500px;
+  max-height: 60vh;
   overflow: auto;
 
 }
@@ -43,6 +43,9 @@ span > u {
   cursor: pointer;
 }
 
+.more-answers {
+  font-size: 1.00rem;
+}
 .my-button {
   background-color: white;
   border: 1px solid black;
@@ -54,4 +57,8 @@ span > u {
   padding-left: 20px;
   padding-right: 20px;
   
+}
+
+.answer-photo {
+  border: 1px solid gray;
 }
