@@ -18,7 +18,7 @@ const Reviews = (props) => {
       .catch((err) => {
         console.log("Error with gathering data from API");
       });
-  }, []);
+  }, [props.productId]);
 
   useEffect(() => {
     setCurrentReviews(reviews.slice(0, 2));

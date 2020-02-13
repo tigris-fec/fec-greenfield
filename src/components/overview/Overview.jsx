@@ -26,7 +26,7 @@ import "./Overview.scss";
 
 const API_URL = "http://3.134.102.30";
 
-const mapStateToProps = (store) => ({ PRODUCT_ID: 3, averageRating: 3.7 });
+const mapStateToProps = (store) => ({ PRODUCT_ID: store.product_id, averageRating: 3.7 });
 
 const OverviewContainer = (props) => {
   const [currentProduct, setCurrentProduct] = useState(productInfo);
@@ -46,7 +46,7 @@ const OverviewContainer = (props) => {
       .catch((err) => {
         console.log("Error in loading up the data", err);
       });
-  }, []);
+  }, [props.PRODUCT_ID]);
 
   useEffect(() => {
     setCurrentStyle(availableStyles[2]);
@@ -56,7 +56,7 @@ const OverviewContainer = (props) => {
     <section className="section">
       <div className="columns">
         <div className="column is-7">
-          <ProductsGallery photos={currentStyle.photos} />
+          <ProductsGallery photos={currentStyle? currentStyle.photos: null} />
         </div>
         <div className="column is-5">
           <ProductRating rating={props.averageRating} />
