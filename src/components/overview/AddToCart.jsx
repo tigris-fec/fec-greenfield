@@ -40,8 +40,11 @@ const AddToCart = ({ skus }) => {
 
   return (
     <div className="container">
-      <div className="columns">
-        <div className="column is-8">
+      <div
+        className="level"
+        style={{ paddingTop: "2.5%", paddingBottom: "2.5%", height: "105%" }}
+      >
+        <div className="level-item">
           <div className="field is-horizontal">
             <div className="control">
               <div className="select is-dark is-large">
@@ -51,7 +54,8 @@ const AddToCart = ({ skus }) => {
                     border: "solid",
                     borderWidth: "thin",
                     borderRadius: "0px",
-                    width: "200%"
+                    height: "120%",
+                    width: "275px"
                   }}
                 >
                   {availableSizes.map((size) => (
@@ -62,44 +66,34 @@ const AddToCart = ({ skus }) => {
             </div>
           </div>
         </div>
-        <div className="column is-4"></div>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <div className="level-item">
+          <div className="field is-horizontal">
+            <div className="control">
+              <div className="select is-dark is-large">
+                <select
+                  onChange={handleSizeChange}
+                  style={{
+                    border: "solid",
+                    borderWidth: "thin",
+                    borderRadius: "0px",
+                    height: "120%",
+                    width: "275px"
+                  }}
+                >
+                  {productSize[currentSize].map((size) => (
+                    <option value={size}>{size}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      &nbsp;&nbsp;&nbsp;&nbsp;
       <div className="level">
-        <div className="field is-horizontal">
-          <div className="control">
-            <div className="select is-dark is-large">
-              <select
-                onChange={handleSizeChange}
-                style={{ border: "solid", borderWidth: "thin", borderRadius: "0px" }}
-              ></select>
-            </div>
-            &nbsp; &nbsp;
-            <div className="select is-dark is-large">
-              <select
-                onChange={handleQuantityChange}
-                style={{ border: "solid", borderWidth: "thin", borderRadius: "0px" }}
-              >
-                {productSize[currentSize].map((size) => (
-                  <option value={size}>{size}</option>
-                ))}
-              </select>
-            </div>
-            <div className="control"></div>
-          </div>
-          <br />
-          <div className="level">
-            <div className="level-left">
-              <div className="level-item">
-                <button className="button is-large">Add to Cart</button>
-              </div>
-              &nbsp; &nbsp;
-              <div className="level-item">
-                <div className="button is-large">
-                  <i className="far fa-star"></i>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="box is-button is-shadowless" style={{ width: "100%" }}>
+          ADD TO CART
         </div>
       </div>
     </div>
@@ -107,3 +101,22 @@ const AddToCart = ({ skus }) => {
 };
 
 export default AddToCart;
+
+/*
+
+      <div className="field is-horiztonal">
+        <div className="level">
+          <div className="level-left">
+            <div className="level-item">
+              <button className="button is-large">Add to Cart</button>
+            </div>
+            &nbsp; &nbsp;
+            <div className="level-item">
+              <div className="button is-large">
+                <i className="far fa-star"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+*/

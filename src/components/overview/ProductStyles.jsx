@@ -14,10 +14,21 @@ const ProductStyles = (props) => {
   return (
     <div className="container">
       <div className="product-styles">
-        <p id="product-style" className="tag is-light">
-          <strong>STYLE ></strong> &nbsp;
-          {props.defaultStyle.name.toUpperCase()}
-        </p>
+        <div className="tags has-addons">
+          <span
+            className="tag is-white is-large"
+            style={{ border: "solid", borderWidth: "thin", borderColor: "#0000001F" }}
+          >
+            STYLE
+          </span>
+          <span className="tag is-info is-light is-large">{">"}</span>
+          <span
+            className="tag is-white is-large"
+            style={{ border: "solid", borderWidth: "thin", borderColor: "#0000001F" }}
+          >
+            {props.defaultStyle.name.toUpperCase()}
+          </span>
+        </div>
         <ul
           id="product-styles-images"
           className="level"
@@ -44,7 +55,7 @@ const ProductStyles = (props) => {
                         className="far fa-check-circle fa-lg"
                         style={{
                           float: "right",
-                          position: "absolute",
+                          position: "relative",
                           right: "0%",
                           top: "0%",
                           zIndex: "1",

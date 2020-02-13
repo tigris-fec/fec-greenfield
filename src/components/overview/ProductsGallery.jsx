@@ -1,54 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const ProductsGallery = (props) => {
+  let [selected, setSelected] = useState(0);
+  useEffect(() => {
+    setSelected(selected);
+  }, [selected]);
   return (
     <>
-      <div style={{ width: "100%" }}>
+      <div className="carousel-wrapper">
         <Carousel
+          axis={"horizontal"}
+          selectedItem={selected}
           showArrows={true}
           showStatus={true}
           showThumbs={false}
+          thumbWidth={50}
           useKeyboardArrows={true}
-          onChange={() => {}}
-          onClickThumb={() => console.log("Thumbnail clicked!")}
-          onClickItem={() => console.log("Item clicked!")}
+          onChange={(index) => setSelected(index)}
         >
-          {props.photos.map((photo, i) => {
+          {props.photos.map((photo, index) => {
             return (
-              <figure className="image" key={i}>
-                <img
-                  src={photo.thumbnail_url}
-                  alt="No Pictures Available"
-                  style={{
-                    maxHeight: "75%",
-                    height: "39vw",
-                    width: "auto",
-                    margin: "auto"
-                  }}
-                />
+              <figure className="image" key={index}>
+                <img src={photo.url} alt="No Pictures Available" />
               </figure>
             );
           })}
         </Carousel>
 
-        <div className="columns" style={{ marginTop: "1vw" }}>
-          {props.photos.map((photo, i) => {
-            return (
-              <figure className="image" key={i}>
-                <img
-                  src={photo.thumbnail_url}
-                  alt="thumbnail"
-                  style={{
-                    height: "auto",
-                    width: "50%",
-                    margin: "auto"
-                  }}
-                />
-              </figure>
-            );
-          })}
+        <div className="level">
+          <div className="level-left">
+            {props.photos.map((photo, i) => {
+              return (
+                <div className="level-item">
+                  <figure className="image is-96x96" key={i}>
+                    <img
+                      src={photo.thumbnail_url}
+                      alt="thumbnail"
+                      style={
+                        selected === i
+                          ? {
+                              border: "solid",
+                              borderWidth: "thin"
+                            }
+                          : null
+                      }
+                    />
+                  </figure>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </>

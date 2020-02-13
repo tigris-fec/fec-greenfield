@@ -1,7 +1,5 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { HashLink as Link } from "react-router-hash-link";
-import handleViewport from "react-in-viewport";
 import NavBar from "./components/NavBar.jsx";
 import Home from "./components/Home.jsx";
 import RatingsAndReviews from "./components/ratings-and-reviews/RatingsAndReviews.jsx";
