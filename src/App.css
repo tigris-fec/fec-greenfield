@@ -43,9 +43,12 @@ span > u {
   cursor: pointer;
 }
 
+<<<<<<< HEAD
 .more-answers {
   font-size: 1.00rem;
 }
+=======
+>>>>>>> 5ceaf26a9e3d9fbc89c749d2224fcaf63f5f9863
 .my-button {
   background-color: white;
   border: 1px solid black;
@@ -57,8 +60,11 @@ span > u {
   padding-left: 20px;
   padding-right: 20px;
   
+<<<<<<< HEAD
 }
 
 .answer-photo {
   border: 1px solid gray;
+=======
+>>>>>>> 5ceaf26a9e3d9fbc89c749d2224fcaf63f5f9863
 }

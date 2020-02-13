@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Axios from "axios";
-import Photo from "../ratings-and-reviews/ratingslist/Photo.jsx";
+import Photo from "../ratings-and-reviews/Photo.jsx";
 // In regards to taking props, does redux change this?
 
 const AnswerUnit = (props) => {
@@ -30,8 +30,9 @@ const AnswerUnit = (props) => {
 
   const handleReport = function(e, id) {
     if (didReport) return;
-    Axios.put(`http://3.134.102.30/qa/answer/${id}/report`)
-      .catch((err) => console.log(err));
+    Axios.put(`http://3.134.102.30/qa/answer/${id}/report`).catch((err) =>
+      console.log(err)
+    );
     setDidReport(true);
     e.target.innerText = "Reported";
   };

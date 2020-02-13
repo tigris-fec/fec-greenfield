@@ -50,7 +50,6 @@ class AddQuestion extends React.Component {
     Axios.post(`http://3.134.102.30/qa/${this.props.productID}`, myQuestion)
       .then((data) => {
         this.props.loadQuestions();
-        
       })
       .catch((err) => {
         console.log(err);
