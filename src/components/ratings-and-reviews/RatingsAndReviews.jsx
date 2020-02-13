@@ -10,7 +10,7 @@ import "./RatingsAndReviews.css";
 const mapStateToProps = (store) => ({ productId: store.product_id });
 
 const RatingsAndReviewsContainer = (props) => {
-  const [filters, setFilters] = useState(["relevant", "newest", "helpful"]);
+  const [filters, setFilters] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [currentReviews, setCurrentReviews] = useState([]);
   const [soloReview, setFakeSoloReview] = useState(fakeSoloReview);

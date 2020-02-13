@@ -58,8 +58,8 @@ const Reviews = (props) => {
                   style={{ border: "none", height: "100%", fontStyle: "bold" }}
                   onChange={sendFilter}
                 >
-                  {props.filters.map((filter) => (
-                    <option>{filter}</option>
+                  {filters.map((filter) => (
+                    <option value={filter}>{filter}</option>
                   ))}
                 </select>
               </div>
