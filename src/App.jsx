@@ -19,19 +19,12 @@ const App = (props) => {
             <Route exact path="/" render={() => <Home />} />
             <Route exact path="/overview" render={() => <Overview />} />
             <Route exact path="/questions-and-answers" render={() => <QA />} />
-<<<<<<< HEAD
-            <Route exact path="/ratings-and-reviews" render={() => <RR />} />
             <Route exact path="/related-items-and-comparison" render={() => <RIC />} />
-=======
-
-            <Route exact path="/related-items-and-comparison" render={() => <RIC />} />
-
             <Route
               exact
               path="/ratings-and-reviews"
               render={() => <RatingsAndReviews />}
             />
->>>>>>> master
           </Switch>
         </section>
       </div>
