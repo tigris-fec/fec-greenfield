@@ -14,7 +14,6 @@ const ProductsGallery = (props) => {
           axis={"horizontal"}
           selectedItem={selected}
           showArrows={true}
-          showStatus={true}
           showThumbs={false}
           thumbWidth={50}
           useKeyboardArrows={true}
