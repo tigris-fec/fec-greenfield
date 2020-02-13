@@ -1,6 +1,6 @@
 import React from "react";
 import Rating from "react-rating";
-import "./starrating.css";
+import "./StarRating.css";
 
 const StarRating = (props) => {
   return (
