@@ -46,29 +46,27 @@ const OverviewContainer = (props) => {
   return (
     <>
       <div className="container">
-        <section id="overview-section" className="section">
-          <div className="columns">
-            <div className="column is-7">
-              <ProductsGallery photos={currentStyle.photos} />
-            </div>
-            <div className="column is-5">
-              <ProductRating rating={props.averageRating} />
-              <ProductCategory category={currentProduct.category} />
-              <ProductName name={currentProduct.name} />
-              <ProductPrice
-                originalPrice={currentStyle.original_price}
-                salePrice={currentStyle.sale_price}
-              />
-              <br />
-              <ProductStyles
-                defaultStyle={currentStyle}
-                productStyles={availableStyles}
-                setSelectedProduct={setCurrentStyle}
-              />
-              <AddToCart skus={currentStyle.skus} />
-            </div>
+        <div className="columns">
+          <div className="column is-7">
+            <ProductsGallery photos={currentStyle.photos} />
           </div>
-        </section>
+          <div className="column is-5">
+            <ProductRating rating={props.averageRating} />
+            <ProductCategory category={currentProduct.category} />
+            <ProductName name={currentProduct.name} />
+            <ProductPrice
+              originalPrice={currentStyle.original_price}
+              salePrice={currentStyle.sale_price}
+            />
+            <br />
+            <ProductStyles
+              defaultStyle={currentStyle}
+              productStyles={availableStyles}
+              setSelectedProduct={setCurrentStyle}
+            />
+            <AddToCart skus={currentStyle.skus} />
+          </div>
+        </div>
       </div>
       <div className="container">
         <div className="columns" style={{ marginLeft: "5%", marginTop: "2%" }}>
