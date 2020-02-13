@@ -7,6 +7,7 @@ import Overview from "./components/overview/Overview.jsx";
 import QA from "./components/questions-and-answers/QA.jsx";
 import RIC from "./components/related-items-and-comparison/RIC.jsx";
 import "./App.css";
+import RatingSummary from "./components/ratings-and-reviews/RatingSummary.jsx";
 
 const App = (props) => {
   console.log(process.env.REACT_APP_API_URL);
@@ -19,15 +20,17 @@ const App = (props) => {
             <Route exact path="/" render={() => <Home />} />
             <Route exact path="/overview" render={() => <Overview />} />
             <Route exact path="/questions-and-answers" render={() => <QA />} />
-
             <Route exact path="/related-items-and-comparison" render={() => <RIC />} />
-
             <Route
               exact
               path="/ratings-and-reviews"
               render={() => <RatingsAndReviews />}
             />
           </Switch>
+          <Overview />
+          <QA />
+          <RIC />
+          <RatingsAndReviews />
         </section>
       </div>
     </>
