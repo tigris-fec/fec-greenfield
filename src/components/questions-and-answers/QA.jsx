@@ -6,8 +6,8 @@ import AddAnswer from "./AddAnswer.jsx";
 //import { sampleQuestions } from "../../mockData/questions.js";
 import $ from "jquery";
 import Axios from "axios";
-import {connect} from 'react-redux';
-let mapStateToProps = (store) => ({PRODUCT_ID: 5})
+import { connect } from "react-redux";
+let mapStateToProps = (store) => ({ PRODUCT_ID: 5 });
 class QA_ extends React.Component {
   constructor(props) {
     super(props);
@@ -26,7 +26,7 @@ class QA_ extends React.Component {
     this.loadQuestions = this.loadQuestions.bind(this);
   }
 
-  loadQuestions(){
+  loadQuestions() {
     Axios.get("http://3.134.102.30/qa/" + this.state.productID + "/?page=1&count=200")
       .then((data) => {
         data.data.results.sort((a, b) => {
@@ -61,9 +61,7 @@ class QA_ extends React.Component {
     this.loadQuestions();
   }
 
-  componentDidUpdate(){
-    
-  }
+  componentDidUpdate() {}
   setCurrentlyAnswering(id) {
     this.setState({
       currentlyAnswering: id
@@ -104,7 +102,12 @@ class QA_ extends React.Component {
             .split(" ")
             .join("")
             .toLowerCase()
-            .includes(searchTerms.split(" ").join("").toLowerCase())
+            .includes(
+              searchTerms
+                .split(" ")
+                .join("")
+                .toLowerCase()
+            )
         ) {
           markedQuestions[question.question_id] = true;
         }
@@ -169,8 +172,14 @@ class QA_ extends React.Component {
               }
             })}{" "}
           <br />
-          <AddAnswer question_id={this.state.currentlyAnswering} loadQuestions = {this.loadQuestions}/>
-          <AddQuestion productID={this.state.productID} loadQuestions = {this.loadQuestions}/>
+          <AddAnswer
+            question_id={this.state.currentlyAnswering}
+            loadQuestions={this.loadQuestions}
+          />
+          <AddQuestion
+            productID={this.state.productID}
+            loadQuestions={this.loadQuestions}
+          />
         </div>
         {this.state.questions.results.length > 0 &&
         this.state.questionsToDisplay < this.state.questions.results.length ? (
@@ -196,6 +205,6 @@ class QA_ extends React.Component {
   }
 }
 
-let QA = connect(mapStateToProps,null)(QA_)
+let QA = connect(mapStateToProps, null)(QA_);
 
 export default QA;

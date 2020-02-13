@@ -75,12 +75,6 @@ class AddReview extends Component {
       <>
         <div
           className="box is-button is-shadowless"
-          style={{
-            border: "solid",
-            borderWidth: "thin",
-            borderRadius: "0",
-            fontSize: "75%"
-          }}
           onClick={(event) => {
             event.currentTarget.blur();
             this.openModal();

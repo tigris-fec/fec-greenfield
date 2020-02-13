@@ -1,0 +1,7 @@
+.select .is-large > select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 5%;
+  width: 125%;
+}

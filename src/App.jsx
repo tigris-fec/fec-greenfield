@@ -1,5 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import { HashLink as Link } from "react-router-hash-link";
+import handleViewport from "react-in-viewport";
 import NavBar from "./components/NavBar.jsx";
 import Home from "./components/Home.jsx";
 import RatingsAndReviews from "./components/ratings-and-reviews/RatingsAndReviews.jsx";
@@ -9,26 +11,17 @@ import RIC from "./components/related-items-and-comparison/RIC.jsx";
 import "./App.css";
 
 const App = (props) => {
-  console.log(process.env.REACT_APP_API_URL);
   return (
     <>
-      <div>
-        <NavBar />
-        <section className="section">
-          <Switch>
-            <Route exact path="/" render={() => <Home />} />
-            <Route exact path="/overview" render={() => <Overview />} />
-            <Route exact path="/questions-and-answers" render={() => <QA />} />
-
-            <Route exact path="/related-items-and-comparison" render={() => <RIC />} />
-
-            <Route
-              exact
-              path="/ratings-and-reviews"
-              render={() => <RatingsAndReviews />}
-            />
-          </Switch>
-        </section>
+      <NavBar />
+      <div className="container is-fluid">
+        <Overview />
+        <br />
+        <RIC />
+        <br />
+        <QA />
+        <br />
+        <RatingsAndReviews />
       </div>
     </>
   );

@@ -12,20 +12,10 @@ import AddToCart from "./AddToCart.jsx";
 import ProductDetails from "./ProductDetails.jsx";
 import ProductFeatures from "./ProductFeatures.jsx";
 
-import tShirt from "./images/t-shirt.jpg";
-import longSleeve from "./images/long-sleeve-tee.jpg";
-import tankTop from "./images/tank-top.jpg";
-import vNeck from "./images/v-neck.jpg";
-
 import { productStyles } from "./data/product-styles";
 import { productInfo } from "./data/products-info";
 import { reviews } from "./data/reviews";
-import QA from "../questions-and-answers/QA.jsx"
-
-import "./Overview.css";
-import "./Overview.scss";
-
-const API_URL = "http://3.134.102.30";
+import QA from "../questions-and-answers/QA.jsx";
 
 const mapStateToProps = (store) => ({ PRODUCT_ID: 3, averageRating: 3.7 });
 
@@ -54,7 +44,7 @@ const OverviewContainer = (props) => {
   }, [availableStyles]);
 
   return (
-    <section className="section">
+    <section id="overview-section" className="section">
       <div className="columns">
         <div className="column is-7">
           <ProductsGallery photos={currentStyle.photos} />
@@ -90,7 +80,6 @@ const OverviewContainer = (props) => {
           <ProductFeatures features={currentProduct.features} />
         </div>
       </div>
-      
     </section>
   );
 };
