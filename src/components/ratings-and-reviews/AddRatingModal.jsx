@@ -1,7 +1,6 @@
 import React from "react";
-import "../starrating.css";
 
-const OverallRating = props => {
+const AddRatingModal = (props) => {
   const checkStar = props.rating >= props.check ? true : false;
 
   const handleStarClick = () => {
@@ -31,4 +30,4 @@ const OverallRating = props => {
   return <div>{checkStar ? fillStar : emptyStar}</div>;
 };
 
-export default OverallRating;
+export default AddRatingModal;

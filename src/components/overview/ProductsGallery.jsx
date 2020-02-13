@@ -54,5 +54,4 @@ const ProductsGallery = (props) => {
     </>
   );
 };
-
 export default ProductsGallery;

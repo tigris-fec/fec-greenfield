@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import Photo from "../ratings-and-reviews/Photo.jsx";
 // In regards to taking props, does redux change this?
 
 const AnswerUnit = (props) => {
@@ -29,42 +30,46 @@ const AnswerUnit = (props) => {
 
   const handleReport = function(e, id) {
     if (didReport) return;
-    Axios.put(`http://3.134.102.30/qa/answer/${id}/report`)
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
+    Axios.put(`http://3.134.102.30/qa/answer/${id}/report`).catch((err) =>
+      console.log(err)
+    );
     setDidReport(true);
     e.target.innerText = "Reported";
   };
   return (
-    <div id={props.answer.id}>
-      A: {props.answer.body}
-      <br />
-      by{" "}
-      {isSeller ? (
-        <span>
-          {username.substring(0, indexOfSeller)}
-          <b>{username.substring(indexOfSeller, indexOfSeller + 6)}</b>,
-          {" " + displayDate}
-        </span>
-      ) : (
-        `${username}, ${displayDate}`
-      )}{" "}
-      | Helpful?{" "}
-      <a
-        onClick={() => {
-          handleUpvote(props.answer.id);
-        }}
-      >
-        Yes({votes})
-      </a>{" "}
-      |{" "}
-      <a
-        onClick={(e) => {
-          handleReport(e, props.answer.id);
-        }}
-      >
-        Report
-      </a>
+    <div id={props.answer.id} className="answer-unit">
+      <b>A:</b>&ensp;
+      <span className="answer-body">
+        {props.answer.body}
+        {/* <div className = "level-left"><Photo key={props.answer.id} photo={{url:"https://images.unsplash.com/photo-1510551310160-589462daf284?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1649&q=80"}} /></div> */}
+        <br />
+        &emsp;&ensp;&nbsp;by{" "}
+        {isSeller ? (
+          <span>
+            {username.substring(0, indexOfSeller)}
+            <b>{username.substring(indexOfSeller, indexOfSeller + 6)}</b>,
+            {" " + displayDate}
+          </span>
+        ) : (
+          `${username}, ${displayDate}`
+        )}
+        &ensp;|&ensp; Helpful?&nbsp;
+        <u
+          onClick={() => {
+            handleUpvote(props.answer.id);
+          }}
+        >
+          Yes
+        </u>
+        ({votes}) &ensp;|&ensp;{" "}
+        <u
+          onClick={(e) => {
+            handleReport(e, props.answer.id);
+          }}
+        >
+          Report
+        </u>
+      </span>
     </div>
   );
 };
