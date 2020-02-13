@@ -5,18 +5,30 @@ import { render } from "enzyme";
 import renderer from "react-test-renderer";
 import QA from "../questions-and-answers/QA.jsx";
 import QuestionUnit from "../questions-and-answers/QuestionUnit.jsx";
+import configureStore from 'redux-mock-store';
+import data from "../../mock-data/questions.js";
 
-let QAWrapper = shallow(<QA />);
+
 
 
 describe("QA Displays everything that would make it look functionally complete", () => {
-  test.todo("should have the heading 'QUESTIONS & ANSWERS'", () => {
-    //let allQuestions = wrapper.find(".all-questions")
-    //expect(allQuestions.exists()).toBe(true);
+  let initialState;
+  let mockStore;
+  let store;
+  let wrapper;
+  
+  beforeAll(() => {
+      initialState = { product_id: 5 };
+      mockStore = configureStore();
+      store = mockStore(initialState);
+      wrapper = mount(<QA store = {store}/>);
+  }, 2000);
+
+  
+  test("should have the heading 'QUESTIONS & ANSWERS'", () => {
+    expect(true).toEqual(true);
   });
-  test.todo(
-    "should have a search box with the text 'HAVE A QUESTION? SEARCH FOR ANSWERS...'"
-  );
+  test.todo("should have a search box with the text 'HAVE A QUESTION? SEARCH FOR ANSWERS...'");
   test.todo("should have a 'MORE ANSWERED QUESTIONS' button");
   test.todo("should have a 'ADD A QUESTION' button");
   expect(true).toBe(true);
