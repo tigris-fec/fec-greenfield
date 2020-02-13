@@ -22,9 +22,10 @@ class QA extends React.Component {
     this.handleMoreQuestions = this.handleMoreQuestions.bind(this);
     this.setCurrentlyAnswering = this.setCurrentlyAnswering.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.loadQuestions = this.loadQuestions.bind(this);
   }
 
-  componentDidMount() {
+  loadQuestions(){
     Axios.get("http://3.134.102.30/qa/" + this.state.productID + "/?page=1&count=200")
       .then((data) => {
         data.data.results.sort((a, b) => {
@@ -54,6 +55,13 @@ class QA extends React.Component {
         // Do nothing
         console.log(err);
       });
+  }
+  componentDidMount() {
+    this.loadQuestions();
+  }
+
+  componentDidUpdate(){
+    
   }
   setCurrentlyAnswering(id) {
     this.setState({
@@ -90,9 +98,31 @@ class QA extends React.Component {
       let markedQuestions = {};
 
       this.state.questions.results.map((question, index) => {
-        if (question.question_body.toLowerCase().includes(searchTerms)) {
+        if (
+          question.question_body
+            .split(" ")
+            .join("")
+            .toLowerCase()
+            .includes(searchTerms.split(" ").join("").toLowerCase())
+        ) {
           markedQuestions[question.question_id] = true;
         }
+        question.answers.map((answer) => {
+          if (
+            answer.body
+              .split(" ")
+              .join("")
+              .toLowerCase()
+              .includes(
+                searchTerms
+                  .split(" ")
+                  .join("")
+                  .toLowerCase()
+              )
+          ) {
+            markedQuestions[question.question_id] = true;
+          }
+        });
       });
       this.setState({
         searchMode: true,
@@ -104,15 +134,15 @@ class QA extends React.Component {
   }
   render() {
     return this.state.questions.product_id !== undefined ? (
-      <div className = "all-questions">
-        <div>
-          <h5>{"Questions & Answers"}</h5>
-          <input
-            className = "input is-medium"
-            type="text"
-            placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
-            onChange={this.handleChange}
-          />
+      <div className="my-width content is-medium">
+        <p>Questions and Answers</p>
+        <input
+          className="search-box"
+          type="text"
+          placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
+          onChange={this.handleChange}
+        />
+        <div className="all-questions">
           {this.state.questions.results
             .slice(0, this.state.numOfSearch || this.state.questionsToDisplay)
             .map((question, index) => {
@@ -138,23 +168,26 @@ class QA extends React.Component {
               }
             })}{" "}
           <br />
-          <AddAnswer question_id={this.state.currentlyAnswering} />
-          <AddQuestion productID={this.state.productID} />
+          <AddAnswer question_id={this.state.currentlyAnswering} loadQuestions = {this.loadQuestions}/>
+          <AddQuestion productID={this.state.productID} loadQuestions = {this.loadQuestions}/>
         </div>
         {this.state.questions.results.length > 0 &&
         this.state.questionsToDisplay < this.state.questions.results.length ? (
           <input
             type="button"
-            className="button"
-            value="More Answered Questions"
+            className="my-button"
+            value="MORE ANSWERED QUESTIONS"
             onClick={this.handleMoreQuestions}
           />
         ) : (
           ""
         )}
-        <button className="button" onClick={this.handleOpenQuestion}>
-          Add a Question +
-        </button>
+        <input
+          type="button"
+          className="my-button"
+          onClick={this.handleOpenQuestion}
+          value="ADD A QUESTION +"
+        ></input>
       </div>
     ) : (
       <div></div>
