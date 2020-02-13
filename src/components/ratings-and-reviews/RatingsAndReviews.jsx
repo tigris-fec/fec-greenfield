@@ -7,7 +7,7 @@ import { fakeSoloReview } from "./state.js";
 
 import "./RatingsAndReviews.css";
 
-const mapStateToProps = (store) => ({ productId: 1 });
+const mapStateToProps = (store) => ({ productId: store.product_id });
 
 const RatingsAndReviewsContainer = (props) => {
   const [filters, setFilters] = useState(["relevant", "newest", "helpful"]);
@@ -17,11 +17,11 @@ const RatingsAndReviewsContainer = (props) => {
   const [productId, setProductId] = useState(1);
 
   useEffect(() => {
-    axios.get(`http://3.134.102.30/reviews/${productId}/meta`).then((res) => {
+    axios.get(`http://3.134.102.30/reviews/${props.productId}/meta`).then((res) => {
       setProductId(res.data.product_id);
       setFakeSoloReview(res.data);
     });
-  }, []);
+  }, [props.productId]);
 
   return (
     <>
