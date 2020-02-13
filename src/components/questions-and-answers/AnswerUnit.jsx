@@ -37,38 +37,37 @@ const AnswerUnit = (props) => {
     e.target.innerText = "Reported";
   };
   return (
-    <div id={props.answer.id} className="answer-unit">
-      <b>A:</b>&ensp;
-      <span className="answer-body">
-        {props.answer.body}
-        {/* <div className = "level-left"><Photo key={props.answer.id} photo={{url:"https://images.unsplash.com/photo-1510551310160-589462daf284?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1649&q=80"}} /></div> */}
-        <br />
-        &emsp;&ensp;&nbsp;by{" "}
-        {isSeller ? (
-          <span>
-            {username.substring(0, indexOfSeller)}
-            <b>{username.substring(indexOfSeller, indexOfSeller + 6)}</b>,
-            {" " + displayDate}
-          </span>
-        ) : (
-          `${username}, ${displayDate}`
-        )}
-        &ensp;|&ensp; Helpful?&nbsp;
-        <u
-          onClick={() => {
-            handleUpvote(props.answer.id);
-          }}
-        >
-          Yes
-        </u>
-        ({votes}) &ensp;|&ensp;{" "}
-        <u
-          onClick={(e) => {
-            handleReport(e, props.answer.id);
-          }}
-        >
-          Report
-        </u>
+    <div id={props.answer.id} className = "answer-unit">
+      <b>A:</b>&ensp;<span className = "answer-body">{props.answer.body}
+      {/* <div className = "level-left"><Photo key={props.answer.id} photo={{url:"https://images.unsplash.com/photo-1510551310160-589462daf284?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1649&q=80"}} /></div> */}
+      <br />
+      &emsp;&ensp;&nbsp;by{" "}
+      {isSeller ? (
+        <span>
+          {username.substring(0, indexOfSeller)}
+          <b>{username.substring(indexOfSeller, indexOfSeller + 6)}</b>,
+          {" " + displayDate}
+        </span>
+      ) : (
+        `${username}, ${displayDate}`
+      )}
+      &ensp;|&ensp; Helpful?&nbsp;
+      <u
+        onClick={() => {
+          handleUpvote(props.answer.id);
+        }}
+      >
+        Yes
+      </u>
+      ({votes}) &ensp;|&ensp;{" "}
+      <u
+        onClick={(e) => {
+          handleReport(e, props.answer.id);
+        }}
+      >
+        Report
+        
+      </u>
       </span>
     </div>
   );

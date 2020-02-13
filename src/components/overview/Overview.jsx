@@ -20,6 +20,7 @@ import vNeck from "./images/v-neck.jpg";
 import { productStyles } from "./data/product-styles";
 import { productInfo } from "./data/products-info";
 import { reviews } from "./data/reviews";
+import QA from "../questions-and-answers/QA.jsx"
 
 import "./Overview.css";
 import "./Overview.scss";
@@ -89,6 +90,7 @@ const OverviewContainer = (props) => {
           <ProductFeatures features={currentProduct.features} />
         </div>
       </div>
+      
     </section>
   );
 };
