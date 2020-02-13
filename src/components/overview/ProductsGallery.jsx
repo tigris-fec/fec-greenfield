@@ -1,50 +1,63 @@
-import React, { useState, useEffect } from "react";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import React, { Component } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-const ProductsGallery = (props) => {
-  let [selected, setSelected] = useState(0);
-  useEffect(() => {
-    setSelected(selected);
-  }, [selected]);
-  return (
-    <>
-      <div className="carousel-wrapper">
-        <Carousel
-          axis={"horizontal"}
-          selectedItem={selected}
-          showArrows={true}
-          showThumbs={false}
-          thumbWidth={50}
-          useKeyboardArrows={true}
-          onChange={(index) => setSelected(index)}
-        >
-          {props.photos.map((photo, index) => {
-            return (
-              <figure className="image" key={index}>
-                <img src={photo.url} alt="No Pictures Available" />
-              </figure>
-            );
-          })}
-        </Carousel>
-
-        <div className="level">
-          <div className="level-left">
-            {props.photos.map((photo, i) => {
+class ProductsGallery extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      current: 0,
+      photos: []
+    };
+  }
+  componentDidMount() {
+    this.setState({ photos: this.props.photos }, () => console.log(this.state.photos));
+  }
+  render() {
+    return (
+      <>
+        <div className="container is-fluid">
+          <Slider
+            afterChange={(index) =>
+              this.setState({ current: index }, () => console.log(this.state.current))
+            }
+            className="bulma"
+            lazyLoad={true}
+            slide={"figure"}
+            arrows={true}
+          >
+            {this.state.photos.map((photo, index) => {
+              return <img src={photo.url} />;
+            })}
+          </Slider>
+          <div className="columns">
+            {this.state.photos.map((photo, index) => {
               return (
-                <div className="level-item">
-                  <figure className="image is-96x96" key={i}>
+                <div className="column">
+                  <figure
+                    className="image is-128x128"
+                    key={index}
+                    style={
+                      this.state.index === index
+                        ? {
+                            border: "solid",
+                            borderWeight: "thin",
+                            borderWidth: "1px",
+                            borderColor: "#0000006F"
+                          }
+                        : null
+                    }
+                  >
                     <img
                       src={photo.thumbnail_url}
                       alt="thumbnail"
-                      style={
-                        selected === i
-                          ? {
-                              border: "solid",
-                              borderWidth: "thin"
-                            }
-                          : null
-                      }
+                      style={{
+                        height: "50%",
+                        width: "autop",
+                        justifyContent: "center"
+                      }}
+                      alt="thumbnail_url"
                     />
                   </figure>
                 </div>
@@ -52,8 +65,9 @@ const ProductsGallery = (props) => {
             })}
           </div>
         </div>
-      </div>
-    </>
-  );
-};
+      </>
+    );
+  }
+}
+
 export default ProductsGallery;
