@@ -7,7 +7,7 @@ import AddAnswer from "./AddAnswer.jsx";
 import $ from "jquery";
 import Axios from "axios";
 import {connect} from 'react-redux';
-let mapStateToProps = (store) => ({PRODUCT_ID: 5})
+let mapStateToProps = (store) => ({PRODUCT_ID: store.product_id})
 class QA_ extends React.Component {
   constructor(props) {
     super(props);

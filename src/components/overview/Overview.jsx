@@ -64,8 +64,8 @@ const OverviewContainer = (props) => {
           <ProductCategory category={currentProduct.category} />
           <ProductName name={currentProduct.name} />
           <ProductPrice
-            originalPrice={currentStyle.original_price}
-            salePrice={currentStyle.sale_price}
+            originalPrice={currentStyle? currentStyle.original_price: "N/A"}
+            salePrice={currentStyle? currentStyle.original_price: "N/A"}
           />
           <br />
           <ProductStyles
@@ -73,7 +73,7 @@ const OverviewContainer = (props) => {
             productStyles={availableStyles}
             setSelectedProduct={setCurrentStyle}
           />
-          <AddToCart skus={currentStyle.skus} />
+          <AddToCart skus={currentStyle? currentStyle.skus:null} />
         </div>
       </div>
       <div className="columns" style={{ marginLeft: "5%", marginTop: "2%" }}>
