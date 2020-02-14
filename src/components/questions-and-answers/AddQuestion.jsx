@@ -18,10 +18,10 @@ class AddQuestion extends React.Component {
   }
 
   handleOpenQuestion() {
-    $(".modal").addClass("is-active");
+    $("#add-question-modal").addClass("is-active");
   }
   handleCloseQuestion() {
-    $(".modal").removeClass("is-active");
+    $("#add-question-modal").removeClass("is-active");
   }
   handleChange(e) {
     this.setState({
@@ -61,7 +61,7 @@ class AddQuestion extends React.Component {
   render() {
     return (
       <div className="add-question">
-        <div className="modal">
+        <div className="modal" id = "add-question-modal">
           <div className="modal-background"></div>
           <div className="modal-card">
             <header className="modal-card-head">

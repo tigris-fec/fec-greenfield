@@ -4,6 +4,7 @@ import Photo from "../ratings-and-reviews/Photo.jsx";
 // In regards to taking props, does redux change this?
 
 const AnswerUnit = (props) => {
+  
   const [votes, setVotes] = useState(props.answer.helpfulness);
   const [didVote, setDidVote] = useState(false);
   const [didReport, setDidReport] = useState(false);
