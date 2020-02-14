@@ -1,4 +1,5 @@
-export let data = {
+
+let data = {
   product_id: "5",
   results: [
     {
@@ -8,8 +9,8 @@ export let data = {
       asker_name: "funnygirl",
       question_helpfulness: 110,
       reported: 0,
-      answers: {
-        "124882": {
+      answers: [
+        {
           id: 124882,
           body: "...",
           date: "2019-12-18T00:00:00.000Z",
@@ -17,7 +18,7 @@ export let data = {
           helpfulness: 5,
           photos: []
         },
-        "124883": {
+        {
           id: 124883,
           body: "cotton",
           date: "2019-12-18T00:00:00.000Z",
@@ -25,7 +26,7 @@ export let data = {
           helpfulness: 3,
           photos: []
         },
-        "125025": {
+        {
           id: 125025,
           body: "Polyester",
           date: "2020-02-01T00:00:00.000Z",
@@ -33,7 +34,7 @@ export let data = {
           helpfulness: 0,
           photos: []
         },
-        "125026": {
+        {
           id: 125026,
           body: "Recycled Plastic",
           date: "2020-02-01T00:00:00.000Z",
@@ -41,7 +42,7 @@ export let data = {
           helpfulness: 0,
           photos: []
         },
-        "125082": {
+        {
           id: 125082,
           body: "jasd",
           date: "2020-02-05T00:00:00.000Z",
@@ -49,7 +50,7 @@ export let data = {
           helpfulness: 0,
           photos: []
         }
-      }
+      ]
     },
     {
       question_id: 38,
@@ -58,8 +59,8 @@ export let data = {
       asker_name: "funnygirl",
       question_helpfulness: 74,
       reported: 0,
-      answers: {
-        "78": {
+      answers: [
+        {
           id: 78,
           body: "9 lives",
           date: "2019-11-12T00:00:00.000Z",
@@ -69,7 +70,7 @@ export let data = {
             "https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
           ]
         },
-        "124825": {
+        {
           id: 124825,
           body: "y'all come back now",
           date: "2019-12-04T00:00:00.000Z",
@@ -77,7 +78,7 @@ export let data = {
           helpfulness: 0,
           photos: []
         },
-        "124827": {
+        {
           id: 124827,
           body: "a loooooooooooong time",
           date: "2019-12-04T00:00:00.000Z",
@@ -88,7 +89,7 @@ export let data = {
             " https://i.redd.it/vk84b5cpspz11.jpg"
           ]
         },
-        "124838": {
+        {
           id: 124838,
           body: "Forever and ever",
           date: "2019-12-13T00:00:00.000Z",
@@ -96,7 +97,7 @@ export let data = {
           helpfulness: 0,
           photos: []
         }
-      }
+      ]
     },
     {
       question_id: 35455,
@@ -105,8 +106,8 @@ export let data = {
       asker_name: "Alex",
       question_helpfulness: 32,
       reported: 0,
-      answers: {
-        "124795": {
+      answers: [
+        {
           id: 124795,
           body: "no it's shoes",
           date: "2019-12-02T00:00:00.000Z",
@@ -114,7 +115,7 @@ export let data = {
           helpfulness: 4,
           photos: []
         }
-      }
+      ]
     },
     {
       question_id: 35,
@@ -123,8 +124,8 @@ export let data = {
       asker_name: "bballfan",
       question_helpfulness: 30,
       reported: 0,
-      answers: {
-        "27": {
+      answers: [
+        {
           id: 27,
           body: "Canada",
           date: "2018-08-06T00:00:00.000Z",
@@ -132,7 +133,9 @@ export let data = {
           helpfulness: 13,
           photos: []
         }
-      }
+      ]
     }
   ]
 };
+
+export default data;
