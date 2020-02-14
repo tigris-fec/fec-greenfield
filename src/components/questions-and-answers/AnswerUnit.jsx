@@ -4,7 +4,6 @@ import Photo from "../ratings-and-reviews/Photo.jsx";
 // In regards to taking props, does redux change this?
 
 const AnswerUnit = (props) => {
-  
   const [votes, setVotes] = useState(props.answer.helpfulness);
   const [didVote, setDidVote] = useState(false);
   const [didReport, setDidReport] = useState(false);
@@ -71,19 +70,11 @@ const AnswerUnit = (props) => {
           Report
         </u>
       </span>
-      <div className="level">
-        <div className="level-left">
-          {props.answer.photos.map((photo) => (
-            <div className="level-item">
-              <Photo key={photo.id} photo={photo} />
-            </div>
-          ))}
-        </div>
-      </div>
+      {props.answer.photos.map((photo) => (
+          <Photo key={photo.id} photo={{ url: photo }} />
+      ))}
     </div>
   );
 };
 
 export default AnswerUnit;
-
-
