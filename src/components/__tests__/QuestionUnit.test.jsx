@@ -11,7 +11,7 @@ import data from "../../mock-data/questions.js";
 
 describe("Display question", () => {
   let testQuestion = data.results[0];
-  let questionWrapper = mount(<QuestionUnit question={testQuestion} />);
+  let questionWrapper = shallow(<QuestionUnit question={testQuestion} />);
   test("should display question body", () => {
     expect(
       questionWrapper
@@ -26,8 +26,25 @@ describe("Display question", () => {
   });
 
   test("Should display helpful count", () => {
-    console.log(questionWrapper.find(".question-right").text().split(""))
+
+    expect(
+      questionWrapper
+        .find(".question-right")
+        .text()
+        .split("")
+        .join("")
+        .includes("Yes(110)")
+    ).toEqual(true);
   });
 
-  test("Should have an add answer button", () => {});
+  test("Should have an add answer button", () => {
+    expect(
+      questionWrapper
+        .find(".question-right")
+        .text()
+        .split("")
+        .join("")
+        .includes("Add Answer")
+    ).toEqual(true);
+  });
 });

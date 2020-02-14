@@ -12,20 +12,13 @@ import data from "../../mock-data/questions.js";
 
 
 describe("QA Displays everything that would make it look functionally complete", () => {
-  let initialState;
-  let mockStore;
-  let store;
-  let wrapper;
-  
-  beforeAll(() => {
-      initialState = { product_id: 5 };
-      mockStore = configureStore();
-      store = mockStore(initialState);
-      wrapper = mount(<QA store = {store}/>);
-  }, 2000);
-
-  
+  let initialState = { product_id: 5 };
+  let mockStore = configureStore();;
+  let store = mockStore(initialState);;
+  let wrapper = mount(<QA store={store} />);;
+    
   test("should have the heading 'QUESTIONS & ANSWERS'", () => {
+    console.log(wrapper.html())
     expect(true).toEqual(true);
   });
   test.todo("should have a search box with the text 'HAVE A QUESTION? SEARCH FOR ANSWERS...'");
