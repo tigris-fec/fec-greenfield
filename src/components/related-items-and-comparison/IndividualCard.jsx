@@ -77,6 +77,8 @@ const IndividualCard_ = (props) => {
           closeModal={closeModal}
           currentFeatures={props.currentItem.currentProduct.features}
           newFeatures={props.features}
+          currentName={props.currentItem.currentProduct.name}
+          newName={props.product.name}
         />
       ) : null}
     </div>

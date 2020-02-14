@@ -8,25 +8,35 @@ const CompareModal = (props) => {
         <section className="modal-card-body">
           <div className="columns">
             <div className="column is-half" style={{ borderRight: "1px solid black" }}>
-              <p><em>Current Features:</em></p>
-              <br/>
+            <p>
+                <em>
+                  <b>{props.currentName}</b>
+                </em>
+              </p>
+              <br />
               {props.currentFeatures.map((feature) => {
                 return (
                   <p>
                     <i className="far fa-check-circle"></i>
-                    &nbsp;{feature.feature}: {feature.value !== "null"? feature.value: "Trusted"}
+                    &nbsp;{feature.feature}:{" "}
+                    {feature.value !== "null" ? feature.value : "Trusted"}
                   </p>
                 );
               })}
             </div>
             <div className="column is-half">
-            <p><em>Selected Features:</em></p>
-            <br/>
-            {props.newFeatures.map((feature) => {
+              <p>
+                <em>
+                  <b>{props.newName}</b>
+                </em>
+              </p>
+              <br />
+              {props.newFeatures.map((feature) => {
                 return (
                   <p>
                     <i className="far fa-check-circle"></i>
-                    &nbsp;{feature.feature}: {feature.value !== "null"? feature.value: "Trusted"}
+                    &nbsp;{feature.feature}:{" "}
+                    {feature.value !== "null" ? feature.value : "Trusted"}
                   </p>
                 );
               })}
