@@ -3,11 +3,11 @@ import { render } from "enzyme";
 import QuestionUnit from "./QuestionUnit.jsx";
 import AddQuestion from "./AddQuestion.jsx";
 import AddAnswer from "./AddAnswer.jsx";
-//import { sampleQuestions } from "../../mockData/questions.js";
 import $ from "jquery";
 import Axios from "axios";
+
 import { connect } from "react-redux";
-let mapStateToProps = (store) => ({ PRODUCT_ID: 5 });
+let mapStateToProps = (store) => ({ PRODUCT_ID: store.product_id });
 class QA_ extends React.Component {
   constructor(props) {
     super(props);
@@ -29,6 +29,7 @@ class QA_ extends React.Component {
   loadQuestions() {
     Axios.get("http://3.134.102.30/qa/" + this.state.productID + "/?page=1&count=200")
       .then((data) => {
+        console.log("Got new questions:", this.state.productID);
         data.data.results.sort((a, b) => {
           return b.question_helpfulness - a.question_helpfulness;
         });
@@ -61,7 +62,21 @@ class QA_ extends React.Component {
     this.loadQuestions();
   }
 
-  componentDidUpdate() {}
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.PRODUCT_ID !== this.props.PRODUCT_ID) {
+      console.log(prevProps.PRODUCT_ID);
+      console.log(this.props.PRODUCT_ID);
+      this.setState(
+        {
+          productID: this.props.PRODUCT_ID
+        },
+        () => {
+          this.loadQuestions();
+        }
+      );
+    }
+  }
+
   setCurrentlyAnswering(id) {
     this.setState({
       currentlyAnswering: id

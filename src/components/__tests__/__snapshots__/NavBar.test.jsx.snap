@@ -69,6 +69,18 @@ exports[`NavBar renders a snapshot properly 1`] = `
         >
           <a
             className="link"
+            href="/related-items-and-comparison"
+            onClick={[Function]}
+          >
+            Related Items and Comparison
+          </a>
+        </div>
+        <div
+          className="navbar-item is-hoverable"
+          onClick={[Function]}
+        >
+          <a
+            className="link"
             href="/questions-and-answers"
             onClick={[Function]}
           >

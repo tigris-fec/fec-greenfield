@@ -7,6 +7,7 @@ import Overview from "./components/overview/Overview.jsx";
 import QA from "./components/questions-and-answers/QA.jsx";
 import RIC from "./components/related-items-and-comparison/RIC.jsx";
 import "./App.css";
+import RatingSummary from "./components/ratings-and-reviews/RatingSummary.jsx";
 
 const App = (props) => {
   return (

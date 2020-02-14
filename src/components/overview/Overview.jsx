@@ -17,7 +17,7 @@ import { productInfo } from "./data/products-info";
 import { reviews } from "./data/reviews";
 import QA from "../questions-and-answers/QA.jsx";
 
-const mapStateToProps = (store) => ({ PRODUCT_ID: 3, averageRating: 3.7 });
+const mapStateToProps = (store) => ({ PRODUCT_ID: store.product_id, averageRating: 3.7 });
 
 const OverviewContainer = (props) => {
   const [currentProduct, setCurrentProduct] = useState(productInfo);
@@ -37,35 +37,33 @@ const OverviewContainer = (props) => {
       .catch((err) => {
         console.log("Error in loading up the data", err);
       });
-  }, []);
+  }, [props.PRODUCT_ID]);
 
   useEffect(() => {
     setCurrentStyle(availableStyles[0]);
   }, [availableStyles]);
 
   return (
-    <>
-      <div className="container">
-        <div className="columns">
-          <div className="column is-7">
-            <ProductsGallery photos={currentStyle.photos} />
-          </div>
-          <div className="column is-5">
-            <ProductRating rating={props.averageRating} />
-            <ProductCategory category={currentProduct.category} />
-            <ProductName name={currentProduct.name} />
-            <ProductPrice
-              originalPrice={currentStyle.original_price}
-              salePrice={currentStyle.sale_price}
-            />
-            <br />
-            <ProductStyles
-              defaultStyle={currentStyle}
-              productStyles={availableStyles}
-              setSelectedProduct={setCurrentStyle}
-            />
-            <AddToCart skus={currentStyle.skus} />
-          </div>
+    <section className="section">
+      <div className="columns">
+        <div className="column is-7">
+          <ProductsGallery photos={currentStyle? currentStyle.photos: null} />
+        </div>
+        <div className="column is-5">
+          <ProductRating rating={props.averageRating} />
+          <ProductCategory category={currentProduct.category} />
+          <ProductName name={currentProduct.name} />
+          <ProductPrice
+            originalPrice={currentStyle? currentStyle.original_price: "N/A"}
+            salePrice={currentStyle? currentStyle.original_price: "N/A"}
+          />
+          <br />
+          <ProductStyles
+            defaultStyle={currentStyle}
+            productStyles={availableStyles}
+            setSelectedProduct={setCurrentStyle}
+          />
+          <AddToCart skus={currentStyle? currentStyle.skus:null} />
         </div>
       </div>
       <div className="container">
