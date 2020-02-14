@@ -23,9 +23,9 @@ const Breakdown = (props) => {
           <p className="subtitle">
             {props.recommended}% of reviews recommend this product
           </p>
-          {stars.map((star) => {
+          {stars.map((star, index) => {
             return (
-              <div className="level">
+              <div className="level" key={index}>
                 <div className="level-left">
                   <div
                     id="star-filter"

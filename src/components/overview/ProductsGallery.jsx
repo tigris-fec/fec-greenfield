@@ -1,68 +1,54 @@
 import React, { Component } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import "./ProductGallery.css";
 
 class ProductsGallery extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: 0,
-      photos: []
+      selectedId: 0,
+      photos: [],
+      index: 0,
+      figure: { textAlign: "center" },
+      img: {
+        height: "auto",
+        width: "100%",
+        margin: "auto"
+      },
+      column1: { padding: "0" }
     };
+    this.setSelectedItem = this.setSelectedItem.bind(this);
   }
   componentDidMount() {
     this.setState({ photos: this.props.photos });
+    console.log(this.props);
+  }
+  setSelectedItem(index) {
+    this.setState({ index });
   }
   render() {
     return (
       <>
-        <div className="container is-fluid">
-          <Slider
-            afterChange={(index) =>
-              this.setState({ current: index }, () => console.log(this.state.current))
-            }
-            className="bulma"
-            lazyLoad={true}
-            slide={"figure"}
-            arrows={true}
-          >
-            {this.state.photos.map((photo, index) => {
-              return <img key={index} src={photo.url} />;
-            })}
-          </Slider>
+        <div className="container">
           <div className="columns">
-            {this.state.photos.map((photo, index) => {
-              return (
-                <div className="column" key={index}>
-                  <figure
-                    className="image is-128x128"
-                    key={index}
-                    style={
-                      this.state.index === index
-                        ? {
-                            border: "solid",
-                            borderWeight: "thin",
-                            borderWidth: "1px",
-                            borderColor: "#0000006F"
-                          }
-                        : null
-                    }
-                  >
-                    <img
-                      src={photo.thumbnail_url}
-                      alt="thumbnail"
-                      style={{
-                        height: "50%",
-                        width: "autop",
-                        justifyContent: "center"
-                      }}
-                      alt="thumbnail_url"
-                    />
-                  </figure>
-                </div>
-              );
-            })}
+            <div className="column is-1" style={this.state.column1}></div>
+            <div className="column is-10" style={this.state.column}>
+              <Carousel showThumbs={true}>
+                {this.state.photos.map((photo, index) => {
+                  return (
+                    <figure
+                      key={index}
+                      className="image is-square"
+                      style={this.state.figure}
+                    >
+                      <img src={photo.url} style={this.state.img} />
+                    </figure>
+                  );
+                })}
+              </Carousel>
+            </div>
+            <div className="column is-1" style={this.state.column1}></div>
           </div>
         </div>
       </>

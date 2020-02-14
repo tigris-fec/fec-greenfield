@@ -13,29 +13,12 @@ const ProductPrice = (props) => {
             <div className="field is-grouped">
               <div className="control">
                 <div className="tags has-addons">
-                  <span
-                    className="tag is-light is-large"
-                    style={{
-                      border: "solid",
-                      borderWidth: "thin",
-                      borderColor: "#0000003F",
-                      backgroundColor: "none",
-                      borderRadius: "0px"
-                    }}
-                  >
+                  <span className="tag is-light is-large">
                     <strong>${props.salePrice}</strong>
                   </span>
                   {props.salePrice === props.originalPrice ? null : (
                     <span className="tag is-light is-large">
-                      <u
-                        style={{
-                          color: "red",
-                          textDecoration: "line-through",
-                          borderRadius: "0px"
-                        }}
-                      >
-                        ${props.originalPrice}
-                      </u>
+                      <u>${props.originalPrice}</u>
                     </span>
                   )}
                 </div>

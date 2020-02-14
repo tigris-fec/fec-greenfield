@@ -40,10 +40,7 @@ const AddToCart = ({ skus }) => {
 
   return (
     <div className="container">
-      <div
-        className="level"
-        style={{ paddingTop: "2.5%", paddingBottom: "2.5%", height: "105%" }}
-      >
+      <div className="level">
         <div className="level-item">
           <div className="field is-horizontal">
             <div className="control">
@@ -54,8 +51,7 @@ const AddToCart = ({ skus }) => {
                     border: "solid",
                     borderWidth: "thin",
                     borderRadius: "0px",
-                    height: "120%",
-                    width: "275px"
+                    height: "120%"
                   }}
                 >
                   {availableSizes.map((size, index) => (

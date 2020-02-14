@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 
@@ -44,7 +44,7 @@ const OverviewContainer = (props) => {
   }, [availableStyles]);
 
   return (
-    <section className="section">
+    <>
       <div className="columns">
         <div className="column is-7">
           <ProductsGallery photos={currentStyle ? currentStyle.photos : null} />
@@ -82,7 +82,7 @@ const OverviewContainer = (props) => {
           </div>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 

@@ -28,7 +28,7 @@ const ProductStyles = (props) => {
             {">"}
           </span>
           <span
-            className="tag is-white is-large"
+            className="tag is-white is-large is-borderless"
             style={{ border: "solid", borderWidth: "thin", borderColor: "#0000001F" }}
           >
             {props.defaultStyle.name.toUpperCase()}

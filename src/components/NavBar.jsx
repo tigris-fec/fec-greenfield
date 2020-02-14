@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./css/NavBar.css";
 
-const NavBar = props => {
+const NavBar = (props) => {
   const node = useRef();
   const [search, setSearch] = useState();
   useEffect(() => {
@@ -13,7 +13,7 @@ const NavBar = props => {
       document.removeEventListener("keydown", handleMoveOutside);
     };
   }, []);
-  const handleChange = event => {
+  const handleChange = (event) => {
     setSearch(event.target.value);
   };
   const toggleNavBar = () => {
@@ -22,7 +22,7 @@ const NavBar = props => {
     navToggle.classList.toggle("is-active");
     navbarMenu.classList.toggle("is-active");
   };
-  const handleMoveOutside = event => {
+  const handleMoveOutside = (event) => {
     if (node.current.contains(event.target)) {
       return;
     } else {
@@ -36,7 +36,7 @@ const NavBar = props => {
     <header>
       <nav
         id="navbar"
-        className="navbar is-mobile is-spaced is-clearfix is-light"
+        className="navbar is-desktop is-spaced is-clearfix is-light"
         ref={node}
       >
         <div className="navbar-brand">
@@ -47,11 +47,7 @@ const NavBar = props => {
               </Link>
             </strong>
           </div>
-          <div
-            className="navbar-burger nav-toggle"
-            id="burger"
-            onClick={toggleNavBar}
-          >
+          <div className="navbar-burger nav-toggle" id="burger" onClick={toggleNavBar}>
             <span></span>
             <span></span>
             <span></span>
@@ -83,24 +79,6 @@ const NavBar = props => {
               <Link className="link" to="/ratings-and-reviews">
                 Ratings and Reviews
               </Link>
-            </div>
-          </div>
-          <div className="navbar-end">
-            <div
-              className="field"
-              style={{ paddingLeft: "5%", paddingRight: "5%" }}
-            >
-              <p className="control">
-                <input
-                  id="searchbar"
-                  className="input is-rounded"
-                  type="text"
-                  placeholder="Search"
-                  name="search"
-                  value={search}
-                  onChange={handleChange}
-                />
-              </p>
             </div>
           </div>
         </div>

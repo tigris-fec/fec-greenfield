@@ -1,0 +1,10 @@
+div.carousel {
+  text-align: center;
+}
+
+li.thumb {
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  margin: auto;
+}

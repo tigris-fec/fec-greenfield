@@ -1,11 +1,12 @@
 body {
+  font-size: 15px;
+  border-radius: 0px;
 }
 
 button {
   border: none;
   border-style: solid;
   border-width: thin;
-  border-radius: 0px;
 }
 
 border:hover {
@@ -27,23 +28,8 @@ select {
 
 /** Overview CSS **/
 
-.carousel * {
-  height: 50%;
-  width: 100%;
-  position: relative;
-}
-
-div.slider-wrapper.axis-horizontal {
-  height: auto;
-}
-
-li.selected {
-  height: auto;
-  overflow: hidden;
-}
-
-.control-dots {
-  height: 0px;
+.tag {
+  border-radius: 0;
 }
 
 .product-category {
@@ -118,4 +104,11 @@ span > u {
 
 .answer-photo {
   border: 1px solid gray;
+}
+
+/* Reviews & Ratings */
+
+#modal-title {
+  color: white;
+  text-align: center;
 }
