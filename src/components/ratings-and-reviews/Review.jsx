@@ -57,18 +57,38 @@ const Review = (props) => {
                 </div>
                 {props.review.reviewer_name} &nbsp;&nbsp; {date}
               </div>
+
               <div style={{ paddingBottom: "1.5%", fontSize: "125%" }}>
                 <strong>{props.review.summary}</strong>
               </div>
               <p>{props.review.body}</p>
             </div>
-            <div className="column is-inline-flex">
-              {props.review.photos.map((photo) => (
-                <Photo key={photo.id} photo={photo} />
-              ))}
+            <div className="level">
+              <div className="level-left">
+                {props.review.photos.map((photo) => (
+                  <div className="level-item">
+                    <Photo key={photo.id} photo={photo} />
+                  </div>
+                ))}
+              </div>
             </div>
-            {props.review.recommend ? <RecommendedProduct /> : null}
-            {props.review.response ? <Response response={props.review.response} /> : null}
+            <div className="level">
+              <div className="level-left">
+                <div className="level-item">
+                  {props.review.recommend ? <RecommendedProduct /> : null}
+                </div>
+              </div>
+            </div>
+            <div className="level">
+              <div className="level-left">
+                <div className="level-item">
+                  {props.review.response ? (
+                    <Response response={props.review.response} />
+                  ) : null}
+                </div>
+              </div>
+            </div>
+
             <div className="level">
               <div className="level-left">
                 <div className="level-item">

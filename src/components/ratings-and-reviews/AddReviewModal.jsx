@@ -1,222 +1,350 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { Component } from "react";
+import Modal from "react-modal";
+import Rating from "react-rating";
+import RadioGroup from "./RadioGroup.jsx";
 import ImageUploader from "react-images-upload";
-import AddRatingModal from "./AddRatingModal.jsx";
-import CharRadio from "./CharRadio.jsx";
+import axios from "axios";
+import "./AddReview.css";
 
-const AddReviewModal = (props) => {
-  const changeRecommended = (e) => setRecommendProduct(e.target.value);
-  const reviewChange = (e) => setReviewSum(e.target.value);
-  const reviewBodyChange = (e) => setReviewBody(e.target.value);
-  const usernameChange = (e) => setUsername(e.target.value);
-  const emailChange = (e) => setEmail(e.target.value);
+const characteristics = {
+  Size: [
+    "A size too small",
+    "1/2 a size too small",
+    "Perfect",
+    "1/2 a size too big",
+    "A size too wide"
+  ],
+  Width: ["Too narrow", "Slightly narrow", "Perfect", "Slightly wide", "Too wide"],
+  Comfort: ["Uncomfortable", "Slightly uncomfortable", "Ok", "Comfortable", "Perfect"],
+  Quality: ["Poor", "Below average", "What I expected", "Pretty great", "Perfect"],
+  Length: [
+    "Runs Short",
+    "Runs slightly short",
+    "Perfect",
+    "Runs slightly long",
+    "Runs long"
+  ],
+  Fit: ["Runs tight", "Runs slightly tight", "Perfect", "Runs slightly long", "Runs long"]
+};
 
-  const pictureChange = (e) => {
-    let newPhotos = photos.slice();
-    newPhotos.push(e[0].name);
-    setPhotos(newPhotos);
-  };
+const modalStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    width: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "80%",
+    zIndex: "1000",
+    borderStyle: "none",
+    background: "#FFFFFF"
+  },
+  overlay: {
+    background: "#0000009F",
+    borderStyle: "none"
+  }
+};
 
-  const sendData = () => {
+class AddReview extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      rating: null,
+      recommended: "",
+      summary: "",
+      description: "",
+      username: "",
+      email: "",
+      Size: "",
+      Width: "",
+      Comfort: "",
+      Quality: "",
+      Length: "",
+      Fit: "",
+      photos: [],
+      characteristics: [],
+      submitted: false,
+      modalIsOpen: false
+    };
+    this.openModal = this.openModal.bind(this);
+    this.afterModalOpen = this.afterModalOpen.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleUploadImage = this.handleUploadImage.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+  }
+  componentDidMount() {
+    this.setState({ characteristics: Object.keys(this.props.charList) });
+  }
+  openModal() {
+    this.setState({ modalIsOpen: true });
+  }
+  afterModalOpen() {
+    console.log("After modal opened called!");
+  }
+  closeModal() {
+    this.setState({ modalIsOpen: false });
+  }
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+  handleUploadImage(event) {
+    let photos = this.state.photos.slice();
+    photos.push(event[0].name);
+    this.setState({ photos });
+  }
+  handleFormSubmit(event) {
+    event.preventDefault();
+
     const charArray = {
-      Size: sizeChar,
-      Width: widthChar,
-      Comfort: comfortChar,
-      Quality: qualityChar,
-      Length: lengthChar,
-      Fit: fitChar
+      Size: this.state.Size,
+      Width: this.state.Width,
+      Comfort: this.state.Comfort,
+      Quality: this.state.Quality,
+      Length: this.state.Length,
+      Fit: this.state.Fit
     };
     const characterSendOver = {};
-    for (let key in props.charList) {
-      characterSendOver[props.charList[key].id] = parseInt(charArray[key]);
+    for (let key in this.props.charList) {
+      characterSendOver[this.props.charList[key].id] = parseInt(charArray[key]);
     }
     const data = {
-      rating: overallRating,
-      summary: reviewSum,
-      body: reviewBody,
-      recommend: Boolean(recommendProduct),
-      name: username,
-      email: email,
+      rating: this.state.rating,
+      summary: this.state.summary,
+      body: this.state.description,
+      recommend: Boolean(this.state.recommended),
+      name: this.state.username,
+      email: this.state.email,
       photos: [],
       characteristics: characterSendOver
     };
 
-    axios.post(`http://3.134.102.30/reviews/` + props.PRODUCT_ID, data).catch((err) => {
-      console.log("Error posting the review", err);
+    const url = process.env.REACT_APP_API_URL;
+    axios.post(`${url}/reviews/${this.props.productId}`, data).then((res) => {
+      console.log(res.data);
     });
-    props.closeModal();
-  };
+  }
 
-  return (
-    <div className="modal is-active">
-      <div
-        className="modal-background"
-        onClick={() => {
-          console.log("Closed");
-          console.log(props);
-        }}
-      ></div>
-      <div className="modal-card">
-        <header className="modal-card-head">
-          <p className="modal-card-title">Write Your Review</p>
-          <button
-            className="delete"
-            aria-label="close"
-            onClick={props.closeModal}
-          ></button>
-        </header>
-        <section className="modal-card-body">
-          <form
-            className="form"
-            onSubmit={(event) => {
-              event.preventDefault();
+  render() {
+    const characteristicOptions = Object.keys(this.props.charList);
+    return (
+      <>
+        <div
+          className="box is-button is-shadowless"
+          style={{
+            border: "solid",
+            borderWidth: "thin",
+            borderRadius: "0",
+            fontSize: "75%"
+          }}
+          onClick={(event) => {
+            event.currentTarget.blur();
+            this.openModal();
+          }}
+        >
+          <strong>ADD REVIEW +</strong>
+        </div>
+
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterModalOpen}
+          onRequestClose={this.closeModal}
+          style={modalStyles}
+          shouldFocusAfterRender={true}
+          shouldReturnFocusAfterClose={true}
+          ariaHideApp={false}
+          autoFocus={true}
+        >
+          <div
+            style={{
+              backgroundColor: "#0000006F",
+              paddingTop: "2%",
+              paddingBottom: "2%",
+              marginBottom: "1%",
+              width: "100%"
             }}
           >
-            <div className="field is-horizontal">
-              <div className="control">
-                <label className="label">Overall Rating</label>
-              </div>
-              &nbsp;&nbsp;
-              <div className="control is-inline-flex">
-                <AddRatingModal
-                  check={1}
-                  rating={overallRating}
-                  setOverallRating={setOverallRating}
-                />
-                <AddRatingModal
-                  check={2}
-                  rating={overallRating}
-                  setOverallRating={setOverallRating}
-                />
-                <AddRatingModal
-                  check={3}
-                  rating={overallRating}
-                  setOverallRating={setOverallRating}
-                />
-                <AddRatingModal
-                  check={4}
-                  rating={overallRating}
-                  setOverallRating={setOverallRating}
-                />
-                <AddRatingModal
-                  check={5}
-                  rating={overallRating}
-                  setOverallRating={setOverallRating}
-                />
-              </div>
-            </div>
+            <h1 style={{ color: "white", textAlign: "center" }} className="title is-5">
+              Add A Rating
+            </h1>
+          </div>
 
-            {overallRating !== 0 ? (
-              <p
-                className="is-size-7"
-                onClick={() => {
-                  setOverallRating(0);
-                }}
-              >
-                <em>
-                  <u>Clear Rating</u>
-                </em>
-              </p>
-            ) : null}
-            <br />
-
-            <p>Do you recommend this product?</p>
-            <div className="level">
-              <div className="level-left">
-                <label>
-                  <input
-                    type="radio"
-                    value="true"
-                    checked={recommendProduct === "true"}
-                    onChange={changeRecommended}
+          <div style={{ margin: "1%" }}>
+            <form className="form" onSubmit={this.handleFormSubmit}>
+              <div className="field">
+                <label className="label">Rating</label>
+                <div className="control is-inline-flex">
+                  <Rating
+                    initialRating={this.state.rating}
+                    emptySymbol={<i className="far fa-star" style={{}}></i>}
+                    fullSymbol={
+                      <i className="fa fa-star" style={{ color: "#d4af37" }}></i>
+                    }
+                    onClick={(value) => this.setState({ rating: value })}
                   />
-                  &nbsp; Yes &nbsp;
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    value="false"
-                    checked={recommendProduct === "false"}
-                    onChange={changeRecommended}
-                  />
-                  &nbsp; No
-                </label>
+                </div>
+                <div className="field">
+                  <label className="label">
+                    Would you recommend this product to a friend?
+                  </label>
+                  <div class="control">
+                    <label class="radio">
+                      <input
+                        type="radio"
+                        name="recommended"
+                        value={this.state.recommended}
+                        checked={this.state.recommended === "true"}
+                        onChange={() => this.setState({ recommended: "true" })}
+                      />
+                      &nbsp; Yes
+                    </label>
+                    <label class="radio">
+                      <input
+                        className=""
+                        type="radio"
+                        name="recommended"
+                        value={this.state.recommended}
+                        onChange={() => this.setState({ recommended: "false" })}
+                      />
+                      &nbsp; No
+                    </label>
+                  </div>
+
+                  <label className="label">Characteristics</label>
+                  {characteristicOptions.map((char, index) => {
+                    return (
+                      <div className="field" key={index}>
+                        <label className="label">{char}</label>
+                        <div className="control">
+                          {characteristics[char].map((size, i) => {
+                            return (
+                              <label className="radio">
+                                <input
+                                  className="radio"
+                                  type="radio"
+                                  name={char}
+                                  value={i + 1}
+                                  checked={this.state[char] === i + 1 + ""}
+                                  onChange={(event) =>
+                                    this.setState({
+                                      [event.target.name]: event.target.value
+                                    })
+                                  }
+                                />
+                                {"  "}
+                                {size}
+                              </label>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    );
+                  })}
+
+                  <div className="field">
+                    <label className="label">Review Summary</label>
+                    <div className="control">
+                      <input
+                        className="input"
+                        type="text"
+                        name="summary"
+                        value={this.state.summary}
+                        placeholder={"Example: Best purchase ever!"}
+                        maxLength="60"
+                        onChange={this.handleChange}
+                      />
+                      {this.state.summary.length > 60 ? (
+                        <p className="help is-danger">
+                          Must be fewer thatn 60 characters
+                        </p>
+                      ) : null}
+                    </div>
+                  </div>
+
+                  <div className="field">
+                    <label className="label">Review Description</label>
+                    <div className="control">
+                      <textarea
+                        className="textarea"
+                        type="textarea"
+                        name="description"
+                        value={this.state.description}
+                        placeholder="Why did you like (or dislike) the product?"
+                        minLength="50"
+                        onChange={this.handleChange}
+                      />
+                      {this.state.description.length <= 50 ? (
+                        <p className="help">Must be at least 50 characters long</p>
+                      ) : null}
+                    </div>
+                  </div>
+
+                  <div className="field">
+                    <label className="label">Username</label>
+                    <div className="control">
+                      <input
+                        className="input"
+                        name="username"
+                        value={this.state.username}
+                        type="input"
+                        placeholder="Example: jackson11!"
+                        onChange={this.handleChange}
+                      />
+                      <p className="help">
+                        For privacy reasons, do not use your full name or email address
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="field">
+                    <label className="label">Email</label>
+                    <div className="control">
+                      <input
+                        className="input"
+                        name="email"
+                        value={this.state.email}
+                        type="email"
+                        onChange={this.handleChange}
+                        maxLength="60"
+                      />
+                      <p className="help">
+                        For authentication reasons, you will not be emailed
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="file has-name is-boxed">
+                    <label className="file-label">
+                      <input
+                        className="file-input"
+                        type="file"
+                        name="photo"
+                        onChange={(event) => console.log(event.target.files[0])}
+                      />
+                      <span className="file-cta">
+                        <span className="file-icon">
+                          <i className="fas fa-upload"></i>
+                        </span>
+                        <span className="file-label">Choose a file..</span>
+                      </span>
+                      <span className="file-name">Sample Image</span>
+                    </label>
+                  </div>
+                </div>
               </div>
-            </div>
+              <button onClick={this.handleFormSubmit}>Submit Bitch</button>
+            </form>
+          </div>
+        </Modal>
+      </>
+    );
+  }
+}
 
-            <p>Product Characteristics:</p>
-            {itemChar.map((char, i) => (
-              <CharRadio
-                key={i}
-                name={char}
-                settings={characteristicNames[char].setting}
-                setFunc={characteristicNames[char].func}
-                val={characteristicNames[char].val}
-              />
-            ))}
+export default AddReview;
 
-            <p>Review Summary:</p>
-            <input
-              value={reviewSum}
-              placeholder="Example: Best purchase ever!"
-              type="text"
-              onChange={reviewChange}
-              style={{ width: "50%" }}
-              maxLength="60"
-            />
+/*
 
-            <label className="label">Review Description:</label>
-            <textarea
-              className="textarea"
-              value={reviewBody}
-              placeholder="Why did you like the product or not?"
-              type="text"
-              onChange={reviewBodyChange}
-              style={{ width: "50%", height: "100px" }}
-              minLength="50"
-              required="required"
-            />
-            <br />
-            <ImageUploader
-              withIcon={true}
-              withPreview={true}
-              singleImage={false}
-              buttonText="Upload Images"
-              onChange={pictureChange}
-              imgExtension={[".jpg", ".gif", ".png", ".gif", "jpeg"]}
-              maxFileSize={5242880}
-            />
-            <p>Nickname:</p>
-            <input
-              value={username}
-              placeholder="Example: jackson11!"
-              type="text"
-              onChange={usernameChange}
-              style={{ width: "50%" }}
-              maxLength="60"
-            />
-            <p>Email:</p>
-            <input
-              value={email}
-              placeholder="Example: jackson11@email.com"
-              type="text"
-              onChange={emailChange}
-              style={{ width: "50%" }}
-              maxLength="60"
-            />
-          </form>
-        </section>
-        <footer className="modal-card-foot">
-          <button className="button is-success" onClick={sendData}>
-            Send Review
-          </button>
-          <button className="button" onClick={props.closeModal}>
-            Cancel
-          </button>
-        </footer>
-      </div>
-    </div>
-  );
-};
 
-export default AddReviewModal;
+*/

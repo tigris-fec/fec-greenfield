@@ -27,7 +27,12 @@ const Breakdown = (props) => {
             return (
               <div className="level">
                 <div className="level-left">
-                  <div className="level-item" onClick={starClick(star)}>
+                  <div
+                    id="star-filter"
+                    className="level-item"
+                    onClick={() => starClick(star)}
+                    style={{ cursor: "pointer" }}
+                  >
                     <u>{star} Star(s)</u> &nbsp;&nbsp;
                   </div>
                   <div className="level-item">

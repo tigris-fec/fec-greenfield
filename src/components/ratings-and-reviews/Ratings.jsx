@@ -43,9 +43,10 @@ const Ratings = (props) => {
       <Breakdown
         recommended={averageRecommend}
         ratings={fakeReview.ratings}
-        setFilter={props.setFilter}
         filters={props.filters}
+        setFilter={props.setFilter}
       />
+      <br />
       <br />
       <Factors characteristics={productCharacteristics} charList={props.charList} />
     </>
