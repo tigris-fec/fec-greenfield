@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from "react";
-
-/*
-skus: {
-  XS: 8,
-  S: 16,
-  M: 17,
-  L: 10,
-  XL: 15
-}
-*/
+import "./AddToCart.css";
 
 const AddToCart = ({ skus }) => {
   const [currentSize, setCurrentSize] = useState("XS");
@@ -48,41 +39,84 @@ const AddToCart = ({ skus }) => {
   };
 
   return (
-    <>
-      <div className="control">
-        <div className="select is-medium">
-          <select style={{ borderRadius: "0px" }} onChange={handleSizeChange}>
-            {availableSizes.map((size) => (
-              <option value={size}>{size}</option>
-            ))}
-          </select>
-        </div>
-        &nbsp; &nbsp;
-        <div className="select is-medium">
-          <select style={{ borderRadius: "0px" }} onChange={handleQuantityChange}>
-            {productSize[currentSize].map((size) => (
-              <option value={size}>{size}</option>
-            ))}
-          </select>
-        </div>
-        <div className="control"></div>
-      </div>
-      <br />
-      <div className="level">
-        <div className="level-left">
-          <div className="level-item">
-            <button className="button is-medium">Add to Cart</button>
+    <div className="container">
+      <div
+        className="level"
+        style={{ paddingTop: "2.5%", paddingBottom: "2.5%", height: "105%" }}
+      >
+        <div className="level-item">
+          <div className="field is-horizontal">
+            <div className="control">
+              <div className="select is-dark is-large">
+                <select
+                  onChange={handleSizeChange}
+                  style={{
+                    border: "solid",
+                    borderWidth: "thin",
+                    borderRadius: "0px",
+                    height: "120%",
+                    width: "275px"
+                  }}
+                >
+                  {availableSizes.map((size) => (
+                    <option value={size}>{size}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
           </div>
-          &nbsp; &nbsp;
-          <div className="level-item">
-            <div className="button is-medium">
-            <i className="far fa-star"></i>
+        </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <div className="level-item">
+          <div className="field is-horizontal">
+            <div className="control">
+              <div className="select is-dark is-large">
+                <select
+                  onChange={handleSizeChange}
+                  style={{
+                    border: "solid",
+                    borderWidth: "thin",
+                    borderRadius: "0px",
+                    height: "120%",
+                    width: "275px"
+                  }}
+                >
+                  {productSize[currentSize].map((size) => (
+                    <option value={size}>{size}</option>
+                  ))}
+                </select>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <div className="level">
+        <div className="box is-button is-shadowless" style={{ width: "100%" }}>
+          ADD TO CART
+        </div>
+      </div>
+    </div>
   );
 };
 
 export default AddToCart;
+
+/*
+
+      <div className="field is-horiztonal">
+        <div className="level">
+          <div className="level-left">
+            <div className="level-item">
+              <button className="button is-large">Add to Cart</button>
+            </div>
+            &nbsp; &nbsp;
+            <div className="level-item">
+              <div className="button is-large">
+                <i className="far fa-star"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+*/

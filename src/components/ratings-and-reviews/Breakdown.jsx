@@ -4,10 +4,9 @@ import "./Breakdown.css";
 const Breakdown = (props) => {
   let max = Math.max(...Object.values(props.ratings));
   const [stars] = useState([5, 4, 3, 2, 1]);
+  const ratings = props.ratings;
 
   const clearFilter = () => props.setFilter([]);
-
-  const ratings = Object.values(props.ratings);
 
   const starClick = (number) => {
     if (!props.filters.includes(number)) {
@@ -21,23 +20,29 @@ const Breakdown = (props) => {
     <div className="container">
       <div className="columns">
         <div className="column is-12">
-          <p className="subtitle" style={{ fontSize: "90%" }}>
+          <p className="subtitle">
             {props.recommended}% of reviews recommend this product
           </p>
-          <br />
-          {ratings.map((rating, index) => {
+          {stars.map((star) => {
             return (
-              <div className="is-inline">
-                <div className="field is-grouped is-grouped-left">
-                  <p className="control is-left" style={{ fontSize: "90%" }}>
-                    <u>{stars[index]} Star(s)</u>
-                  </p>
-                  <div className="progress is-right">
-                    <progress
-                      value={(rating / max) * 100}
-                      max={100}
-                      style={{ width: "70%", height: "75%", padding: "0", margin: "0" }}
-                    />
+              <div className="level">
+                <div className="level-left">
+                  <div
+                    id="star-filter"
+                    className="level-item"
+                    onClick={() => starClick(star)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <u>{star} Star(s)</u> &nbsp;&nbsp;
+                  </div>
+                  <div className="level-item">
+                    <div className="progress is-left">
+                      <progress
+                        value={ratings[star] ? (ratings[star] / max) * 100 : 0}
+                        max={100}
+                        style={{ width: "300px" }}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>

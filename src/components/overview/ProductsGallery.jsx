@@ -1,57 +1,73 @@
-import React, { useState } from "react";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import React, { Component } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-const ProductsGallery = (props) => {
-  return (
-    <>
-      <div style={{ width: "100%" }}>
-        <Carousel
-          showArrows={true}
-          showStatus={true}
-          showThumbs={false}
-          useKeyboardArrows={true}
-          onChange={() => {}}
-          onClickThumb={() => console.log("Thumbnail clicked!")}
-          onClickItem={() => console.log("Item clicked!")}
-        >
-          {props.photos.map((photo, i) => {
-            return (
-              <figure className="image" key={i}>
-                <img
-                  src={photo.thumbnail_url}
-                  alt="No Pictures Available"
-                  style={{
-                    maxHeight: "75%",
-                    height: "39vw",
-                    width: "auto",
-                    margin: "auto"
-                  }}
-                />
-              </figure>
-            );
-          })}
-        </Carousel>
-
-        <div className="columns" style={{ marginTop: "1vw" }}>
-          {props.photos.map((photo, i) => {
-            return (
-              <figure className="image" key={i}>
-                <img
-                  src={photo.thumbnail_url}
-                  alt="thumbnail"
-                  style={{
-                    height: "auto",
-                    width: "50%",
-                    margin: "auto"
-                  }}
-                />
-              </figure>
-            );
-          })}
+class ProductsGallery extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      current: 0,
+      photos: []
+    };
+  }
+  componentDidMount() {
+    this.setState({ photos: this.props.photos }, () => console.log(this.state.photos));
+  }
+  render() {
+    return (
+      <>
+        <div className="container is-fluid">
+          <Slider
+            afterChange={(index) =>
+              this.setState({ current: index }, () => console.log(this.state.current))
+            }
+            className="bulma"
+            lazyLoad={true}
+            slide={"figure"}
+            arrows={true}
+          >
+            {this.state.photos.map((photo, index) => {
+              return <img src={photo.url} />;
+            })}
+          </Slider>
+          <div className="columns">
+            {this.state.photos.map((photo, index) => {
+              return (
+                <div className="column">
+                  <figure
+                    className="image is-128x128"
+                    key={index}
+                    style={
+                      this.state.index === index
+                        ? {
+                            border: "solid",
+                            borderWeight: "thin",
+                            borderWidth: "1px",
+                            borderColor: "#0000006F"
+                          }
+                        : null
+                    }
+                  >
+                    <img
+                      src={photo.thumbnail_url}
+                      alt="thumbnail"
+                      style={{
+                        height: "50%",
+                        width: "autop",
+                        justifyContent: "center"
+                      }}
+                      alt="thumbnail_url"
+                    />
+                  </figure>
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </>
-  );
-};
+      </>
+    );
+  }
+}
+
 export default ProductsGallery;

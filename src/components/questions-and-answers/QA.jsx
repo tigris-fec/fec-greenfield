@@ -3,11 +3,11 @@ import { render } from "enzyme";
 import QuestionUnit from "./QuestionUnit.jsx";
 import AddQuestion from "./AddQuestion.jsx";
 import AddAnswer from "./AddAnswer.jsx";
-//import { sampleQuestions } from "../../mockData/questions.js";
 import $ from "jquery";
 import Axios from "axios";
-import {connect} from 'react-redux';
-let mapStateToProps = (store) => ({PRODUCT_ID: store.product_id})
+
+import { connect } from "react-redux";
+let mapStateToProps = (store) => ({ PRODUCT_ID: store.product_id });
 class QA_ extends React.Component {
   constructor(props) {
     super(props);
@@ -26,10 +26,10 @@ class QA_ extends React.Component {
     this.loadQuestions = this.loadQuestions.bind(this);
   }
 
-  loadQuestions(){
+  loadQuestions() {
     Axios.get("http://3.134.102.30/qa/" + this.state.productID + "/?page=1&count=200")
       .then((data) => {
-        console.log("Got new questions:", this.state.productID)
+        console.log("Got new questions:", this.state.productID);
         data.data.results.sort((a, b) => {
           return b.question_helpfulness - a.question_helpfulness;
         });
@@ -62,18 +62,21 @@ class QA_ extends React.Component {
     this.loadQuestions();
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot){
-
+  componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.PRODUCT_ID !== this.props.PRODUCT_ID) {
       console.log(prevProps.PRODUCT_ID);
       console.log(this.props.PRODUCT_ID);
-      this.setState({
-        productID: this.props.PRODUCT_ID
-      });
-      this.loadQuestions();
-      console.log("I changed state");
+      this.setState(
+        {
+          productID: this.props.PRODUCT_ID
+        },
+        () => {
+          this.loadQuestions();
+        }
+      );
     }
   }
+
   setCurrentlyAnswering(id) {
     this.setState({
       currentlyAnswering: id
@@ -114,7 +117,12 @@ class QA_ extends React.Component {
             .split(" ")
             .join("")
             .toLowerCase()
-            .includes(searchTerms.split(" ").join("").toLowerCase())
+            .includes(
+              searchTerms
+                .split(" ")
+                .join("")
+                .toLowerCase()
+            )
         ) {
           markedQuestions[question.question_id] = true;
         }
@@ -145,60 +153,68 @@ class QA_ extends React.Component {
   }
   render() {
     return this.state.questions.product_id !== undefined ? (
-      <div className="my-width content is-medium">
-        <p>QUESTIONS AND ANSWERS</p>
-        <input
-          className="search-box"
-          type="text"
-          placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
-          onChange={this.handleChange}
-        />
-        <div className="all-questions">
-          {this.state.questions.results
-            .slice(0, this.state.numOfSearch || this.state.questionsToDisplay)
-            .map((question, index) => {
-              if (
-                this.state.searchMode &&
-                this.state.searchedQuestions[question.question_id]
-              ) {
-                return (
-                  <QuestionUnit
-                    question={question}
-                    key={question.question_id}
-                    setCurrentlyAnswering={this.setCurrentlyAnswering}
-                  />
-                );
-              } else if (this.state.searchMode === false) {
-                return (
-                  <QuestionUnit
-                    question={question}
-                    key={question.question_id}
-                    setCurrentlyAnswering={this.setCurrentlyAnswering}
-                  />
-                );
-              }
-            })}{" "}
-          <br />
-          <AddAnswer question_id={this.state.currentlyAnswering} loadQuestions = {this.loadQuestions}/>
-          <AddQuestion productID={this.state.productID} loadQuestions = {this.loadQuestions}/>
-        </div>
-        {this.state.questions.results.length > 0 &&
-        this.state.questionsToDisplay < this.state.questions.results.length ? (
+      <div className="container">
+        <div className="my-width content is-medium">
+          <p>QUESTIONS AND ANSWERS</p>
+          <input
+            className="search-box"
+            type="text"
+            placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
+            onChange={this.handleChange}
+          />
+          <div className="all-questions">
+            {this.state.questions.results
+              .slice(0, this.state.numOfSearch || this.state.questionsToDisplay)
+              .map((question, index) => {
+                if (
+                  this.state.searchMode &&
+                  this.state.searchedQuestions[question.question_id]
+                ) {
+                  return (
+                    <QuestionUnit
+                      question={question}
+                      key={question.question_id}
+                      setCurrentlyAnswering={this.setCurrentlyAnswering}
+                    />
+                  );
+                } else if (this.state.searchMode === false) {
+                  return (
+                    <QuestionUnit
+                      question={question}
+                      key={question.question_id}
+                      setCurrentlyAnswering={this.setCurrentlyAnswering}
+                    />
+                  );
+                }
+              })}{" "}
+            <br />
+            <AddAnswer
+              question_id={this.state.currentlyAnswering}
+              loadQuestions={this.loadQuestions}
+            />
+            <AddQuestion
+              productID={this.state.productID}
+              loadQuestions={this.loadQuestions}
+            />
+          </div>
+          {this.state.questions.results.length > 0 &&
+          this.state.questionsToDisplay < this.state.questions.results.length ? (
+            <input
+              type="button"
+              className="my-button"
+              value="MORE ANSWERED QUESTIONS"
+              onClick={this.handleMoreQuestions}
+            />
+          ) : (
+            ""
+          )}
           <input
             type="button"
             className="my-button"
-            value="MORE ANSWERED QUESTIONS"
-            onClick={this.handleMoreQuestions}
-          />
-        ) : (
-          ""
-        )}
-        <input
-          type="button"
-          className="my-button"
-          onClick={this.handleOpenQuestion}
-          value="ADD A QUESTION +"
-        ></input>
+            onClick={this.handleOpenQuestion}
+            value="ADD A QUESTION +"
+          ></input>
+        </div>
       </div>
     ) : (
       <div></div>
@@ -206,6 +222,6 @@ class QA_ extends React.Component {
   }
 }
 
-let QA = connect(mapStateToProps,null)(QA_)
+let QA = connect(mapStateToProps, null)(QA_);
 
 export default QA;

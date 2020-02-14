@@ -61,7 +61,7 @@ export const customStyles = {
     width: "50%",
     transform: "translate(-50%, -50%)",
     width: "80%",
-
+    zIndex: "1000",
     borderStyle: "none",
     background: "#FFFFFF"
   },

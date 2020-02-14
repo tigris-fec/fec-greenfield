@@ -10,28 +10,17 @@ import "./App.css";
 import RatingSummary from "./components/ratings-and-reviews/RatingSummary.jsx";
 
 const App = (props) => {
-  console.log(process.env.REACT_APP_API_URL);
   return (
     <>
-      <div>
-        <NavBar />
-        <section className="section">
-          <Switch>
-            <Route exact path="/" render={() => <Home />} />
-            <Route exact path="/overview" render={() => <Overview />} />
-            <Route exact path="/questions-and-answers" render={() => <QA />} />
-            <Route exact path="/related-items-and-comparison" render={() => <RIC />} />
-            <Route
-              exact
-              path="/ratings-and-reviews"
-              render={() => <RatingsAndReviews />}
-            />
-          </Switch>
-          <Overview />
-          <QA />
-          <RIC />
-          <RatingsAndReviews />
-        </section>
+      <NavBar />
+      <div className="container is-fluid">
+        <Overview />
+        <br />
+        <RIC />
+        <br />
+        <QA />
+        <br />
+        <RatingsAndReviews />
       </div>
     </>
   );

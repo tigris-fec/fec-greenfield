@@ -46,7 +46,7 @@ const Factors = (props) => {
       {props.characteristics.map((char) => {
         let name = Object.keys(char);
         return (
-          <div className="container">
+          <div className="container" style={{ paddingTop: "1%", paddingBottom: "1%" }}>
             <p key={char[name[0]].id}>{name[0]}</p>
             <div className="indicator-container">
               <div className="indicator-bar-1">

@@ -58,8 +58,8 @@ const Reviews = (props) => {
                   style={{ border: "none", height: "100%", fontStyle: "bold" }}
                   onChange={sendFilter}
                 >
-                  {props.filters.map((filter) => (
-                    <option>{filter}</option>
+                  {filters.map((filter) => (
+                    <option value={filter}>{filter}</option>
                   ))}
                 </select>
               </div>
@@ -67,9 +67,13 @@ const Reviews = (props) => {
           </div>
         </div>
 
-        {currentReviews.map((review) => {
-          return <Review key={review.review_id} review={review} />;
-        })}
+        <div style={{ height: "696px", overflow: "auto" }}>
+          {currentReviews.map((review) => {
+            if (props.filters.length === 0 || props.filters.includes(review.rating)) {
+              return <Review key={review.review_id} review={review} />;
+            }
+          })}
+        </div>
       </div>
 
       <div className="container">
