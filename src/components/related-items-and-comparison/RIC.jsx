@@ -7,7 +7,6 @@ import changeProductId from "../../js/actions/product-id.js";
 
 const mapStateToProps = (store) => ({
   PRODUCT_ID: store.product_id,
-  Cart: [],
   currentItem: store.current_item
 });
 
@@ -17,8 +16,9 @@ const RIC_ = (props) => {
   const [ratings, setRatings] = useState([1, 2, 3, 4, 5, 1, 2, 3, 4, 5]);
   const [styles, setStyles] = useState(data);
   const [features, setFeatures] = useState([]);
-
-  let Cart = localStorage.getItem("myOutfit");
+  const [outfit, setOutfit] = useState(
+    localStorage.getItem("myOutfit") ? JSON.parse(localStorage.getItem("myOutfit")) : []
+  );
 
   useEffect(() => {
     axios
@@ -88,7 +88,6 @@ const RIC_ = (props) => {
           thisFeatures.push(item.data.features);
         }
         setFeatures(thisFeatures);
-        console.log(props.currentItem)
       })
       .catch((err) => {
         console.log("Error with getting the list of items:", err);
@@ -99,19 +98,21 @@ const RIC_ = (props) => {
     props.changeProductId(id);
   };
 
-  const addCurrentItem = () =>{
-    let currentOutfit = localStorage.getItem("myOutfit") || [];
+  const addCurrentItem = () => {
+    let currentOutfit = JSON.parse(localStorage.getItem("myOutfit")) || [];
     let currentItem = {
-      currentItem:props.currentItem
-    }
+      currentItem: props.currentItem
+    };
     currentOutfit.push(currentItem);
-    localStorage.setItem("myOutfit",currentOutfit);
-  }
+    localStorage.setItem("myOutfit", JSON.stringify(currentOutfit));
+    setOutfit(currentOutfit);
+  };
 
   const deleteTheId = (product) => {
-    let current = localStorage.getItem("myOutfit");
-    
-    
+    let current = JSON.parse(localStorage.getItem("myOutfit"));
+    let newOutfit = current.filter((item) => item.currentItem.currentProduct.id !== product)
+    localStorage.setItem("myOutfit", JSON.stringify(newOutfit));
+    setOutfit(newOutfit);
   };
 
   return (
@@ -147,17 +148,19 @@ const RIC_ = (props) => {
         style={{ overflow: "auto", width: "90vw", height: "60vh" }}
       >
         <div className="level-left">
-          <div className="button is-medium" onClick={addCurrentItem}>ADD TO CART +</div>
-          {props.Cart.map((product, i) => {
+          <div className="button is-medium" onClick={addCurrentItem} style={{marginRight:"10px"}}>
+            ADD TO CART +
+          </div>
+          {outfit.map((product, i) => {
             return (
               <IndividualCard
                 key={i}
-                product={product}
+                product={product.currentItem.currentProduct}
                 func={deleteTheId}
-                photo={null} //TODO
-                rating={3.5} //TODO
+                photo={product.currentItem.currentStyle.photos[0]}
+                rating={product.currentItem.averageRating}
                 cardType={"outfit"}
-                features={features[i]} //TODO
+                features={product.currentItem.currentProduct.features}
               />
             );
           })}
