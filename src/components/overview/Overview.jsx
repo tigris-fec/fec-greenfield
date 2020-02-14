@@ -50,7 +50,7 @@ const OverviewContainer = (props) => {
   }, [props.PRODUCT_ID]);
 
   useEffect(() => {
-    setCurrentStyle(availableStyles[2]);
+    setCurrentStyle(availableStyles[0]);
   }, [availableStyles]);
 
   return (
