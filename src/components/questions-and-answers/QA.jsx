@@ -200,21 +200,19 @@ class QA_ extends React.Component {
           </div>
           {this.state.questions.results.length > 0 &&
           this.state.questionsToDisplay < this.state.questions.results.length ? (
-            <input
+            <button
               type="button"
               className="my-button"
-              value="MORE ANSWERED QUESTIONS"
               onClick={this.handleMoreQuestions}
-            />
+            >
+              MORE ANSWERED QUESTIONS
+            </button>
           ) : (
             ""
           )}
-          <input
-            type="button"
-            className="my-button"
-            onClick={this.handleOpenQuestion}
-            value="ADD A QUESTION +"
-          ></input>
+          <button type="button" className="my-button" onClick={this.handleOpenQuestion}>
+            ADD A QUESTION +
+          </button>
         </div>
       </div>
     ) : (
