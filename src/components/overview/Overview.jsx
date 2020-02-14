@@ -82,7 +82,7 @@ const OverviewContainer = (props) => {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 
