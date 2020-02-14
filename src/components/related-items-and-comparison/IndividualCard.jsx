@@ -8,8 +8,7 @@ const IndividualCard = (props) => {
     "https://cdn.britannica.com/55/174255-050-526314B6/brown-Guernsey-cow.jpg";
 
   const handleClickChange = () => {
-    console.log(props.product.id)
-    props.func(props.product.id)
+    props.func(props.product.id);
   };
 
   const showModal = () => {
@@ -36,10 +35,12 @@ const IndividualCard = (props) => {
           <span className="icon">
             {props.cardType === "related" ? (
               <p onClick={handleClickChange}>
-                <i className="far fa-star" aria-hidden="true" onClick={handleClickChange}></i>
-              </p >
+                <i className="far fa-star" aria-hidden="true"></i>
+              </p>
             ) : (
-              <i className="far fa-times-circle" onClick={handleClickChange}></i>
+              <p onClick={handleClickChange}>
+                <i className="far fa-times-circle" aria-hidden="true"></i>
+              </p>
             )}
           </span>
         </a>

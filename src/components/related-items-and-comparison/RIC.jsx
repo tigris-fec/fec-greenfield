@@ -5,7 +5,10 @@ import IndividualCard from "./IndividualCard.jsx";
 import { data } from "./data.js";
 import changeProductId from "../../js/actions/product-id.js";
 
-const mapStateToProps = (store) => ({ PRODUCT_ID: store.product_id, Cart: [] });
+const mapStateToProps = (store) => ({
+  PRODUCT_ID: store.product_id,
+  currentItem: store.current_item
+});
 
 const RIC_ = (props) => {
   const [relatedItemsArr, setRelatedItemsArr] = useState([]);
@@ -13,8 +16,10 @@ const RIC_ = (props) => {
   const [ratings, setRatings] = useState([1, 2, 3, 4, 5, 1, 2, 3, 4, 5]);
   const [styles, setStyles] = useState(data);
   const [features, setFeatures] = useState([]);
-  
-  
+  const [outfit, setOutfit] = useState(
+    localStorage.getItem("myOutfit") ? JSON.parse(localStorage.getItem("myOutfit")) : []
+  );
+
   useEffect(() => {
     axios
       .get(`http://3.134.102.30/products/${props.PRODUCT_ID}/related`)
@@ -63,7 +68,7 @@ const RIC_ = (props) => {
       })
       .then((ratings) => {
         let ratingsIndex = relatedItemsArr.length;
-        let averageRatingsArr = ratings.slice(0,ratingsIndex).map((data) => {
+        let averageRatingsArr = ratings.slice(0, ratingsIndex).map((data) => {
           let rates = data.data.ratings;
 
           let total = Object.values(rates).reduce((a, b) => a + b);
@@ -75,14 +80,14 @@ const RIC_ = (props) => {
           return averageRating;
         });
         setRatings(averageRatingsArr);
-        return ratings.slice(ratingsIndex)
+        return ratings.slice(ratingsIndex);
       })
-      .then((features)=>{
+      .then((features) => {
         let thisFeatures = [];
-        for(let item of features){
+        for (let item of features) {
           thisFeatures.push(item.data.features);
         }
-        setFeatures(thisFeatures)
+        setFeatures(thisFeatures);
       })
       .catch((err) => {
         console.log("Error with getting the list of items:", err);
@@ -90,11 +95,27 @@ const RIC_ = (props) => {
   }, [relatedItemsArr]);
 
   const changeTheId = (id) => {
-    props.changeProductId(id)
+    props.changeProductId(id);
+  };
+
+  const addCurrentItem = () => {
+    let currentOutfit = JSON.parse(localStorage.getItem("myOutfit")) || [];
+    let currentItem = {
+      currentItem: props.currentItem
+    };
+    if(currentOutfit.some((item) => (item.currentItem.currentProduct.id === currentItem.currentItem.currentProduct.id))){
+    }else{
+      currentOutfit.push(currentItem);
+      localStorage.setItem("myOutfit", JSON.stringify(currentOutfit));
+      setOutfit(currentOutfit);
+    }
   };
 
   const deleteTheId = (product) => {
-    console.log(product);
+    let current = JSON.parse(localStorage.getItem("myOutfit"));
+    let newOutfit = current.filter((item) => item.currentItem.currentProduct.id !== product)
+    localStorage.setItem("myOutfit", JSON.stringify(newOutfit));
+    setOutfit(newOutfit);
   };
 
   return (
@@ -103,7 +124,7 @@ const RIC_ = (props) => {
       <div
         name="related-items"
         className="level"
-        style={{ overflow: "auto", width: "100vw", height: "90vh" }}
+        style={{ overflow: "auto", width: "90vw", height: "60vh" }}
       >
         <div className="level-left">
           {relatedProductsContent.map((product, i) => {
@@ -112,7 +133,7 @@ const RIC_ = (props) => {
                 key={i}
                 product={product}
                 func={changeTheId}
-                photo={styles[i]? styles[i][0].photos[0]: null}
+                photo={styles[i] ? styles[i][0].photos[0] : null}
                 cardType={"related"}
                 rating={ratings[i]}
                 features={features[i]}
@@ -127,19 +148,22 @@ const RIC_ = (props) => {
       <div
         name="related-items"
         className="level"
-        style={{ overflow: "auto", width: "100vw", height: "90vh" }}
+        style={{ overflow: "auto", width: "90vw", height: "60vh" }}
       >
         <div className="level-left">
-          {props.Cart.map((product, i) => {
+          <div className="button is-medium" onClick={addCurrentItem} style={{marginRight:"10px"}}>
+            ADD TO CART +
+          </div>
+          {outfit.map((product, i) => {
             return (
               <IndividualCard
                 key={i}
-                product={product}
+                product={product.currentItem.currentProduct}
                 func={deleteTheId}
-                photo={null}//TODO
-                rating={3.5}//TODO
+                photo={product.currentItem.currentStyle.photos[0]}
+                rating={product.currentItem.averageRating}
                 cardType={"outfit"}
-                features={features[i]}//TODO
+                features={product.currentItem.currentProduct.features}
               />
             );
           })}
@@ -149,6 +173,6 @@ const RIC_ = (props) => {
   );
 };
 
-const RIC = connect(mapStateToProps, {changeProductId})(RIC_);
+const RIC = connect(mapStateToProps, { changeProductId })(RIC_);
 
 export default RIC;

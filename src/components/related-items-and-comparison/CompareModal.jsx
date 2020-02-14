@@ -1,7 +1,6 @@
 import React from "react";
 
 const CompareModal = (props) => {
-  console.log(props.currentFeatures);
   return (
     <div className="modal is-active">
       <div className="modal-background" onClick={props.closeModal}></div>

@@ -6,6 +6,7 @@ const AddToCart = ({ skus }) => {
   const [currentQuantity, setCurrentQuantity] = useState(1);
   const [productSize, setProductSize] = useState({ XS: [] });
   const [availableSizes, setAvailableSizes] = useState([]);
+  const [starClick, setStarClick] = useState(false);
 
   const getQuantityList = (max) => {
     if (max === 0) {
@@ -30,6 +31,10 @@ const AddToCart = ({ skus }) => {
     setAvailableSizes(Object.keys(skus));
   }, []);
 
+  useEffect(() => {
+    setStarClick(false);
+  }, [skus]);
+
   const handleSizeChange = (e) => {
     setCurrentSize(e.target.value);
   };
@@ -38,6 +43,9 @@ const AddToCart = ({ skus }) => {
     setCurrentQuantity(e.target.value);
   };
 
+  const handleStarClick = () => {
+    setStarClick(true);
+  };
   return (
     <div className="container">
       <div
@@ -72,7 +80,7 @@ const AddToCart = ({ skus }) => {
             <div className="control">
               <div className="select is-dark is-large">
                 <select
-                  onChange={handleSizeChange}
+                  onChange={handleQuantityChange}
                   style={{
                     border: "solid",
                     borderWidth: "thin",
@@ -92,8 +100,27 @@ const AddToCart = ({ skus }) => {
       </div>
       &nbsp;&nbsp;&nbsp;&nbsp;
       <div className="level">
-        <div className="box is-button is-shadowless" style={{ width: "100%" }}>
-          ADD TO CART
+        <div className="level-item">
+          <div className="box is-button is-shadowless" style={{ width: "100%" }}>
+            ADD TO CART
+          </div>
+        </div>
+        <div className="level-item">
+          <div
+            className="box is-button is-shadowless"
+            style={{ width: "30%", margin: "auto" }}
+            onClick={starClick ? null : handleStarClick}
+          >
+            {starClick ? (
+              <span>
+                <i className="fa fa-star"></i>
+              </span>
+            ) : (
+              <div>
+                <i className="far fa-star"></i>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
@@ -102,21 +129,3 @@ const AddToCart = ({ skus }) => {
 
 export default AddToCart;
 
-/*
-
-      <div className="field is-horiztonal">
-        <div className="level">
-          <div className="level-left">
-            <div className="level-item">
-              <button className="button is-large">Add to Cart</button>
-            </div>
-            &nbsp; &nbsp;
-            <div className="level-item">
-              <div className="button is-large">
-                <i className="far fa-star"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-*/

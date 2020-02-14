@@ -45,7 +45,7 @@ const ProductStyles = (props) => {
             return (
               <li
                 className="product-styles-image"
-                style={{ margin: "3%", flex: "0 0 19%", listStyle: "none" }}
+                style={{ margin: "3%", flex: "0 0 19%", listStyle: "none" ,position:"relative"}}
                 key={style.style_id}
               >
                 <figure className="image is-96x96">
@@ -55,7 +55,7 @@ const ProductStyles = (props) => {
                         className="far fa-check-circle fa-lg"
                         style={{
                           float: "right",
-                          position: "relative",
+                          position: "absolute",
                           right: "0%",
                           top: "0%",
                           zIndex: "1",
