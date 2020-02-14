@@ -40,7 +40,7 @@ const OverviewContainer = (props) => {
   }, []);
 
   useEffect(() => {
-    setCurrentStyle(availableStyles[2]);
+    setCurrentStyle(availableStyles[0]);
   }, [availableStyles]);
 
   return (
