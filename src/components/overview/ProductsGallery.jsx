@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import "./ProductGallery.css";
 
 class ProductsGallery extends Component {
   constructor(props) {
@@ -32,8 +31,7 @@ class ProductsGallery extends Component {
       <>
         <div className="container">
           <div className="columns">
-            <div className="column is-1" style={this.state.column1}></div>
-            <div className="column is-10" style={this.state.column}>
+            <div className="column is-12" style={this.state.column}>
               <Carousel showThumbs={true}>
                 {this.state.photos.map((photo, index) => {
                   return (
@@ -48,7 +46,6 @@ class ProductsGallery extends Component {
                 })}
               </Carousel>
             </div>
-            <div className="column is-1" style={this.state.column1}></div>
           </div>
         </div>
       </>

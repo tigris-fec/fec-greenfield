@@ -1,8 +1,3 @@
-/*
-
-
-*/
-
 import React, { useState } from "react";
 import Rating from "react-rating";
 import RadioGroup from "./RadioGroup.jsx";

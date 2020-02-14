@@ -13,8 +13,10 @@ const App = (props) => {
   return (
     <>
       <NavBar />
-      <div className="container is-fluid">
-        <Overview />
+      <div className="container">
+        <section>
+          <Overview />
+        </section>
         <br />
         <QA />
         <br />

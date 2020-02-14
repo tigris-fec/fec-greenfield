@@ -23,6 +23,7 @@ const OverviewContainer = (props) => {
   const [currentProduct, setCurrentProduct] = useState(productInfo);
   const [availableStyles, setAvailableStyles] = useState(productStyles.results);
   const [currentStyle, setCurrentStyle] = useState(productStyles.results[0]);
+  const [grayBackground] = useState({ backgroundColor: "#EBEBEB" });
 
   useEffect(() => {
     axios
@@ -45,24 +46,34 @@ const OverviewContainer = (props) => {
 
   return (
     <>
-      <div className="columns">
+      <div className="columns is-desktop">
         <div className="column is-7">
           <ProductsGallery photos={currentStyle ? currentStyle.photos : null} />
         </div>
+
         <div className="column is-5">
           <ProductRating rating={props.averageRating} />
           <ProductCategory category={currentProduct.category} />
-          <ProductName name={currentProduct.name} />
-          <ProductPrice
-            originalPrice={currentStyle ? currentStyle.original_price : "N/A"}
-            salePrice={currentStyle ? currentStyle.original_price : "N/A"}
-          />
-          <br />
-          <ProductStyles
-            defaultStyle={currentStyle}
-            productStyles={availableStyles}
-            setSelectedProduct={setCurrentStyle}
-          />
+          <div className="columns">
+            <div className="column">
+              <ProductName name={currentProduct.name} />
+              <ProductPrice
+                originalPrice={currentStyle ? currentStyle.original_price : "N/A"}
+                salePrice={currentStyle ? currentStyle.original_price : "N/A"}
+              />
+            </div>
+          </div>
+          <hr />
+          <div className="columns">
+            <div className="column">
+              <ProductStyles
+                defaultStyle={currentStyle}
+                productStyles={availableStyles}
+                setSelectedProduct={setCurrentStyle}
+              />
+            </div>
+          </div>
+
           <AddToCart skus={currentStyle ? currentStyle.skus : null} />
         </div>
       </div>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./Breakdown.css";
 
 const Breakdown = (props) => {
   let max = Math.max(...Object.values(props.ratings));

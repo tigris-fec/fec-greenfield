@@ -5,8 +5,6 @@ import Reviews from "./Reviews.jsx";
 import { connect } from "react-redux";
 import { fakeSoloReview } from "./state.js";
 
-import "./RatingsAndReviews.css";
-
 const mapStateToProps = (store) => ({ productId: store.product_id });
 
 const RatingsAndReviewsContainer = (props) => {

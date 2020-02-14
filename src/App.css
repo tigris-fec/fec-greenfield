@@ -1,6 +1,4 @@
 body {
-  font-size: 15px;
-  border-radius: 0px;
 }
 
 button {
@@ -16,25 +14,21 @@ border:hover {
 div.box.is-button {
   border: solid;
   border-width: thin;
-  border-radius: 0;
 }
 
 select {
   border: none;
   border-style: solid;
   border-width: thin;
-  border-radius: 0px;
 }
 
 /** Overview CSS **/
 
 .tag {
-  border-radius: 0;
 }
 
 .product-category {
   margin-top: 2%;
-  font-size: 130%;
 }
 
 #product-name {
@@ -42,7 +36,6 @@ select {
 }
 
 #product-style {
-  font-size: 125%;
 }
 
 .all-questions {
@@ -61,7 +54,6 @@ select {
   margin-bottom: 2%;
   border: 1px solid black;
   font-weight: bold;
-  font-size: 1rem;
   padding-left: 20px;
   padding-top: 0px;
   padding-bottom: 0px;
@@ -81,21 +73,18 @@ select {
   margin-bottom: 10px;
 }
 .answer-body {
-  font-size: 1.1rem;
 }
 span > u {
   cursor: pointer;
 }
 
 .more-answers {
-  font-size: 1rem;
 }
 .my-button {
   background-color: white;
   border: 1px solid black;
   height: 60px;
   font-weight: bold;
-  font-size: 1rem;
   color: #525252;
   margin-right: 20px;
   padding-left: 20px;

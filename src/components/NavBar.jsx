@@ -43,7 +43,7 @@ const NavBar = (props) => {
           <div className="navbar-item" id="brand">
             <strong>
               <Link className="link" to="/">
-                Logo
+                Greenfield
               </Link>
             </strong>
           </div>

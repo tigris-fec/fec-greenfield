@@ -4,7 +4,6 @@ import StarRating from "./StarRating.jsx";
 import Photo from "./Photo.jsx";
 import RecommendedProduct from "./RecommendedProduct.jsx";
 import Response from "./Response.jsx";
-import "./Review.css";
 
 const Review = (props) => {
   const [reviewId, setReviewId] = useState(props.review.review_id);
