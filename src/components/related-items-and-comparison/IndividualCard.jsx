@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import StarRating from "./StarRating.jsx";
 import CompareModal from "./CompareModal.jsx";
+import { connect } from "react-redux";
 
-const IndividualCard = (props) => {
+const mapStateToProps = (store) => ({
+  currentItem: store.current_item
+});
+
+const IndividualCard_ = (props) => {
   const [modelOpen, setModalOpen] = useState(false);
   const defaultPic =
     "https://cdn.britannica.com/55/174255-050-526314B6/brown-Guernsey-cow.jpg";
@@ -70,12 +75,12 @@ const IndividualCard = (props) => {
       {modelOpen ? (
         <CompareModal
           closeModal={closeModal}
-          currentFeatures={props.features}
+          currentFeatures={props.currentItem.currentProduct.features}
           newFeatures={props.features}
         />
       ) : null}
     </div>
   );
 };
-
+const IndividualCard = connect(mapStateToProps,null)(IndividualCard_);
 export default IndividualCard;
