@@ -1,45 +1,37 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-class ProductsGallery extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      current: 0,
-      photos: []
-    };
-  }
-  componentDidMount() {
-    this.setState({ photos: this.props.photos }, () => console.log(this.state.photos));
-  }
-  render() {
+const ProductsGallery = (props) => {
+  const [current, setCurrent] = useState(0)
+ 
     return (
       <>
-        <div className="container is-fluid">
+        <div className="container is-fluid" >
           <Slider
             afterChange={(index) =>
-              this.setState({ current: index }, () => console.log(this.state.current))
+              setCurrent(index)
             }
             className="bulma"
             lazyLoad={true}
             slide={"figure"}
             arrows={true}
+            dots={true}
           >
-            {this.state.photos.map((photo, index) => {
-              return <img src={photo.url} />;
+            {props.photos.map((photo, index) => {
+              return <img src={photo.url} style={{height:"10px"}}/>;
             })}
           </Slider>
-          <div className="columns">
-            {this.state.photos.map((photo, index) => {
+          <div className="columns" >
+            {props.photos.map((photo, index) => {
               return (
                 <div className="column">
                   <figure
                     className="image is-128x128"
                     key={index}
                     style={
-                      this.state.index === index
+                      current === index
                         ? {
                             border: "solid",
                             borderWeight: "thin",
@@ -54,7 +46,7 @@ class ProductsGallery extends Component {
                       alt="thumbnail"
                       style={{
                         height: "50%",
-                        width: "autop",
+                        width: "auto",
                         justifyContent: "center"
                       }}
                       alt="thumbnail_url"
@@ -68,6 +60,6 @@ class ProductsGallery extends Component {
       </>
     );
   }
-}
+
 
 export default ProductsGallery;

@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
+import setCurrentItem from "../../js/actions/current-item.js";
 
 import ProductsGallery from "./ProductsGallery.jsx";
 import ProductRating from "./ProductRating.jsx";
@@ -17,7 +18,7 @@ import { productInfo } from "./data/products-info";
 import { reviews } from "./data/reviews";
 import QA from "../questions-and-answers/QA.jsx";
 
-const mapStateToProps = (store) => ({ PRODUCT_ID: store.product_id, averageRating: 3.7 });
+const mapStateToProps = (store) => ({ PRODUCT_ID: store.product_id, averageRating:store.average_rating});
 
 const OverviewContainer = (props) => {
   const [currentProduct, setCurrentProduct] = useState(productInfo);
@@ -43,6 +44,13 @@ const OverviewContainer = (props) => {
     setCurrentStyle(availableStyles[0]);
   }, [availableStyles]);
 
+  useEffect(()=>{
+    props.setCurrentItem({
+      currentProduct:currentProduct,
+      currentStyle:currentStyle,
+      averageRating:props.averageRating
+    })
+  },[currentStyle])
   return (
     <section className="section">
       <div className="columns">
@@ -55,7 +63,7 @@ const OverviewContainer = (props) => {
           <ProductName name={currentProduct.name} />
           <ProductPrice
             originalPrice={currentStyle? currentStyle.original_price: "N/A"}
-            salePrice={currentStyle? currentStyle.original_price: "N/A"}
+            salePrice={currentStyle? currentStyle.sale_price: 0}
           />
           <br />
           <ProductStyles
@@ -82,9 +90,9 @@ const OverviewContainer = (props) => {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 
-const Overview = connect(mapStateToProps)(OverviewContainer);
+const Overview = connect(mapStateToProps, {setCurrentItem})(OverviewContainer);
 export default Overview;

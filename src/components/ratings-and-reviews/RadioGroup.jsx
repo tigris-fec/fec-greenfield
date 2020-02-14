@@ -1,7 +1,6 @@
 import React from "react";
 
 const RadioGroup = (props) => {
-  console.log(props);
   return (
     <div className="control">
       <label className="level">{props.name}</label>

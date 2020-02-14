@@ -8,7 +8,6 @@ const IndividualCard = (props) => {
     "https://cdn.britannica.com/55/174255-050-526314B6/brown-Guernsey-cow.jpg";
 
   const handleClickChange = () => {
-    console.log(props.product.id)
     props.func(props.product.id)
   };
 

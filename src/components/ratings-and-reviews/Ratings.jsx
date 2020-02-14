@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import RatingSummary from "./RatingSummary.jsx";
 import Breakdown from "./Breakdown.jsx";
 import Factors from "./Factors.jsx";
+import { connect } from "react-redux";
+import setAverageReviews from "../../js/actions/average-rating.js";
 
-const Ratings = (props) => {
+const Ratings_ = (props) => {
   const fakeReview = props.soloReview;
   const [widgetName] = useState("Ratings & Reviews");
 
@@ -36,6 +38,10 @@ const Ratings = (props) => {
 
   let productCharacteristics = getCharacteristics(fakeReview.characteristics);
 
+  useEffect(() => {
+    props.setAverageReviews(averageRating);
+  }, [fakeReview]);
+
   return (
     <>
       <p>{widgetName.toUpperCase()}</p>
@@ -53,4 +59,5 @@ const Ratings = (props) => {
   );
 };
 
+const Ratings = connect(null, { setAverageReviews })(Ratings_);
 export default Ratings;
