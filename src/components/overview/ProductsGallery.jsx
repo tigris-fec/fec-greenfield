@@ -12,7 +12,7 @@ class ProductsGallery extends Component {
     };
   }
   componentDidMount() {
-    this.setState({ photos: this.props.photos }, () => console.log(this.state.photos));
+    this.setState({ photos: this.props.photos });
   }
   render() {
     return (
@@ -28,13 +28,13 @@ class ProductsGallery extends Component {
             arrows={true}
           >
             {this.state.photos.map((photo, index) => {
-              return <img src={photo.url} />;
+              return <img key={index} src={photo.url} />;
             })}
           </Slider>
           <div className="columns">
             {this.state.photos.map((photo, index) => {
               return (
-                <div className="column">
+                <div className="column" key={index}>
                   <figure
                     className="image is-128x128"
                     key={index}

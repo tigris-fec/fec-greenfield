@@ -58,8 +58,10 @@ const AddToCart = ({ skus }) => {
                     width: "275px"
                   }}
                 >
-                  {availableSizes.map((size) => (
-                    <option value={size}>{size}</option>
+                  {availableSizes.map((size, index) => (
+                    <option key={index} value={size}>
+                      {size}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -81,8 +83,10 @@ const AddToCart = ({ skus }) => {
                     width: "275px"
                   }}
                 >
-                  {productSize[currentSize].map((size) => (
-                    <option value={size}>{size}</option>
+                  {productSize[currentSize].map((size, index) => (
+                    <option key={index} value={size}>
+                      {size}
+                    </option>
                   ))}
                 </select>
               </div>

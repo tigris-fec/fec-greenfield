@@ -21,7 +21,12 @@ const ProductStyles = (props) => {
           >
             STYLE
           </span>
-          <span className="tag is-info is-light is-large">{">"}</span>
+          <span
+            className="tag is-info is-light is-large"
+            style={{ border: "solid", borderWidth: "thin", borderColor: "#0000001F" }}
+          >
+            {">"}
+          </span>
           <span
             className="tag is-white is-large"
             style={{ border: "solid", borderWidth: "thin", borderColor: "#0000001F" }}
@@ -55,7 +60,7 @@ const ProductStyles = (props) => {
                         className="far fa-check-circle fa-lg"
                         style={{
                           float: "right",
-                          position: "relative",
+                          position: "absolute",
                           right: "0%",
                           top: "0%",
                           zIndex: "1",
