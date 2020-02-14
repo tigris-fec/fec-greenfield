@@ -80,7 +80,7 @@ const AddToCart = ({ skus }) => {
             <div className="control">
               <div className="select is-dark is-large">
                 <select
-                  onChange={handleSizeChange}
+                  onChange={handleQuantityChange}
                   style={{
                     border: "solid",
                     borderWidth: "thin",

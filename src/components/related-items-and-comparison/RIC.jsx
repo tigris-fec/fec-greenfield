@@ -103,9 +103,12 @@ const RIC_ = (props) => {
     let currentItem = {
       currentItem: props.currentItem
     };
-    currentOutfit.push(currentItem);
-    localStorage.setItem("myOutfit", JSON.stringify(currentOutfit));
-    setOutfit(currentOutfit);
+    if(currentOutfit.some((item) => (item.currentItem.currentProduct.id === currentItem.currentItem.currentProduct.id))){
+    }else{
+      currentOutfit.push(currentItem);
+      localStorage.setItem("myOutfit", JSON.stringify(currentOutfit));
+      setOutfit(currentOutfit);
+    }
   };
 
   const deleteTheId = (product) => {
