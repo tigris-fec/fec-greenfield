@@ -154,7 +154,7 @@ class QA_ extends React.Component {
   }
   render() {
     return this.state.questions.product_id !== undefined ? (
-      <div className="my-width container">
+      <div>
         <div className="content is-medium">
           <p>QUESTIONS AND ANSWERS</p>
           <input
