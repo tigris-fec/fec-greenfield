@@ -68,7 +68,8 @@ class QA_ extends React.Component {
       console.log(this.props.PRODUCT_ID);
       this.setState(
         {
-          productID: this.props.PRODUCT_ID
+          productID: this.props.PRODUCT_ID,
+          questionsToDisplay: 2
         },
         () => {
           this.loadQuestions();
