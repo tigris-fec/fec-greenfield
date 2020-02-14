@@ -47,15 +47,15 @@ const OverviewContainer = (props) => {
     <section className="section">
       <div className="columns">
         <div className="column is-7">
-          <ProductsGallery photos={currentStyle? currentStyle.photos: null} />
+          <ProductsGallery photos={currentStyle ? currentStyle.photos : null} />
         </div>
         <div className="column is-5">
           <ProductRating rating={props.averageRating} />
           <ProductCategory category={currentProduct.category} />
           <ProductName name={currentProduct.name} />
           <ProductPrice
-            originalPrice={currentStyle? currentStyle.original_price: "N/A"}
-            salePrice={currentStyle? currentStyle.original_price: "N/A"}
+            originalPrice={currentStyle ? currentStyle.original_price : "N/A"}
+            salePrice={currentStyle ? currentStyle.original_price : "N/A"}
           />
           <br />
           <ProductStyles
@@ -63,7 +63,7 @@ const OverviewContainer = (props) => {
             productStyles={availableStyles}
             setSelectedProduct={setCurrentStyle}
           />
-          <AddToCart skus={currentStyle? currentStyle.skus:null} />
+          <AddToCart skus={currentStyle ? currentStyle.skus : null} />
         </div>
       </div>
       <div className="container">
@@ -82,7 +82,7 @@ const OverviewContainer = (props) => {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

@@ -16,9 +16,9 @@ const App = (props) => {
       <div className="container is-fluid">
         <Overview />
         <br />
-        <RIC />
-        <br />
         <QA />
+        <br />
+        <RIC />
         <br />
         <RatingsAndReviews />
       </div>

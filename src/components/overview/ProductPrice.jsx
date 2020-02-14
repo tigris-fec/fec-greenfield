@@ -25,17 +25,19 @@ const ProductPrice = (props) => {
                   >
                     <strong>${props.salePrice}</strong>
                   </span>
-                  <span className="tag is-light is-large">
-                    <u
-                      style={{
-                        color: "red",
-                        textDecoration: "line-through",
-                        borderRadius: "0px"
-                      }}
-                    >
-                      ${props.originalPrice}
-                    </u>
-                  </span>
+                  {props.salePrice === props.originalPrice ? null : (
+                    <span className="tag is-light is-large">
+                      <u
+                        style={{
+                          color: "red",
+                          textDecoration: "line-through",
+                          borderRadius: "0px"
+                        }}
+                      >
+                        ${props.originalPrice}
+                      </u>
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
