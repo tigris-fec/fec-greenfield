@@ -65,24 +65,24 @@ const NavBar = props => {
               </Link>
             </div>
             <div className="navbar-item is-hoverable" onClick={toggleNavBar}>
-              <Link className="link" to="/overview">
+              <a className="link" href="#overview">
                 Overview
-              </Link>
+              </a>
             </div>
             <div className="navbar-item is-hoverable" onClick={toggleNavBar}>
-              <Link className="link" to="/related-items-and-comparison">
+              <a className="link" href="#related-items">
                 Related Items and Comparison
-              </Link>
+              </a>
             </div>
             <div className="navbar-item is-hoverable" onClick={toggleNavBar}>
-              <Link className="link" to="/questions-and-answers">
+              <a className="link" href="#questions">
                 Q & A
-              </Link>
+              </a>
             </div>
             <div className="navbar-item is-hoverable" onClick={toggleNavBar}>
-              <Link className="link" to="/ratings-and-reviews">
+              <a className="link" href="#ratings-reviews">
                 Ratings and Reviews
-              </Link>
+              </a>
             </div>
           </div>
           <div className="navbar-end">

@@ -6,7 +6,9 @@ const Breakdown = (props) => {
   const [stars] = useState([5, 4, 3, 2, 1]);
   const ratings = props.ratings;
 
-  const clearFilter = () => props.setFilter([]);
+  const clearFilter = () => {
+    props.setFilter([]);
+  };
 
   const starClick = (number) => {
     if (!props.filters.includes(number)) {
@@ -33,21 +35,34 @@ const Breakdown = (props) => {
                     onClick={() => starClick(star)}
                     style={{ cursor: "pointer" }}
                   >
-                    <u>{star} Star(s)</u> &nbsp;&nbsp;
+                    <u>
+                      {star} Star({Object.values(props.ratings)[star - 1]})
+                    </u>
+                    &nbsp;&nbsp;
                   </div>
-                  <div className="level-item">
-                    <div className="progress is-left">
-                      <progress
-                        value={ratings[star] ? (ratings[star] / max) * 100 : 0}
-                        max={100}
-                        style={{ width: "300px" }}
-                      />
+                  </div>
+                  <div className="level-right">
+                    <div className="level-item">
+                      <div className="progress">
+                        <progress
+                          value={ratings[star] ? (ratings[star] / max) * 100 : 0}
+                          max={100}
+                          style={{ width: "300px" }}
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
+               
               </div>
             );
           })}
+          {props.filters.length !== 0 ? (
+            <p onClick={clearFilter}>
+              <em>
+                <u>Clear Filters</u>
+              </em>
+            </p>
+          ) : null}
         </div>
       </div>
     </div>

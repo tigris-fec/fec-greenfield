@@ -52,7 +52,7 @@ const OverviewContainer = (props) => {
     })
   },[currentStyle])
   return (
-    <section className="section">
+    <section className="section" id="overview">
       <div className="columns">
         <div className="column is-7">
           <ProductsGallery photos={currentStyle? currentStyle.photos: null} />

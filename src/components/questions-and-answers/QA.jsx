@@ -154,7 +154,7 @@ class QA_ extends React.Component {
   }
   render() {
     return this.state.questions.product_id !== undefined ? (
-      <div>
+      <div id="questions">
         <div className="content is-medium">
           <p>QUESTIONS AND ANSWERS</p>
           <input

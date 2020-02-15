@@ -25,7 +25,7 @@ const RatingsAndReviewsContainer = (props) => {
 
   return (
     <>
-      <div className="container is-fluid">
+      <div className="container is-fluid" id="ratings-reviews">
         <div className="container is-fluid">
           <div className="columns">
             <div className="column is-4">

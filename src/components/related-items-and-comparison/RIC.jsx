@@ -119,7 +119,7 @@ const RIC_ = (props) => {
   };
 
   return (
-    <div className="container is-fluid">
+    <div className="container is-fluid" id="related-items">
       <p>RELATED PRODUCTS</p>
       <div
         name="related-items"
