@@ -52,7 +52,7 @@ const ProductsGallery = (props) => {
         style={{ height: "80vh", width: "100%", backgroundColor: "lightgrey" }}
       >
         <figure className="image" style={{ height: "100%", width: "100%" }}>
-          <img src={currentPhoto.url} style={{ height: "100%", width: "100%" }} />
+          <img src={currentPhoto.url} style={{ height: "100%", width: "100%" }} alt="None Available"/>
         </figure>
       </div>
       <div name="thumbnail-container" style={{ paddingTop: "10px", width:"100%", overflow:"auto", height:"200px"}}>
@@ -64,7 +64,7 @@ const ProductsGallery = (props) => {
                   <figure className="image is-96x96">
                     <img
                       src={photo.url}
-                      alt="No Photo Available"
+                      alt="None Available"
                       onClick={() => clickPhotoHandler(photo)}
                       style={{
                         border: `${currentPhoto === photo ? "2px solid red" : "none"}`

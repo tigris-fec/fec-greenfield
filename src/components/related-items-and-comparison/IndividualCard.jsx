@@ -36,7 +36,7 @@ const IndividualCard_ = (props) => {
     >
       <div className="card-header">
         <p className="card-header-title"></p>
-        <a className="card-header-icon" aria-label="more options">
+        <a  href="#" className="card-header-icon" aria-label="more options">
           <span className="icon">
             {props.cardType === "related" ? (
               <p onClick={handleClickChange}>
@@ -57,7 +57,7 @@ const IndividualCard_ = (props) => {
             src={
               props.photo ? (props.photo.url ? props.photo.url : defaultPic) : defaultPic
             }
-            alt="Placeholder image"
+            alt="None Available"
           />
         </figure>
       </div>

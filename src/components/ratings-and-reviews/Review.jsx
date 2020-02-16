@@ -7,7 +7,7 @@ import Response from "./Response.jsx";
 import "./Review.css";
 
 const Review = (props) => {
-  const [reviewId, setReviewId] = useState(props.review.review_id);
+  const [reviewId] = useState(props.review.review_id);
   const [helpfulReview, setHelpfulReview] = useState(props.review.helpfulness);
   const [reported, setReported] = useState(false);
   const [helpfulClicked, setHelfulClicked] = useState(false);

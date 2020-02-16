@@ -1,5 +1,4 @@
 import React from "react";
-import { render } from "enzyme";
 import QuestionUnit from "./QuestionUnit.jsx";
 import AddQuestion from "./AddQuestion.jsx";
 import AddAnswer from "./AddAnswer.jsx";

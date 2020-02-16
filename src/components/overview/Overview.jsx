@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import setCurrentItem from "../../js/actions/current-item.js";
@@ -15,8 +15,6 @@ import ProductFeatures from "./ProductFeatures.jsx";
 
 import { productStyles } from "./data/product-styles";
 import { productInfo } from "./data/products-info";
-import { reviews } from "./data/reviews";
-import QA from "../questions-and-answers/QA.jsx";
 
 const mapStateToProps = (store) => ({ PRODUCT_ID: store.product_id, averageRating:store.average_rating});
 
