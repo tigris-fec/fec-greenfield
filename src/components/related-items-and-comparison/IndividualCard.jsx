@@ -36,15 +36,15 @@ const IndividualCard_ = (props) => {
     >
       <div className="card-header">
         <p className="card-header-title"></p>
-        <a className="card-header-icon" aria-label="more options">
+        <a  href="#" className="card-header-icon" aria-label="more options">
           <span className="icon">
             {props.cardType === "related" ? (
               <p onClick={handleClickChange}>
-                <i className="far fa-star" aria-hidden="true"></i>
+                <i className="far fa-star clickable" aria-hidden="true"></i>
               </p>
             ) : (
               <p onClick={handleClickChange}>
-                <i className="far fa-times-circle" aria-hidden="true"></i>
+                <i className="far fa-times-circle clickable" aria-hidden="true"></i>
               </p>
             )}
           </span>
@@ -52,12 +52,12 @@ const IndividualCard_ = (props) => {
       </div>
 
       <div className="card-image">
-        <figure className="image is-4by3" onClick={showModal}>
+        <figure className="image is-4by3 clickable" onClick={showModal}>
           <img
             src={
               props.photo ? (props.photo.url ? props.photo.url : defaultPic) : defaultPic
             }
-            alt="Placeholder image"
+            alt="None Available"
           />
         </figure>
       </div>

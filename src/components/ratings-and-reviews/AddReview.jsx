@@ -143,19 +143,26 @@ const ReviewModal = (props) => {
 
   return (
     <>
-      <button className="button" onClick={openModal}>
-        SUBMIT THIS SHIT
+      <button
+        onClick={openModal}
+        className="box is-button is-shadowless"
+        style={{
+          border: "solid",
+          borderWidth: "thin",
+          borderRadius: "0",
+          fontSize: "75%",
+          marginTop: "25px",
+          height: "60px"
+        }}
+      >
+        <strong>ADD A REVIEW +</strong>
       </button>
       <div className={`modal ${isOpen ? "is-active" : null}`}>
-        <div className="modal-background" onClick={props.closeModal}></div>
+        <div className="modal-background" onClick={closeModal}></div>
         <div className="modal-card">
           <header className="modal-card-head">
             <p className="modal-card-title">Write Your Review</p>
-            <button
-              className="delete"
-              aria-label="close"
-              onClick={props.closeModal}
-            ></button>
+            <button className="delete" aria-label="close" onClick={closeModal}></button>
           </header>
           <section className="modal-card-body">
             <div className="level">
@@ -205,6 +212,7 @@ const ReviewModal = (props) => {
             </div>
 
             <p>Product Characteristics:</p>
+            <br/>
             {itemChar.map((char, i) => (
               <RadioGroup
                 key={i}
@@ -214,7 +222,7 @@ const ReviewModal = (props) => {
                 val={characteristicNames[char].val}
               />
             ))}
-
+            <br />
             <p>Review Summary:</p>
             <input
               value={reviewSum}
@@ -268,7 +276,7 @@ const ReviewModal = (props) => {
             <button className="button is-success" onClick={sendData}>
               Send Review
             </button>
-            <button className="button" onClick={props.closeModal}>
+            <button className="button" onClick={closeModal}>
               Cancel
             </button>
           </footer>

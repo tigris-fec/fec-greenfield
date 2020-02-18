@@ -1,6 +1,5 @@
 import React from "react";
 import $ from "jquery";
-import Modal from "react-modal";
 import Axios from "axios";
 
 class AddQuestion extends React.Component {

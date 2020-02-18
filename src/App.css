@@ -1,4 +1,9 @@
-body {
+html{
+  scroll-behavior: smooth;
+}
+
+figure {
+   outline-style:none;
 }
 
 button {
@@ -25,6 +30,9 @@ select {
   border-radius: 0px;
 }
 
+a {
+  color:black;
+}
 /** Overview CSS **/
 
 .carousel * {
@@ -118,4 +126,10 @@ span > u {
 
 .answer-photo {
   border: 1px solid gray;
+}
+
+.image img { height: 100%; object-fit: cover; }
+
+.clickable {
+  cursor: pointer;
 }

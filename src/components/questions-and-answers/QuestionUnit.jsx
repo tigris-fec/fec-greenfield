@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import Axios from "axios";
 import AnswerUnit from "./AnswerUnit.jsx";
 import $ from "jquery";
-import AddAnswer from "./AddAnswer.jsx";
 const QuestionUnit = (props) => {
   const [votes, setVotes] = useState(props.question.question_helpfulness);
   const [didVote, setDidVote] = useState(false);
   const [answersToDisplay, setAnswersToDisplay] = useState(2);
-  const [displayAll, setDisplayAll] = useState(false);
   const answers = props.question.answers;
   const handleClick = function(id) {
     if (didVote) return;

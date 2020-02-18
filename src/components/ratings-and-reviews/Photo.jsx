@@ -16,7 +16,7 @@ const Photo = (props) => {
         <div className="modal-background" onClick={toggleModal}></div>
         <div className="modal-content">
           <p className="image is-4by3">
-            <img src={props.photo.url} alt="No Photo Available" />
+            <img src={props.photo.url} alt="None Available" />
           </p>
         </div>
         <button className="modal-close is-large" aria-label="close" onClick={toggleModal}></button>

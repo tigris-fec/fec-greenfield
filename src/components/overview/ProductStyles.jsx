@@ -44,7 +44,7 @@ const ProductStyles = (props) => {
           {props.productStyles.map((style) => {
             return (
               <li
-                className="product-styles-image"
+                className="product-styles-image clickable"
                 style={{ margin: "3%", flex: "0 0 19%", listStyle: "none" ,position:"relative"}}
                 key={style.style_id}
               >

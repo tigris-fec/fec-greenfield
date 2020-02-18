@@ -11,8 +11,6 @@ const mapStateToProps = (store) => ({ productId: store.product_id });
 
 const RatingsAndReviewsContainer = (props) => {
   const [filters, setFilters] = useState([]);
-  const [reviews, setReviews] = useState([]);
-  const [currentReviews, setCurrentReviews] = useState([]);
   const [soloReview, setFakeSoloReview] = useState(fakeSoloReview);
   const [productId, setProductId] = useState(1);
 
@@ -25,7 +23,7 @@ const RatingsAndReviewsContainer = (props) => {
 
   return (
     <>
-      <div className="container is-fluid">
+      <div className="container is-fluid" id="ratings-reviews">
         <div className="container is-fluid">
           <div className="columns">
             <div className="column is-4">
