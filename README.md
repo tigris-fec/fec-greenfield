@@ -1,6 +1,6 @@
-# FEC Greenfield
-### A website for shopping apparel. 
-Senior front-end capstone project done in a team of three, built with React.
+# CartIt
+### E-commerce apparel website built with React & Redux
+
 
 #### Table of Contents
 
@@ -21,19 +21,19 @@ A user can browse for products, select a product and view the product's pictures
   - Thumbnails below main picture allow you to click and load different photos of the product
   - To the right the user has the options to select different styles, sizes, and quantity.
 
-<img src="./gifs/overview.gif" alt="alt text" width="50%" height="50%">
+<img src="./gifs/overview.gif" alt="alt text" width="100%" height="100%">
 
 #### Related Items Section
   - Below the Product Overview a user can see a list cards of similar/related products.
   - Click on the star icon on any card will load that product
 
-<img src="./gifs/related_items.gif" alt="alt text" width="50%" height="50%">
+<img src="./gifs/related_items.gif" alt="alt text" width="100%" height="100%">
 
 #### Your Outfit Section
   - Functions like a cart system
   - Clicking "Add to Cart" will add a product here
 
-<img src="./gifs/your_outfit.gif" alt="alt text" width="50%" height="50%">
+<img src="./gifs/your_outfit.gif" alt="alt text" width="100%" height="100%">
 
 #### Questions and Answers
   Users can:
@@ -43,7 +43,7 @@ A user can browse for products, select a product and view the product's pictures
   - Answer a question
   - Upvote questions/answers or report answers 
 
-<img src="./gifs/questions.gif" alt="alt text" width="50%" height="50%">
+<img src="./gifs/questions.gif" alt="alt text" width="100%" height="100%">
 
 #### Ratings and Reviews
   Users can:
@@ -51,7 +51,7 @@ A user can browse for products, select a product and view the product's pictures
   - View/rate the product on a scale of 1-5 
   - Also view/report a product's characteristics on a scale such as "Fit", "Length", and "Comfort"
 
-<img src="./gifs/ratings.gif" alt="alt text" width="50%" height="50%">
+<img src="./gifs/ratings.gif" alt="alt text" width="100%" height="100%">
 
 ## Start instructions
 1) npm install
